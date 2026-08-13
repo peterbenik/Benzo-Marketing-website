@@ -725,6 +725,26 @@
     .logo-track{ width:auto; flex-wrap:wrap; justify-content:center; row-gap:1.75rem; }
     .logo-dupe{ display:none; }
   }
+  /* On touch the marquee runs from CSS instead of the rAF loop below. The loop
+     exists so :hover hit-testing matches the painted position — but there is no
+     hover on touch, so on a phone it was paying a per-frame main-thread style
+     recalc (measured: ~48% of all recalcs during a full scroll) for a correctness
+     property nothing can observe. A keyframe animation runs on the compositor and
+     costs the main thread nothing. -50% is exactly one logo set: the track holds
+     the set twice (.logo-dupe), so it wraps seamlessly.
+     Two durations because the track itself changes width at 640 (the logo padding
+     rule above): 1596px and 2285px, both at the JS loop's 70px/s. */
+  @keyframes logo-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (hover:none) and (pointer:coarse){
+    .logo-track{ animation:logo-scroll 23s linear infinite; }
+  }
+  @media (hover:none) and (pointer:coarse) and (min-width:641px){
+    .logo-track{ animation-duration:33s; }
+  }
+  /* reduced motion wraps the track into a static grid and hides the duplicate set,
+     so the scroll must not run there — the existing block above predates this rule
+     and only had to stop the JS, which bailed on its own. */
+  @media (prefers-reduced-motion:reduce){ .logo-track{ animation:none; } }
   /* Softer, edge-fading hairlines above & below the logo band (was a bold full-width border) */
   .logo-band{ position:relative; }
   .logo-band::before, .logo-band::after{ content:""; position:absolute; left:0; right:0; height:1px;
@@ -1003,6 +1023,25 @@
        scale for exactly this case (see .art-bg-war img), so killing the animation
        alone leaves each one's framing intact. */
     .art-bg img{ animation:none; }
+  }
+
+  /* ===== Narrow-viewport glow containment =====
+     The two blue glows either side of the #kapacita / #kontakt boundary are sized
+     in fixed px: 620x420 and 760x760. At 1440 that 620 is 43% of the width, so it
+     reads as a contained pool with black all around it — which is the intent. At
+     390 the SAME 620px is wider than the whole section, and a 100px blur pushes it
+     another 100 past each edge, so nothing is left over to be black: measured, the
+     section had no true black pixel anywhere, just a teal wash rising from
+     rgb(0,4,5) at the corners to rgb(0,18,25) at the foot.
+     Capping it back to ~44% of the viewport restores the desktop proportion (and
+     with it the black edges) rather than inventing a different look for phones.
+     max-width/max-height, not width/height: the size is set inline on the element,
+     and a max-* cap constrains the used value without needing !important.
+     A width query, not a pointer query — this is a geometry problem, so a narrow
+     desktop window has it too and gets the same fix. */
+  @media (max-width:767px){
+    #kapacita .glow, #kontakt .glow{
+      max-width:44vw; max-height:140px; filter:blur(44px); }
   }
   /* The fixed nav's backdrop blur is the third cause, and it is the same on every
      page — it lives in assets/benzo.css rather than being restated here. */
@@ -2096,6 +2135,9 @@ void main(void){
   var track = document.querySelector('.logo-track');
   if (!track) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // CSS static fallback
+  // Touch devices run the marquee from a CSS keyframe instead — see .logo-track
+  // above. This loop only earns its keep where :hover exists.
+  if (window.matchMedia('(hover:none) and (pointer:coarse)').matches) return;
 
   var half = 0, x = 0, last = null, raf = null, running = false;
   var SPEED = 70; // px per second

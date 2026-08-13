@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benzo Marketing — Strategická marketingová agentúra</title>
+<meta name="description" content="Benzo je strategická marketingová agentúra postavená na hĺbkovom výskume trhu. Najprv pochopíme, potom dominujeme.">
+<link rel="canonical" href="https://benzomarketing.com/">
+<!-- max-snippet:-1 is the GEO half of this line: it lifts the cap on how much of the
+     page an engine may quote, which is exactly what an AI answer needs to cite us.
+     max-image-preview:large is the SEO half — full-size thumbnails in results. -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#0D0D0D">
+<!-- The official omega mark, vectorised from brand_assets. White on ink so it holds
+     up against both light and dark browser chrome; PNGs are the fallbacks. -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benzo Marketing">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:url" content="https://benzomarketing.com/">
+<meta property="og:title" content="Benzo Marketing — Strategická marketingová agentúra">
+<meta property="og:description" content="Strategická marketingová agentúra postavená na hĺbkovom výskume trhu. Najprv pochopíme, potom dominujeme.">
+<meta property="og:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Benzo Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Benzo Marketing — Strategická marketingová agentúra">
+<meta name="twitter:description" content="Strategická marketingová agentúra postavená na hĺbkovom výskume trhu. Najprv pochopíme, potom dominujeme.">
+<meta name="twitter:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#0D0D0D',
+          black:  '#000000',
+          navy:   '#000080',
+          blue:   '#04A7E7',
+          // scarcity only — the #kapacita cluster: the count, its gauge, and the cue
+          // that closes the section. Deliberately NOT a second brand colour: no
+          // button that reaches the enquiry form ever wears it, so red keeps meaning
+          // "running out" instead of becoming decoration.
+          alert:  '#F5273B',
+          cream:  '#F4F6F8',
+          muted:  '#9CA5AF',
+          muted2: '#68738B',
+          // mirrors --line in the inline CSS. Without it `border-line` matches no
+          // Tailwind colour and `border-t` silently falls back to Preflight's
+          // default #e5e7eb — a near-white hairline on every divider.
+          line:   'rgba(255,255,255,.11)',
+        },
+        fontFamily: { sans: ['Montserrat', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="assets/benzo.css">
+
+<!-- page-specific: only rules index.html alone uses -->
+<style>
+
+  /* ===== Exit-intent dialog =====
+     Fires once per session, on fine pointers only, and never once the visitor
+     has already reached the enquiry form. The primary action leads to that
+     form so it carries the standard CTA glow; the dismiss deliberately does
+     not, same rule as the walk-away button in #kontakt.
+
+     Assembled from this site's own signatures rather than generic modal
+     furniture: the Omega medallion breaks the panel's top edge the way it
+     breaks the nav capsule, a vertical meander runs the left margin (the case
+     study's .cs-spine, praca-03.html:275), one blue rule carries the list
+     instead of an icon badge per line (.cs-asks, praca-03.html:144), and two
+     drifting orbs give the panel something to sit in. */
+  .exit{
+    position:fixed; inset:0; z-index:120; display:grid; place-items:center;
+    /* the extra headroom is the medallion's — it stands proud of the panel */
+    padding:40px 18px 22px; opacity:0; pointer-events:none;
+    transition:opacity .35s var(--ease);
+  }
+  .exit.is-open{ opacity:1; pointer-events:auto; }
+  .exit-scrim{ position:absolute; inset:0; background:rgba(4,6,10,.82);
+    -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px); }
+
+  /* --- atmosphere behind the panel ---
+     The .cs-glow recipe at modal scale, so the card sits in something rather
+     than on a flat blurred plate. Painted over the scrim, under the panel. */
+  .exit-glow{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .exit-glow span{ position:absolute; display:block; border-radius:9999px;
+    transform:translate(-50%,-50%); }
+  .exit-glow-1{ width:min(420px,80vw); height:340px; background:var(--blue);
+    top:34%; left:64%; filter:blur(90px); animation:exit-drift-1 17s ease-in-out infinite; }
+  .exit-glow-2{ width:min(340px,68vw); height:300px; background:var(--navy);
+    top:70%; left:36%; filter:blur(70px); animation:exit-drift-2 21s ease-in-out infinite; }
+  @keyframes exit-drift-1{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);   opacity:.22; }
+    50%    { transform:translate(-53%,-54%) scale(1.1); opacity:.32; }
+  }
+  @keyframes exit-drift-2{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.2; }
+    50%    { transform:translate(-47%,-46%) scale(1.12); opacity:.3; }
+  }
+
+  .exit-panel{
+    position:relative; z-index:1; width:min(640px,100%);
+    max-height:min(88dvh,760px); display:flex; flex-direction:column;
+    border-radius:26px; padding:3.9rem 1.7rem 1.8rem;
+    background:linear-gradient(180deg, rgba(17,23,31,.98), rgba(9,10,14,.99));
+    border:1px solid rgba(4,167,231,.32);
+    box-shadow:0 44px 96px -34px rgba(0,0,0,.92), 0 0 70px -24px rgba(4,167,231,.38);
+    transform:translateY(16px) scale(.97);
+    transition:transform .45s var(--ease);
+  }
+  .exit.is-open .exit-panel{ transform:none; }
+  /* the panel takes focus on open so no control has to (see the dialog script).
+     It is announced by role+aria-labelledby, so it needs no ring of its own. */
+  .exit-panel:focus{ outline:none; }
+  /* the wider left inset is the spine's gutter */
+  @media (min-width:640px){ .exit-panel{ padding:4.2rem 2.6rem 2.1rem 3.4rem; } }
+  /* the panel itself must never scroll: it carries a medallion that overhangs
+     its top edge and a spine pinned to its full height. The body scrolls.
+     The gutter is for the CTA halo: .cta-glow::before sits at inset:-9px, so
+     without it the scroll box shears the halo flat and counts the overhang as
+     9px of phantom scrollable content. Negative margins cancel the gutter, so
+     the copy lands exactly where the panel's own padding puts it. */
+  .exit-body{ min-height:0; overflow-y:auto;
+    padding:0 12px 14px; margin:0 -12px -14px; }
+
+  .exit-close{
+    position:absolute; top:14px; right:14px; width:38px; height:38px;
+    display:grid; place-items:center; border-radius:9999px; cursor:pointer;
+    background:rgba(255,255,255,.06); color:rgba(255,255,255,.6); border:0;
+    transition:background-color .3s var(--ease), color .3s var(--ease), transform .4s var(--ease);
+  }
+  .exit-close:hover{ background:rgba(255,255,255,.13); color:#fff; transform:rotate(90deg); }
+  .exit-close:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+  .exit-close svg{ width:16px; height:16px; }
+
+  /* --- Omega medallion ---
+     The .crown-medal recipe (assets/benzo.css:179) restated here, because the
+     shared one is driven by --medal vars that exist only on .nav. Purely a
+     seal: no hover, no rotation, and not a link, so the focus trap keeps its
+     three stops. Sits 40% above the edge; the panel's top padding is sized to
+     clear the 60% that hangs inside. */
+  .exit-medal{
+    --medal:58px;
+    position:absolute; left:50%; top:calc(var(--medal) * -.4);
+    width:var(--medal); height:var(--medal); transform:translateX(-50%);
+    display:grid; place-items:center; border-radius:50%; z-index:3;
+    background:radial-gradient(circle at 50% 32%, rgba(20,30,42,.97), rgba(7,8,11,.99) 70%);
+    box-shadow:0 0 0 1px rgba(4,167,231,.55), 0 14px 34px -14px rgba(4,167,231,.6),
+               0 4px 14px -6px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.09);
+  }
+  @media (min-width:640px){ .exit-medal{ --medal:68px; } }
+  .exit-medal::before{
+    content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%2304A7E7' stroke-width='1.7' stroke-linecap='square'%3E%3Ccircle cx='50' cy='50' r='38'/%3E%3Ccircle cx='50' cy='50' r='30.00'/%3E%3Cpath d='M64.29 23.62L66.92 18.77A35.52 35.52 0 0 0 55.56 14.92L55.12 17.68A32.72 32.72 0 0 1 60.89 19.15M77.06 37.06L82.04 34.67A35.52 35.52 0 0 0 75.12 24.88L73.14 26.86A32.72 32.72 0 0 1 76.95 31.44M79.50 55.44L84.93 56.44A35.52 35.52 0 0 0 85.08 44.44L82.32 44.88A32.72 32.72 0 0 1 82.71 50.82M70.67 71.74L74.48 75.74A35.52 35.52 0 0 0 81.65 66.13L79.15 64.85A32.72 32.72 0 0 1 75.98 69.89M53.95 79.74L54.67 85.21A35.52 35.52 0 0 0 66.13 81.65L64.85 79.15A32.72 32.72 0 0 1 59.33 81.36M35.71 76.38L33.08 81.23A35.52 35.52 0 0 0 44.44 85.08L44.88 82.32A32.72 32.72 0 0 1 39.11 80.85M22.94 62.94L17.96 65.33A35.52 35.52 0 0 0 24.88 75.12L26.86 73.14A32.72 32.72 0 0 1 23.05 68.56M20.50 44.56L15.07 43.56A35.52 35.52 0 0 0 14.92 55.56L17.68 55.12A32.72 32.72 0 0 1 17.29 49.18M29.33 28.26L25.52 24.26A35.52 35.52 0 0 0 18.35 33.87L20.85 35.15A32.72 32.72 0 0 1 24.02 30.11M46.05 20.26L45.33 14.79A35.52 35.52 0 0 0 33.87 18.35L35.15 20.85A32.72 32.72 0 0 1 40.67 18.64'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat;
+    opacity:.85;
+  }
+  .exit-medal img{
+    width:calc(var(--medal) * .36); height:auto; display:block;
+    filter:drop-shadow(0 0 14px rgba(4,167,231,.5));
+  }
+
+  /* --- meander spine ---
+     praca-03's tile verbatim: the nav key band rotated 90°. The mask carries
+     the artwork, so each layer supplies only a colour. Shown from 640px, the
+     width at which the panel's left padding opens a gutter wide enough to
+     hold it without crowding the copy. */
+  .exit-spine{ display:none; }
+  @media (min-width:640px){
+    .exit-spine{
+      --key:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='36' viewBox='0 0 18 36'%3E%3Cpath d='M0.9 0V36M17.1 0V36M0.9 28.4H11.8V9H6.2V19.4' fill='none' stroke='%23fff' stroke-width='1.7'/%3E%3C/svg%3E");
+      display:block; position:absolute; z-index:2; pointer-events:none;
+      left:1.5rem; top:1.6rem; bottom:1.6rem; width:14px; overflow:hidden;
+      /* dissolved at both ends, same reasoning as the case study: butted
+         against the rounded corners it reads as a rule, not an ornament */
+      -webkit-mask-image:linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+              mask-image:linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    }
+    .exit-spine span{
+      position:absolute; left:0; right:0;
+      -webkit-mask-image:var(--key); mask-image:var(--key);
+      -webkit-mask-repeat:repeat-y; mask-repeat:repeat-y;
+      -webkit-mask-size:14px 28px; mask-size:14px 28px;
+    }
+    .exit-spine-base{ top:0; bottom:0; background:rgba(255,255,255,.10); }
+    /* quieter than the case study's .5: here it runs parallel to the list's
+       own blue rule a few pixels away, and two accents at the same weight
+       read as a repeat. This one has to sit back and be texture. */
+    .exit-spine-fill{ top:0; bottom:0; background:var(--blue); opacity:.34;
+      filter:drop-shadow(0 0 5px rgba(4,167,231,.22)); }
+    /* one pass of light down the key as the panel lands, then rest. Transform
+       only: a clip-path draw is off the table, and scaleY on a masked element
+       squashes the tile rather than extending it, because the transform maps
+       the box the mask has already been applied to. */
+    .exit-spine-pulse{
+      top:0; height:30%; opacity:0; transform:translateY(-110%);
+      background:linear-gradient(180deg, transparent, rgba(255,255,255,.8), transparent);
+    }
+    .exit.is-open .exit-spine-pulse{ animation:exit-pulse 1.7s var(--ease) .25s 1 both; }
+  }
+  @keyframes exit-pulse{
+    0%  { transform:translateY(-110%); opacity:0; }
+    18% { opacity:1; }
+    82% { opacity:1; }
+    100%{ transform:translateY(443%);  opacity:0; }
+  }
+
+  .exit-eyebrow{ color:rgba(255,255,255,.42); font-weight:600;
+    text-transform:uppercase; letter-spacing:.2em; font-size:.68rem; }
+  .exit-title{ margin-top:.85rem; color:#fff; font-weight:800;
+    letter-spacing:-.03em; line-height:1.06; font-size:clamp(1.55rem,3.6vw,2.1rem); }
+  .exit-lead{ margin-top:1rem; max-width:44ch;
+    color:rgba(255,255,255,.64); line-height:1.7; font-size:.95rem; }
+
+  /* the case study's .cs-asks device: one blue rule beside the whole run */
+  .exit-list{ position:relative; margin:1.9rem 0 2.1rem; padding-left:1.5rem;
+    display:flex; flex-direction:column; gap:1.05rem; }
+  .exit-list::before{ content:""; position:absolute; left:0; top:.35rem; bottom:.35rem;
+    width:2px; border-radius:9999px;
+    background:linear-gradient(180deg, var(--blue), rgba(4,167,231,.1)); }
+  .exit-row b{ display:block; font-weight:600; letter-spacing:-.012em;
+    line-height:1.4; color:rgba(255,255,255,.94); font-size:1rem; }
+  .exit-row span{ display:block; margin-top:.3rem; color:rgba(255,255,255,.55);
+    line-height:1.6; font-size:.88rem; }
+
+  .exit-actions{ display:flex; flex-direction:column; gap:.75rem; }
+  .exit-actions .btn{ width:100%; justify-content:center; }
+  /* the dismiss stays muted — never rewards the exit with brand colour */
+  .exit-dismiss{
+    width:100%; justify-content:center; text-align:center; cursor:pointer;
+    padding:.95rem 1.6rem; border-radius:9999px; font-size:.85rem;
+    background:transparent; border:1px solid var(--line); color:rgba(255,255,255,.5);
+    transition:border-color .35s var(--ease), color .35s var(--ease);
+  }
+  .exit-dismiss:hover{ border-color:rgba(255,255,255,.26); color:rgba(255,255,255,.72); }
+  .exit-dismiss:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+  @media (min-width:640px){
+    .exit-actions{ flex-direction:row; align-items:center; gap:1rem; }
+    .exit-actions .btn{ width:auto; }
+    .exit-dismiss{ width:auto; padding:.95rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .exit, .exit-panel{ transition:none; }
+    .exit-panel{ transform:none; }
+    .exit-close:hover{ transform:none; }
+    .exit-glow-1, .exit-glow-2{ animation:none; opacity:.22; }
+    .exit.is-open .exit-spine-pulse{ animation:none; opacity:0; }
+  }
+
+  /* ===== FAQ omega watermark =====
+     The mark set large behind the whole section as a lit silhouette rather than
+     a legible logo. Colour lives in a separate bloom layer so the omega itself
+     can sit at a few percent opacity and still read as glowing. */
+  /* Faded top and bottom rather than a straight cut. The bloom is round and the
+     section is only ~660px tall since the FAQ went to five questions, so
+     overflow:hidden alone sliced two flat chords off the circle right on the
+     section seam. Same containment the mission glow uses. */
+  .faq-mark{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+            mask-image:linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%); }
+  .faq-mark > *{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  }
+  /* ambient bloom: white at the core, cooling to brand blue at the edge */
+  .faq-mark-glow{
+    width:min(700px,96vw); aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(closest-side,
+      rgba(255,255,255,.08), rgba(150,215,245,.064) 34%,
+      rgba(4,167,231,.06) 52%, rgba(4,167,231,.022) 70%, transparent 80%);
+    filter:blur(30px);
+  }
+  /* a blurred copy of the mark, so the light is omega-shaped and the logo reads
+     as emitting it. This has to be its own element: a drop-shadow on the
+     silhouette below would be multiplied by that element's own low opacity and
+     all but vanish. */
+  .faq-mark-halo{
+    width:min(660px,74vw); height:auto; opacity:.15;
+    filter:blur(34px) saturate(0);
+  }
+  .faq-mark-core{
+    width:min(660px,74vw); height:auto; opacity:.07;
+  }
+  @media (min-width:768px){
+    /* 520, not 760: the mark was rendering 749px square inside a 659px section, so
+       it read as a cropped logo rather than a watermark. This sits inside the
+       mask's clear band and only feathers at its very top and bottom. */
+    .faq-mark-halo, .faq-mark-core{ width:min(520px,38vw); }
+  }
+
+  /* Painted atmosphere. Each instance is framed to its OWN section — stretching one
+     copy across two sections forces a tall narrow crop out of a landscape painting
+     and destroys the composition. Used by #onas (the cavalry charge) and #kontakt
+     (the crossing behind the closing decision). Both stay fully grayscale: they sit
+     inside a scrolling page, where a painting must not pull rank on the section
+     around it. Only the form page, where the painting IS the page, is pitched up.
+
+     Both sections are taller than their canvas is proportionally wide, so cover
+     scales by HEIGHT in both: object-position's y is inert (there is no vertical
+     slack to give), and only the x slice is a real choice. Tune framing with x and
+     with the drift's scale — never with y, which silently does nothing here.
+
+     Base = #onas, which is the one that does NOT bleed the full height — see the
+     band on the img below. It is also the darkest of the three: a dense, bright,
+     edge-to-edge melee has to read as texture behind a letter of body copy, not as
+     a picture competing with it. */
+  .art-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  /* Zooming out in a container this tall is not a matter of scale — cover binds on
+     the HEIGHT, so at full bleed the section's 0.83 ratio against a 1.87 canvas
+     admits only ~44% of the width no matter what scale does, and that slice is a
+     close-up of one horse. The lever is the box: standing the painting in a band
+     70% of the section tall drops the cover ratio to ~1.19 and lets ~62% of the
+     canvas through — the melee either side of the horse comes back. The band's own
+     top and bottom edges are dissolved by the mask, so it still reads as atmosphere
+     bleeding out of the section rather than as a photograph in a frame.
+     x 46%, not centre: even widened, the slice is not the whole canvas, and pulling
+     it left of centre keeps the white horse — the one form that survives the
+     grayscale and the darkening — inside the frame rather than split by its edge. */
+  .art-bg img{ position:absolute; left:0; top:15%; width:100%; height:70%;
+    object-fit:cover; object-position:46% 50%;
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+            mask-image:linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+    filter:grayscale(1) contrast(1.18) brightness(.82); opacity:.33;
+    transform:scale(1.04); transform-origin:center;
+    animation:art-drift 34s ease-in-out infinite alternate; }
+  .art-bg::after{ content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(120% 85% at 50% 32%, transparent 0%, rgba(13,13,13,.42) 64%, var(--ink) 100%),
+      linear-gradient(to bottom, var(--ink) 0%, transparent 24%, transparent 76%, var(--ink) 100%); }
+  /* The crossing, behind the closing decision. This one sits on pure black, so its
+     fade resolves to black, not ink.
+     Pitched ABOVE the base, the opposite way round from the crop it replaced: at
+     1440x922 the section ratio is close enough to the canvas that ~90% of the
+     composition survives, but a 1000px source stretched 1.6x is soft and, unlike
+     the melee, this is a quiet painting of mostly sky and ice. Left at the base's
+     .3/.74 it dissolved into fog. Contrast carries the difference so the darks
+     still crush to true black instead of going milky over the section. */
+  .art-bg-war img{ object-position:50% 42%; opacity:.34;
+    filter:grayscale(1) contrast(1.2) brightness(.95);
+    /* Undo the base's band: that exists to widen a slice #onas could not otherwise
+       widen, and this section has no such problem — at 1.56 against a 1.73 canvas it
+       already shows ~90% of the composition, so it bleeds the full height and needs
+       no mask of its own (the wrapper carries one for the seam above). */
+    top:0; height:100%; -webkit-mask-image:none; mask-image:none;
+    /* Barely any zoom, and no vertical push at all — both of which the previous
+       painting needed and this one must not have. The push existed to drag a canvas
+       whose detail sat high down into the open band; here the boat already sits mid-
+       canvas, and with y inert (cover by height) any downward shift trades it for
+       empty sky. Scale stays just high enough to give the drift its headroom.
+       The transform is restated here rather than left to the keyframes because
+       prefers-reduced-motion sets animation:none, and without it the painting would
+       snap back to the base scale(1.1) and lose the framing entirely. */
+    transform:scale(1.08) translate3d(0,0,0);
+    animation-name:art-drift-war; animation-direction:alternate-reverse; }
+  /* Transition into #kapacita: the painted layer DISSOLVES toward the top edge
+     rather than being covered by more black, so the painting arrives out of the
+     previous section instead of starting at a line. Long tail (full strength only
+     by 30%) — that tail is what removes the visible step; a short ramp reads as an
+     edge no matter how dark it goes. Masked on the wrapper, not the img: the img
+     carries the drift transform, and a mask there would slide with it. The bottom
+     stays fully opaque — the footer follows, and its own fade already handles it. */
+  .art-bg-war{
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0,
+      rgba(0,0,0,.42) 4.5%, rgba(0,0,0,.72) 11%, rgba(0,0,0,.9) 19%, #000 30%);
+            mask-image:linear-gradient(to bottom, transparent 0,
+      rgba(0,0,0,.42) 4.5%, rgba(0,0,0,.72) 11%, rgba(0,0,0,.9) 19%, #000 30%); }
+  /* A drift with almost no vertical component: the boat has to stay put. Headroom
+     is (scale-1)/2 - scale*shift and must stay positive at BOTH ends or the shift
+     exposes a bare edge — 4.0% and 5.9% here. Keep that check if either is retuned. */
+  @keyframes art-drift-war{
+    from{ transform:scale(1.08) translate3d(0,0,0); }
+    to  { transform:scale(1.14) translate3d(1.2%,-1%,0); }
+  }
+  /* No full-height vignette here — that crushed the top and bottom to flat black and
+     left the painting readable only in a band across the middle. The top seam is the
+     mask's job now, so this layer only protects the type and closes the footer edge. */
+  .art-bg-war::after{
+    background:
+      /* soft ellipse behind the type block only. Wide and heavily feathered so it
+         never reads as a shape — the headline survives on its own weight, the
+         smaller grey subcopy is what actually needs the contrast. */
+      radial-gradient(76% 44% at 50% 33%, rgba(0,0,0,.6) 0%, rgba(0,0,0,.3) 58%, transparent 100%),
+      /* the shallow .16 floor keeps the whole section on one even wash instead of a
+         hot middle; only the last few percent darkens, to close against the footer. */
+      linear-gradient(to bottom,
+        rgba(0,0,0,.16) 0%, rgba(0,0,0,.16) 93%,
+        rgba(0,0,0,.34) 98%, rgba(0,0,0,.66) 100%); }
+  /* Small numbers now, because the band starts at scale 1.04, not 1.1: the mask
+     dissolves the top and bottom edges but nothing hides the LEFT and RIGHT, so a
+     horizontal shift bigger than the half-overflow ((scale-1)/2) drags a bare edge
+     into the section. 1.2% against 4.5% of headroom at the far end. */
+  @keyframes art-drift{
+    from{ transform:scale(1.04) translate3d(0,0,0); }
+    to  { transform:scale(1.09) translate3d(-1.2%,-1.2%,0); }
+  }
+  @media (prefers-reduced-motion:reduce){ .art-bg img{ animation:none; } }
+
+  /* ===== Metóda: an Ionic order inside a Parthenon front =====
+     Everything here is drawn — stroke-only SVG and 1px hairlines, never photoreal.
+     The volute spiral is generated (scratchpad/gen-volute.mjs); hand-chained arcs
+     look lumpy at this size. Capital and base share a 300-unit viewBox whose inner
+     necking sits exactly on the shaft edges, so the overhang is bound to the shaft
+     width: oh = shaft * (300/256.6 - 1)/2 = shaft * 0.08456.
+
+     It is a PERCENTAGE, not px, and must stay one. The shaft only reaches its
+     max-width at the top of each range — between lg and ~1104px the three columns
+     are 293-320px, so any fixed px overhang is wrong across that whole band (27px
+     measured 4.4px off at 1024). A percentage margin resolves against .pillar,
+     whose width is the shaft, so it stays exact at every viewport for free.
+     The blue capital line insets by the same overhang expressed against .col-cap
+     instead: 0.08456 / 1.16912 = 7.233%.
+
+     Widened 260 -> 320 to carry the real Metóda copy: 260 gave a ~31ch measure and
+     ran the longest pillar to 8 cramped lines. 320 gives ~40ch / 7 lines, and the
+     colonnade still fits (3*320 + 2*40 gap = 1040 inside 1086 available). */
+  .pillar{ --oh:10px; --ohp:8.456%;
+    position:relative; display:flex; flex-direction:column;
+    width:100%; max-width:320px; margin:0 auto; }
+
+  .col-cap, .col-base{ position:relative; margin:0 calc(-1 * var(--ohp));
+    color:rgba(255,255,255,.44); }
+  .cap-svg, .base-svg{ display:block; width:100%; height:auto; }
+  /* the one piece of brand colour in the structure; spans the shaft, not the overhang */
+  .col-cap::after{ content:""; position:absolute; bottom:0;
+    left:7.233%; right:7.233%; height:2px;
+    background:var(--blue); box-shadow:0 0 16px -1px rgba(4,167,231,.55);
+    transition:box-shadow .55s var(--ease); }
+  .pillar:hover .col-cap::after{ box-shadow:0 0 28px 0 rgba(4,167,231,.95); }
+  /* contact shadow cast onto the stylobate */
+  .col-base::after{ content:""; position:absolute; top:100%; left:7%; right:7%; height:24px;
+    background:radial-gradient(ellipse at 50% 0%, rgba(0,0,0,.85), transparent 70%);
+    pointer-events:none; }
+
+  .col-shaft{ position:relative; flex:1; display:flex; flex-direction:column;
+    min-height:clamp(340px,38vw,480px); padding:1.6rem 1.25rem 2rem;
+    border-left:1px solid var(--line); border-right:1px solid var(--line);
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.05), transparent 20%, transparent 80%, rgba(255,255,255,.042)),
+      linear-gradient(to bottom, rgba(255,255,255,.03), rgba(255,255,255,.012));
+    transition:background-color .55s var(--ease); }
+  /* flute lines, masked so they fade out toward both edges */
+  .col-shaft::before{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:repeating-linear-gradient(90deg, transparent 0 17px, rgba(255,255,255,.105) 17px 18px);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+            mask-image:linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); }
+  .col-shaft::after{ content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(to bottom,
+      rgba(13,13,13,.55) 0%, rgba(13,13,13,.18) 10%, transparent 22%,
+      transparent 52%, rgba(13,13,13,.5) 78%, rgba(13,13,13,.72) 100%); }
+  /* hover must not move geometry — the column is load-bearing now */
+  .pillar:hover .col-shaft{ background-color:rgba(4,167,231,.035); }
+
+  /* Content reads top-down: numeral, title, then the body filling the shaft.
+     .col-text used to be margin-top:auto (everything hung at the foot), which the
+     short one-line bodies suited but the real copy does not. */
+  .col-num, .col-text{ position:relative; z-index:2; }
+  .col-num{ font-size:clamp(2.2rem,4vw,3rem); opacity:.92; line-height:1; }
+  .col-text{ margin-top:1.35rem; }
+  .col-title{ font-size:clamp(1.12rem,1.55vw,1.4rem); }
+  /* Only worth reserving a second title line while the columns stand side by side */
+  @media (min-width:1024px){
+    /* min-height keeps the three bodies starting on a common line even when one
+       title wraps; flex-start because the anchor is the top of the block now. */
+    .col-title{ display:flex; align-items:flex-start; min-height:2.1em; }
+  }
+  .col-body{ font-size:.875rem; margin-top:.55rem; }
+
+  /* ----- the building around the colonnade ----- */
+  .colonnade{ position:relative; z-index:1; }
+
+  .entab{ position:relative; }
+  .pediment{ position:relative; height:clamp(46px,6.5vw,84px);
+    clip-path:polygon(50% 0, 100% 100%, 0 100%);
+    background:rgba(255,255,255,.105); }
+  /* insetting the tympanum leaves the raking cornice reading as an even outline */
+  .pediment::after{ content:""; position:absolute; left:15px; right:15px; top:12px; bottom:0;
+    clip-path:polygon(50% 0, 100% 100%, 0 100%); background:var(--ink); }
+  .cornice{ display:block; height:15px; margin:0 -14px;
+    background:rgba(255,255,255,.095); border:1px solid var(--line);
+    box-shadow:0 5px 12px -5px rgba(0,0,0,.95); }
+  /* triglyphs + metopes, as in parthenon.jpg — grooves paint over the block, so the
+     groove layer comes first in the shorthand */
+  .frieze{ display:block; height:30px;
+    border-left:1px solid var(--line); border-right:1px solid var(--line);
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0 6px, rgba(255,255,255,.21) 6px 7px,
+        transparent 7px 12px, rgba(255,255,255,.21) 12px 13px,
+        transparent 13px 19px, rgba(255,255,255,.21) 19px 20px,
+        transparent 20px 70px),
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,.065) 0 26px, transparent 26px 70px),
+      rgba(255,255,255,.012); }
+  .architrave{ display:block; height:14px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--line); border-top:0; }
+
+  .stylobate{ position:relative; z-index:0; }
+  .sty-1, .sty-2, .sty-3{ display:block; border:1px solid var(--line); border-top:0; }
+  .sty-1{ height:16px; background:rgba(255,255,255,.075); }
+  .sty-2{ height:16px; margin:0 -16px; background:rgba(255,255,255,.055); }
+  .sty-3{ height:18px; margin:0 -32px; background:rgba(255,255,255,.04); }
+
+  /* Stacked below lg, so a structure spanning three columns is meaningless.
+     The cutoff is 1024, not 768: three across at md leaves each shaft ~208px,
+     which the real Metóda copy turns into an 11-line ribbon ~24 chars wide. The
+     work grid above draws the line in the same place for the same reason. */
+  @media (max-width:1023px){
+    .entab, .stylobate{ display:none; }
+    /* each column keeps its own patch of ground instead */
+    .col-base::before{ content:""; position:absolute; top:100%; left:-12px; right:-12px; height:9px;
+      background:rgba(255,255,255,.05); border:1px solid var(--line); border-top:0; }
+  }
+  /* One column in the 768–1023 band, so the shaft can afford to be wider than the
+     phone's 320. The overhang is proportional, so it needs no adjustment here. */
+  @media (min-width:768px) and (max-width:1023px){
+    .pillar{ max-width:400px; }
+  }
+
+  /* ===== Comparison (#preco) — the seam =====
+     One surface, not two cards. The panel is split down the middle by a single
+     seam: the left half is pressed into it (darker fill, inset shadow, so it
+     reads as a carved trough) and the right half is lifted out of it (lighter
+     fill, a 1px top bevel catching light from above). Depth does the arguing —
+     there is still no ✕/✓, no red and no green anywhere. Rows are grid rows, so
+     each pair shares a height and reads straight across the seam. */
+  .seam-wrap{ position:relative; }
+  .seam{ position:relative; z-index:1;
+    border:1px solid var(--line); border-radius:18px; background:var(--ink); }
+  /* the carved half */
+  .seam::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:50%;
+    border-radius:17px 0 0 17px; background:rgba(0,0,0,.5); pointer-events:none;
+    box-shadow:inset 0 2px 12px rgba(0,0,0,.9), inset -1px 0 0 rgba(0,0,0,.55); }
+
+  /* ---- the lifted half, on the closing decision card's recipe ----
+     Same mechanism as .decision-go: a conic gradient rotating behind the surface
+     and an inner fill inset by 1.5px, so what shows through is a 1.5px band of
+     travelling light doing the job of a border. It is bled 1px past the panel on
+     top/right/bottom so the ring lands exactly where .seam's own border runs and
+     covers it — otherwise the grey border and the ring stack into a double edge.
+     The inner fill is NOT inset on the seam side, so the ring stops there and
+     never crosses onto the carved half. */
+  .seam-lit{ position:absolute; z-index:0; pointer-events:none;
+    top:-1px; right:-1px; bottom:-1px; width:calc(50% + 1px);
+    border-radius:0 18px 18px 0; overflow:hidden; }
+  .seam-lit::before{ content:""; position:absolute; inset:-60%;
+    background:conic-gradient(from 0deg,
+      rgba(4,167,231,.12) 0 60%, rgba(4,167,231,.35) 72%, var(--blue) 80%,
+      rgba(4,167,231,.35) 88%, rgba(4,167,231,.12) 96%);
+    animation:decision-spin 5.5s linear infinite; }
+  /* inset top/right/bottom only — flush at the seam */
+  .seam-lit::after{ content:""; position:absolute; inset:1.5px 1.5px 1.5px 0;
+    border-radius:0 16.5px 16.5px 0;
+    background:linear-gradient(202deg, rgba(4,167,231,.11), rgba(4,167,231,.035) 48%, rgba(4,167,231,.018)),
+               linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028)),
+               var(--ink); }
+
+  .seam-line{ position:absolute; left:50%; top:0; bottom:0; width:1px; z-index:2;
+    pointer-events:none;
+    background:linear-gradient(to bottom, transparent, rgba(255,255,255,.16) 7%,
+                               rgba(255,255,255,.16) 93%, transparent); }
+  /* the omega breaking the top edge, on the same recipe as .decision-or: a disc
+     of the page ground so the seam does not run through the glyph */
+  .seam-mark{ position:absolute; left:50%; top:0; z-index:3;
+    transform:translate(-50%,-50%); width:52px; height:52px;
+    display:grid; place-items:center; border-radius:9999px;
+    background:var(--black); border:1px solid var(--line); }
+  .seam-mark img{ width:21px; height:auto; display:block; }
+
+  .seam-grid{ position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr 1fr; }
+  /* the heads carry the same 2rem side padding as the rows — without it they sit
+     flush to the panel edge and read as detached from the column they label */
+  .seam-head{ padding:2.5rem 2rem 1rem; }
+  .seam-them, .seam-us{ padding:1.05rem 2rem 1.1rem;
+    border-bottom:1px solid rgba(255,255,255,.055); font-size:.95rem; line-height:1.5; }
+  .seam-grid > :nth-last-child(-n+2){ border-bottom:0; padding-bottom:1.9rem; }
+  .seam-them{ color:rgba(255,255,255,.42); }
+  .seam-us{ color:#fff; font-weight:500; }
+  .seam-head-them{ color:rgba(255,255,255,.38); }
+  .seam-head-us{ color:var(--blue); }
+
+  /* Under md the split cannot hold — two columns of Slovak at 430px wraps every
+     row four ways. The panel flattens to one column and the pair grouping moves
+     into the rhythm: muted claim, then Benzo's line against a blue edge. */
+  @media (prefers-reduced-motion:reduce){ .seam-lit::before{ animation:none; } }
+
+  @media (max-width:767px){
+    .seam::before, .seam-line{ display:none; }
+    /* no left/right split down here, so the ring runs the whole panel rather
+       than hugging a half that no longer exists */
+    .seam-lit{ left:-1px; width:calc(100% + 2px); border-radius:18px; }
+    .seam-lit::after{ inset:1.5px; border-radius:16.5px; }
+    .seam-grid{ grid-template-columns:1fr; }
+    .seam-them, .seam-us{ padding:0 1.35rem; border-bottom:0; font-size:.94rem; }
+    .seam-them{ padding-top:1.25rem; }
+    .seam-us{ margin:.55rem 1.35rem 0; padding:0 0 0 .9rem;
+      border-left:2px solid var(--blue); }
+    .seam-grid > :nth-last-child(-n+2){ padding-bottom:0; }
+    .seam-grid > .seam-us:last-child{ margin-bottom:1.9rem; }
+    /* the legend becomes a miniature of the pattern below it: the muted label
+       flush left, the blue one against the same blue edge every Benzo line gets.
+       Only the first head takes the top padding, or the two split apart. */
+    .seam-head{ padding:0 1.35rem; }
+    .seam-head-them{ padding-top:2.3rem; }
+    .seam-head-us{ margin:.45rem 1.35rem 0; padding:0 0 0 .9rem;
+      border-left:2px solid var(--blue); }
+  }
+
+  /* ===== capacity close (#kapacita) — centred, no container ===== */
+  /* red like the gauge below it: this hairline sits ~56px above the count and is
+     read as part of that cluster, so left blue it looked like a leftover */
+  .capacity-rule{ height:1px; max-width:340px; margin:0 auto;
+    background:linear-gradient(to right, transparent, rgba(245,39,59,.45), transparent); }
+  /* The count, as ONE object instead of three. What stood here before said "2 of 4"
+     three times over in three visual languages that did not agree: a 90px numeral, a
+     sentence carrying the meaningful "4" at body size, and a row of 13px squares. The
+     numeral sat on items-baseline beside 1.8rem words — a ~3x jump inside one
+     sentence, which is what actually read as broken. So the type is now all one size
+     and the counting is handed to a gauge, which has no type in it at all and
+     therefore cannot fight the headline for scale.
+     A single capsule split into four: the two that are gone are filled and lit, the
+     next one up pulses, the last is an empty socket. */
+  .cap-gauge{
+    /* the one red object on the page. Set here and inherited by the segments, so
+       the whole gauge retunes from two values. */
+    /* the gradient runs a long way top-to-bottom on purpose: at a flat #F5273B the
+       segments bloomed into flat candy against the black. The deeper foot gives them
+       a body, and the type keeps the brighter token so it stays legible at 2rem. */
+    --cap:#D91B2F; --cap-hi:#FF4C5C;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:7px;
+    /* 520/22px, not the 440/16 first tried: this is the only object carrying the
+       count now, and at the smaller size it read as a stray UI control adrift in a
+       very open section rather than as the thing the section is about. */
+    max-width:520px; margin-inline:auto; padding:6px;
+    border-radius:9999px; background:rgba(255,255,255,.03);
+    /* the nav capsule's rim (assets/benzo.css:129) at a quieter weight, so the track
+       reads as a sibling of the nav pill rather than as a progress bar */
+    box-shadow:inset 0 0 0 1px rgba(245,39,59,.22); }
+  /* the empty socket has to read as a place someone could take, so it carries a
+     visible rim and a floor darker than the track around it — at .045/.08 it
+     disappeared into the section and the gauge looked like it had three segments */
+  .cap-seg{ height:clamp(16px,1.9vw,22px); border-radius:9999px;
+    background:rgba(0,0,0,.34);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.13), inset 0 1px 3px rgba(0,0,0,.5); }
+  .cap-seg-taken{ position:relative; overflow:hidden;
+    background:linear-gradient(180deg, var(--cap-hi), var(--cap));
+    box-shadow:0 0 20px -3px rgba(245,39,59,.42), inset 0 1px 0 rgba(255,255,255,.26); }
+  /* The detail that keeps this off the shelf: the nav's own Greek-key band
+     (assets/benzo.css:153) runs through the filled segments, restruck in the dark ink
+     .btn-primary uses for type on blue. Same tile, same background-size:auto 100%, so
+     it rescales itself to whatever height the segment clamps to. */
+  .cap-seg-taken::after{ content:""; position:absolute; inset:0; opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 17.1H36M0 .9H36M28.4 17.1V6.2H9V11.8H19.4' fill='none' stroke='%231A0206' stroke-width='1.7'/%3E%3C/svg%3E");
+    /* 52% of the segment height, not 100%, and half the opacity first tried: run at
+       full height the key resolves into separate glyphs and the segments look like
+       they have letters printed in them. It has to stay a texture you notice second. */
+    background-repeat:repeat-x; background-position:center; background-size:auto 52%; }
+  /* only the next slot up pulses — two rings side by side read as visual noise */
+  /* the "on deck" socket needs to differ from the plain empty one at a glance, not
+     just under the pulse ring (which is invisible for most of its 2.6s cycle) — a
+     brighter rim plus a shallow blue floor is what separates them when it is dark */
+  .cap-seg-next{ position:relative;
+    box-shadow:inset 0 0 0 1px rgba(245,39,59,.85), inset 0 0 12px rgba(245,39,59,.3); }
+  .cap-seg-next::after{ content:""; position:absolute; inset:-4px; border-radius:9999px;
+    border:1px solid rgba(245,39,59,.6); animation:cap-pulse 2.6s ease-out infinite; }
+  @keyframes cap-pulse{ 0%{ transform:scale(.85); opacity:.85; } 100%{ transform:scale(1.55); opacity:0; } }
+  @media (prefers-reduced-motion:reduce){ .cap-seg-next::after{ animation:none; opacity:0; } }
+
+  /* The scroll cue that closes #kapacita — the copy hands off with "Takže…" and
+     points down, so this replaces the CTA button that used to sit here. It leads
+     to the next section rather than the form, so deliberately no .cta-glow:
+     the breathing halo is reserved for CTAs that reach the enquiry form. */
+  /* red, like the count and the gauge above it: this cue belongs to the capacity
+     cluster and closes it. The literal rather than --cap, which lives on .cap-gauge
+     and does not reach here, and the brighter token because a 20px glyph needs more
+     luminance than a 22px fill does. */
+  .scroll-cue{ display:inline-grid; place-items:center; width:56px; height:56px;
+    border-radius:9999px; color:#F5273B;
+    border:1px solid rgba(245,39,59,.42); background:rgba(245,39,59,.06);
+    animation:cue-bob 2.4s var(--ease) infinite;
+    transition:border-color .45s var(--ease), background-color .45s var(--ease), transform .45s var(--ease); }
+  .scroll-cue svg{ width:20px; height:20px; transition:transform .45s var(--ease); }
+  .scroll-cue:hover{ border-color:rgba(245,39,59,.9); background:rgba(245,39,59,.13); }
+  .scroll-cue:hover svg{ transform:translateY(3px); }
+  .scroll-cue:focus-visible{ outline:2px solid #F5273B; outline-offset:4px; }
+  .scroll-cue:active{ transform:translateY(2px) scale(.96); }
+  @keyframes cue-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(7px); } }
+  @media (prefers-reduced-motion:reduce){ .scroll-cue{ animation:none; } }
+
+  /* Method — the step numeral, now carved into the column shafts */
+  .method-num{ font-weight:900; color:var(--blue); line-height:1; letter-spacing:-.04em; }
+
+  /* Client logo marquee */
+  .logo-marquee{ position:relative; width:100%;
+    -webkit-mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            mask-image:linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+  .logo-track{ display:flex; width:max-content; align-items:center; transform:translateX(0); }
+  /* motion is driven by JS (requestAnimationFrame) so :hover hit-testing stays in sync
+     with the visual position — a CSS/compositor animation makes hover target the wrong logo */
+  .logo-item{ flex:0 0 auto; padding:0 2.6rem; white-space:nowrap; color:var(--white);
+    opacity:.42; line-height:1; user-select:none;
+    transition:opacity .4s var(--ease); }
+  .logo-item img{ display:block; height:38px; width:auto; max-width:190px; object-fit:contain;
+    /* real logos are full-colour on transparent — render as uniform white to match the dark strip */
+    filter:brightness(0) invert(1); transition:filter .4s var(--ease);
+    -webkit-user-drag:none; pointer-events:none; }
+  /* hovering a single logo lifts it to full opacity and reveals its real brand colours */
+  .logo-item:hover{ opacity:1; }
+  .logo-item:hover img{ filter:none; }
+  @media (max-width:640px){ .logo-item{ padding:0 1.6rem; } .logo-item img{ height:32px; max-width:150px; } }
+  @media (prefers-reduced-motion:reduce){
+    .logo-track{ width:auto; flex-wrap:wrap; justify-content:center; row-gap:1.75rem; }
+    .logo-dupe{ display:none; }
+  }
+  /* Softer, edge-fading hairlines above & below the logo band (was a bold full-width border) */
+  .logo-band{ position:relative; }
+  .logo-band::before, .logo-band::after{ content:""; position:absolute; left:0; right:0; height:1px;
+    pointer-events:none;
+    background:linear-gradient(to right, transparent, rgba(255,255,255,.06) 20%, rgba(255,255,255,.06) 80%, transparent); }
+  .logo-band::before{ top:0; }
+  .logo-band::after{ bottom:0; }
+
+  /* Mission-statement ambient glow — smaller, clearly visible (blue-led), softly faded at top/bottom
+     so it never hard-cuts into the logos above or the section below */
+  .mission-glow-wrap{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 26%, #000 74%, transparent 100%);
+            mask-image:linear-gradient(to bottom, transparent 0%, #000 26%, #000 74%, transparent 100%); }
+  .mission-glow{ position:absolute; border-radius:9999px; pointer-events:none;
+    transform:translate(-50%,-50%); }
+  /* Roughly half the former strength, and blurred wider. At the old opacities the
+     blue pool sat right behind the body copy and the section read as light-on-mid-
+     blue — the glow was competing with the text instead of backing it. It should
+     register as depth at the edge of vision, not as a lit panel. */
+  .mission-glow-1{ filter:blur(150px); animation:mission-drift-1 17s ease-in-out infinite; }
+  .mission-glow-2{ filter:blur(120px); animation:mission-drift-2 22s ease-in-out infinite; }
+  @keyframes mission-drift-1{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.20; }
+    50%    { transform:translate(-50%,-53%) scale(1.07); opacity:.27; }
+  }
+  @keyframes mission-drift-2{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.15; }
+    50%    { transform:translate(-51%,-47%) scale(1.13); opacity:.21; }
+  }
+  @media (prefers-reduced-motion:reduce){ .mission-glow-1, .mission-glow-2{ animation:none; opacity:.22; } }
+
+  /* ===== FAQ accordion ===== */
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+    text-align:left; padding:1.4rem 0; background:none; border:0; color:var(--white); cursor:pointer;
+    transition:color .3s var(--ease); }
+  .faq-q:hover{ color:var(--blue); }
+  .faq-q:focus-visible{ outline:2px solid var(--blue); outline-offset:4px; border-radius:6px; }
+  .faq-icon{ position:relative; width:16px; height:16px; flex:none; color:var(--muted); }
+  .faq-q:hover .faq-icon{ color:var(--blue); }
+  .faq-icon::before, .faq-icon::after{ content:""; position:absolute; inset:0; margin:auto; background:currentColor;
+    transition:transform .4s var(--ease), opacity .4s var(--ease); }
+  .faq-icon::before{ width:100%; height:1.5px; }
+  .faq-icon::after{ width:1.5px; height:100%; }
+  .faq-item.open .faq-q{ color:var(--blue); }
+  .faq-item.open .faq-icon{ color:var(--blue); }
+  .faq-item.open .faq-icon::after{ transform:rotate(90deg); opacity:0; }
+  /* Two answers carry a CTA, and .cta-glow::before sits at inset:-9px — inside an
+     overflow:hidden panel clipped to exactly scrollHeight the halo loses all four
+     sides. Widening the clip box by 12px and padding the content back by the same
+     amount gives the halo a gutter without moving the copy; scrollHeight counts
+     the padding, so the accordion's max-height math is untouched. Inline only —
+     vertical padding here would show while the panel is closed. */
+  .faq-a{ max-height:0; overflow:hidden; opacity:0;
+    margin-inline:-12px; padding-inline:12px;
+    transition:max-height .5s var(--ease), opacity .45s var(--ease); }
+  .faq-item.open .faq-a{ opacity:1; }
+  .faq-a-in{ padding-bottom:1.5rem; }
+  .faq-a-in > p + p{ margin-top:.6rem; }
+  /* 1rem clears the halo's 9px above the button */
+  .faq-cta{ margin-top:1.15rem; }
+
+  /* ===== Closing decision — two options ===== */
+  .decision-card{ position:relative; display:flex; border-radius:16px; overflow:hidden;
+    transition:transform .5s var(--ease); }
+  .decision-card > *{ flex:1; }
+  .decision-card:hover{ transform:translateY(-6px); }
+  /* opaque enough to mask the painting behind it — at rgba(255,255,255,.02) the
+     horse read straight through and muddied the copy, which forced the background
+     to be crushed to black under the cards. The card carries its own ground now. */
+  .decision-stay{ background:rgba(11,12,14,.74); backdrop-filter:blur(4px);
+    border:1px solid var(--line);
+    transition:transform .5s var(--ease), border-color .4s var(--ease); }
+  .decision-stay:hover{ border-color:rgba(255,255,255,.18); }
+  .decision-go{ background:var(--ink); }
+  .decision-go::before{ content:""; position:absolute; inset:-60%; z-index:0;
+    background:conic-gradient(from 0deg,
+      rgba(4,167,231,.12) 0 60%, rgba(4,167,231,.35) 72%, var(--blue) 80%,
+      rgba(4,167,231,.35) 88%, rgba(4,167,231,.12) 96%);
+    animation:decision-spin 5.5s linear infinite; }
+  .decision-go::after{ content:""; position:absolute; inset:1.5px; z-index:1; border-radius:14.5px; background:var(--ink); }
+  .decision-inner{ position:relative; z-index:2; }
+  @keyframes decision-spin{ to{ transform:rotate(360deg); } }
+
+  .decision-or{ align-self:center; justify-self:center; position:relative; display:grid; place-items:center;
+    width:58px; height:58px; border:1px solid var(--line); border-radius:9999px; background:var(--black); z-index:2;
+    font-weight:700; font-size:.64rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
+  .decision-or::before{ content:""; position:absolute; inset:-1px; border-radius:inherit;
+    border:1px solid rgba(4,167,231,.55); animation:or-pulse 2.8s ease-out infinite; }
+  @keyframes or-pulse{ 0%{ transform:scale(1); opacity:.7; } 100%{ transform:scale(1.7); opacity:0; } }
+
+  .rise-path{ stroke-dasharray:1; stroke-dashoffset:1; }
+  .reveal.in .rise-path{ animation:rise-draw 1.3s var(--ease) .35s forwards; }
+  @keyframes rise-draw{ to{ stroke-dashoffset:0; } }
+
+  @media (prefers-reduced-motion:reduce){
+    .decision-go::before{ animation:none; }
+    .decision-or::before{ animation:none; opacity:0; }
+    .rise-path{ stroke-dashoffset:0; }
+  }
+
+  /* ===== Work cards carrying a real photograph =====
+     The .duo duotone in benzo.css is calibrated against the flat placeholder
+     fills the other two tiles still use. Over an actual photograph — this one
+     has a blown-out pool ceiling across its top half — the same settings turn
+     the tile into glare: it outshines its neighbours in the row and swallows
+     the eyebrow, the index number and the standfirst. So photo tiles run a
+     darker base with the blue pulled back, and a deeper foot for the title
+     block to sit on. Add this class to any work card that gets a real image. */
+  /* Less grayscale and more of its own saturation than the placeholder tiles
+     need, so the photograph keeps its own colour instead of going flat blue.
+     Brightness still carries the text contrast. */
+  /* :not() keeps this off the client mark below — as a bare `.work-photo img`
+     it outweighed `.work-photo-logo` on specificity and was darkening the logo
+     to brightness .52 along with the photograph. */
+  .work-photo img:not(.work-photo-logo){ filter:grayscale(.32) contrast(1.06) saturate(1) brightness(.52); }
+  /* The tile is 16/11 on phones and 4/5 from md up, so one framing cannot serve
+     both. The wide phone crop throws away most of the frame's height — held at
+     32% it kept the ceiling and pushed the group down under the title — so it
+     is pulled well down to lift the four of them clear of the copy. */
+  .work-photo img:not(.work-photo-logo){ object-position:50% 55%; }
+  @media (min-width:768px){ .work-photo img:not(.work-photo-logo){ object-position:50% 32%; } }
+  /* the duotone's blue, pulled right back to a tint */
+  .work-photo::before{ opacity:.15; }
+  .work-photo::after{
+    background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.62) 30%,
+                               rgba(0,0,0,.12) 62%, rgba(0,0,0,.28)); }
+
+  /* ===== Founder portrait =====
+     The one photograph on the site that runs untreated: no grayscale, no blue
+     duotone. It keeps .duo only for the rounded clip and the foot the name plate
+     sits on — the ::before colour blend is switched off and the filter cleared,
+     so the frame shows its own colour. The ::after gradient stays, and only at
+     the bottom: without it the white name and the blue kicker land on open
+     concrete and stop being readable. */
+  .duo-portrait img{ filter:none; }
+  .duo-portrait::before{ display:none; }
+  .duo-portrait::after{
+    background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.42) 22%,
+                               rgba(0,0,0,0) 52%); }
+  /* the same white-on-transparent omega the header medallion uses, dropped
+     straight onto the frame with no plate behind it. The top-right corner of
+     this photograph is open sky and a pale tower, so a bare white glyph would
+     half-disappear into it — a neutral dark drop-shadow (not the header's blue
+     glow, which would read as a second brand accent) is what holds its edge. */
+  .portrait-omega{ filter:drop-shadow(0 2px 10px rgba(0,0,0,.6)) drop-shadow(0 0 2px rgba(0,0,0,.45)); }
+
+  /* client mark, opposite the title block. Rendered flat white like the one in
+     the case-study hero — the artwork is full-colour on transparent and would
+     otherwise fight the photograph behind it. */
+  /* ===== Client mark sizing =====
+     One custom property drives all three marks, because the tile width no
+     longer tracks the viewport in one direction. Since the grid goes three
+     across only at lg, a card is 350px at 390, grows to ~959px through the
+     single-column band, then collapses to 307px the moment the third column
+     appears. 1024 is therefore the *tightest* the card ever gets, tighter than
+     a phone, and it is where the mark and the "Pozrieť case study" link fight
+     for the same line. Each variant scales off --logo-w rather than carrying
+     its own four breakpoints. */
+  .work-photo{ --logo-w:96px; }
+  @media (min-width:640px){  .work-photo{ --logo-w:140px; } }
+  @media (min-width:1024px){ .work-photo{ --logo-w:112px; } }
+  @media (min-width:1280px){ .work-photo{ --logo-w:132px; } }
+
+  /* At 1024–1279 the card is 307px, its inner width 251px, and the "Pozrieť
+     case study" link alone is 193px. No mark worth showing fits beside that,
+     so the two cannot share the line at any size. They do not have to: from
+     768 up the link is hidden until hover, so the mark simply hands the corner
+     over when the link arrives. Opacity only. Untouched above 1280, where
+     there is 55px of clearance and both belong on screen at once. */
+  @media (min-width:1024px) and (max-width:1279px){
+    .work-photo-logo{ transition:opacity .45s var(--ease); }
+    .work-card:hover .work-photo-logo,
+    .work-card:focus-visible .work-photo-logo{ opacity:0; }
+  }
+  @media (prefers-reduced-motion:reduce){ .work-photo-logo{ transition:none; } }
+
+  .work-photo-logo{ position:absolute; right:1.5rem; bottom:1.5rem; z-index:4;
+    width:var(--logo-w); height:auto; pointer-events:none; opacity:.72;
+    filter:brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,.7)); }
+  @media (min-width:640px){ .work-photo-logo{ right:1.75rem; bottom:1.75rem; } }
+
+  /* NaturBio's mark cannot take the treatment above. Pokojné plávanie's reads
+     as a silhouette, so flattening it to white works; NaturBio's is a
+     two-colour wordmark whose legibility lives in the green against the blue,
+     and brightness(0) invert(1) collapses the whole thing into one blob. It
+     keeps the base class for its position and drops only the colour filter.
+     Declared after .work-photo-logo — both are single-class selectors, so
+     source order is what decides. It must keep that base class too, or
+     `.work-photo img:not(.work-photo-logo)` catches it and applies the
+     photograph's brightness(.52) to the logo.
+     Wider and shorter than plavanie.png (300×98), so it needs its own size.
+
+     Written as `.work-photo img.<class>` rather than `.<class>` alone, and the
+     reason is load-bearing: `.duo img` in assets/benzo.css:222 sets
+     grayscale(1) at specificity (0,1,1), which outweighs a lone class at
+     (0,1,0) and was silently rendering this mark in greyscale. Two classes
+     plus the element gets it to (0,2,1) and the colours survive.
+
+     96px on phones is not a guess either: the 16/11 tile is short, so the mark
+     shares its line with "Pozrieť case study", and at 118px it ran 9px into
+     that link. 96 is the width card 03 uses, which clears it by 13px. */
+  .work-photo img.work-photo-logo-colour{ width:var(--logo-w); opacity:.95;
+    filter:drop-shadow(0 2px 12px rgba(0,0,0,.85)); }
+
+  /* Renovia's mark is a single flat blue, close enough to the brand's own that
+     it needs no plate and no shadow to separate it. It is also much taller for
+     its width than the other two (a roof over two stacked lines), so at 132px
+     it would tower over them; sized down to keep the three marks visually
+     even. */
+  /* 1.91 wide against NaturBio's 3.06 and Pokojné plávanie's 2.35, so at a
+     shared width this one stands nearly twice as tall as NaturBio's. Scaled
+     off the shared token so the three marks read as the same size. */
+  .work-photo img.work-photo-logo-renovia{ width:calc(var(--logo-w) * .8); }
+
+  /* Pokojné plávanie's mark runs in colour on the same rule, with no plate
+     behind it. Worth knowing what that costs: its dolphin and swimmer are
+     mid-tone teal and blue and read fine on the tile, but its wordmark is
+     near-black navy and all but vanishes. NaturBio's file happens to carry its
+     own pale backdrop, which is why that one keeps its name. */
+
+  /* ===== The result line on a work tile =====
+     The same promotion the case-study heroes get. It was text-sm at 60% white,
+     which put the one number that sells the tile below the label above it in
+     the reading order. Now it is the second-loudest thing on the card after
+     the client name, with the figures in brand blue.
+     Only on the two tiles that have real results; card 02 is still a
+     placeholder and bolding invented copy would be worse than leaving it
+     quiet. */
+  .work-result{ font-weight:600; letter-spacing:-.015em; line-height:1.35;
+    color:rgba(255,255,255,.93); font-size:1rem; max-width:24ch; }
+  @media (min-width:768px){ .work-result{ font-size:1.06rem; } }
+  .work-result b{ color:var(--blue); font-weight:800; }
+  /* the copy sits on a photograph, so the figures need their own floor */
+  .work-result{ text-shadow:0 1px 12px rgba(0,0,0,.75); }
+
+  /* The NaturBio tile is a mono ad frame, not a colour photograph, so the
+     duotone's blue has nothing to correct and only muddies it. It is also a
+     bright frame — pale bedding across the top third — so it needs pulling
+     down harder than the pool photograph does, or the service line at the top
+     of the card sits white-on-grey. */
+  .work-photo-ad img:not(.work-photo-logo){ filter:contrast(1.09) brightness(.38); }
+  .work-photo-ad img:not(.work-photo-logo){ object-position:50% 22%; }
+  @media (min-width:768px){ .work-photo-ad img:not(.work-photo-logo){ object-position:50% 28%; } }
+  .work-photo-ad::before{ opacity:.1; }
+  /* deeper at the top than .work-photo, for the same reason */
+  .work-photo-ad::after{
+    background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.6) 30%,
+                               rgba(0,0,0,.22) 58%, rgba(0,0,0,.52)); }
+</style>
+
+<!-- Structured data. This is how a search engine — and, more to the point, an AI answer
+     engine — learns what Benzo IS instead of inferring it from the design.
+     Organization, not LocalBusiness/ProfessionalService: those are address-bearing
+     types and there is no public address, so they would validate poorly.
+     The FAQ block is copied VERBATIM from the accordion below. Schema that does not
+     match visible text is a manual-action risk, so if the copy changes, change it here
+     too — the two are load-bearing on each other. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://benzomarketing.com/#organization",
+      "name": "Benzo Marketing",
+      "url": "https://benzomarketing.com/",
+      "email": "peterbenik@benzomarketing.com",
+      "slogan": "Najprv pochopíme, potom dominujeme.",
+      "description": "Benzo Marketing je slovenská strategická marketingová agentúra postavená na hĺbkovom výskume trhu. Pracuje súčasne najviac so 4 klientmi a každý projekt začína dvoma týždňami prieskumu cieľovej skupiny, až potom sa tvorí stratégia, kreatíva a kampane.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://benzomarketing.com/brand_assets/benzo-logo-wordmark.png"
+      },
+      "image": "https://benzomarketing.com/assets/og-benzo.jpg",
+      "founder": {
+        "@type": "Person",
+        "name": "Peter Michael Beník",
+        "jobTitle": "Zakladateľ",
+        "sameAs": "https://www.instagram.com/benik_peter"
+      },
+      "sameAs": ["https://www.instagram.com/benik_peter"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Slovensko"
+      },
+      "knowsAbout": [
+        "marketingový prieskum trhu",
+        "výkonnostný marketing",
+        "Meta Ads",
+        "Google Ads",
+        "copywriting",
+        "akvizičné systémy",
+        "tvorba webových stránok",
+        "budovanie značky"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://benzomarketing.com/#website",
+      "url": "https://benzomarketing.com/",
+      "name": "Benzo Marketing",
+      "inLanguage": "sk-SK",
+      "publisher": { "@id": "https://benzomarketing.com/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://benzomarketing.com/#faq",
+      "inLanguage": "sk-SK",
+      "isPartOf": { "@id": "https://benzomarketing.com/#website" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Čím sa odlišujete od konkurencie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nepracujeme s každým, kto nám príde do cesty. Preto má každý z našich klientov prémiovú starostlivosť. Komunikácia 24/7. Taktiež proces pred a po projekte, o ktorom vám viem bližšie povedať až na spoločnom hovore."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ako vlastne celá spolupráca vyzerá?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prvý krok je spoznávací hovor, na ktorom sa porozprávame o vás, o vašom biznise a vašej situácii. Ak si budeme rozumieť, tak si dohodneme druhý hovor, na ktorom vám predstavím na mieru vytvorenú stratégiu. Povieme si, či áno alebo nie, a môžeme začať s projektom. Behom 2 týždňov pracujem iba na prieskume, aby som pochopil, ako funguje psychológia vo vašom odvetví. Následne kráčame fáza po fáze, až kým nebude všetko pripravené na spustenie. Po spustení nasleduje testovacia fáza, kde testujeme a optimalizujeme výsledky z kampaní a stránok pre najväčší zisk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Čo konkrétne pre mňa urobíte?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Závisí od projektu a cieľa. Nefungujeme ako ostatné agentúry podľa nejakých balíkov a šablón. Každá fáza je na mieru a strategicky vytvorená pre čo najväčší dopad vo vašom biznise."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Koľko ma to bude stáť?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Každý projekt je iný, preto cenu nerieším vopred online. Vždy si o nej pohovoríme priamo na hovore, kde presne uvidíte, čo dostanete a za koľko. Jedna vec je však jasná: minimálna vstupná investícia začína na 2 000 €. Ak to momentálne nie je vo vašich možnostiach, formulár radšej nevypĺňajte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ako spoznám, že som pre vás ten správny klient?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ak máte ambíciu rásť, viete pracovať aj cez víkendy a ste odhodlaný na objem dopytu, na ktorý nie ste zvyknutý."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body id="top">
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 pt-[32px] md:pt-[44px]">
+    <div class="crown">
+      <span class="crown-cast" aria-hidden="true"></span>
+
+      <div class="crown-body">
+        <div class="crown-fill">
+          <span class="crown-key" aria-hidden="true"></span>
+
+          <div class="crown-row">
+            <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+              <a href="#prace" class="link-hover">Práce</a>
+              <a href="#preco" class="link-hover">Prečo</a>
+              <a href="#metoda" class="link-hover">Metóda</a>
+            </nav>
+
+            <span class="crown-seat" aria-hidden="true"></span>
+
+            <div class="crown-actions flex items-center gap-6 xl:gap-8">
+              <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+                <a href="#onas" class="link-hover">O nás</a>
+                <a href="#faq" class="link-hover">FAQ</a>
+              </nav>
+              <a href="kontakt.html" class="btn btn-primary cta-glow hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Chcem dominovať</a>
+              <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#top" class="crown-medal" aria-label="Benzo Marketing — domov">
+        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      </a>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
+      <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
+        <a href="#prace" class="mobile-link">Práce</a>
+        <a href="#preco" class="mobile-link">Prečo</a>
+        <a href="#metoda" class="mobile-link">Metóda</a>
+        <a href="#onas" class="mobile-link">O nás</a>
+        <a href="#faq" class="mobile-link">FAQ</a>
+        <a href="kontakt.html" class="btn btn-primary cta-glow mt-1 mobile-link justify-center">Chcem dominovať</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<!-- justify-center centres inside the PADDING box, so the bottom padding is the lever
+     on how high the block rides: content moves down 1px for every 2px taken off it,
+     because the centring splits the difference. The top padding can't shrink — it is
+     the clearance that keeps the first line out from under the fixed nav on short
+     screens — so it is pb that gets tuned.
+     From 768px up pb now matches pt (44/44), which lands the block dead centre; it
+     used to run 52/64 against a pt of 44 and rode ~40px high so the nebula kept the
+     lower half of the frame. Mobile keeps its own smaller pb: the stack there is
+     taller, and the same absolute change would push it off a 667px phone. -->
+<section class="relative min-h-screen flex flex-col justify-center pt-36 md:pt-44 pb-28 md:pb-44 overflow-hidden" style="background:radial-gradient(130% 100% at 72% 24%, rgba(4,167,231,.14), rgba(0,0,128,.10) 40%, #000 78%);">
+  <!-- Animated WebGL shader background — Benzo electric-blue / navy nebula (falls back to the CSS gradient above if WebGL2 is unavailable) -->
+  <canvas id="heroCanvas" class="absolute inset-0 w-full h-full block" aria-hidden="true"></canvas>
+
+  <!-- Readability + brand vignette layered over the shader. Both are centred on the
+       type: the old pair was built for a left-aligned headline (a hard left-to-right
+       wash from .86 to transparent), which under centred type darkened one shoulder
+       of the line and left the other sitting on open nebula. -->
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:radial-gradient(125% 95% at 50% 42%, rgba(13,13,13,.05) 0%, rgba(13,13,13,.34) 58%, rgba(13,13,13,.84) 100%);"></div>
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:radial-gradient(64% 40% at 50% 45%, rgba(13,13,13,.74) 0%, rgba(13,13,13,.38) 62%, transparent 100%);"></div>
+  <div class="absolute inset-x-0 bottom-0 h-40 z-[1] pointer-events-none" style="background:linear-gradient(to top, var(--ink), transparent);"></div>
+
+  <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 w-full text-center">
+    <!-- One 70-char sentence now, not three short lines: at the old 7rem/15ch it
+         ran ~5 lines and overflowed min-h-screen. Split on clause boundaries so
+         the three reveal delays still land on whole thoughts.
+         Overrides .display's line-height:.94 / letter-spacing:-.035em, which are
+         set for one or two short words (Práce, Metóda) and read as a solid slab
+         across three full lines. The class stays tight everywhere else. -->
+    <h1 class="display text-[clamp(1.9rem,4.6vw,4.4rem)] uppercase max-w-[26ch] mx-auto leading-[1.16] tracking-[-.018em]">
+      <span class="reveal block" style="--d:.12s">Kým čakáte na správny čas,</span>
+      <span class="reveal block" style="--d:.22s">vaši konkurenti plánujú</span>
+      <span class="reveal block" style="--d:.32s">ako vás <span class="text-blue">predbehnúť!</span></span>
+    </h1>
+    <!-- Stacked, matching the centred CTA block in the statement section: side by
+         side, the group centres but the solid button lands left of the headline's
+         axis and the eye reads it as misaligned. -->
+    <div class="mt-12 flex flex-col items-center gap-6 reveal" style="--d:.42s">
+      <a href="kontakt.html" class="btn btn-primary cta-glow">Zabráňme tomu</a>
+      <a href="#prace" class="label text-white/70 link-hover inline-flex items-center gap-2">Pozrieť práce <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= CLIENT LOGOS (MARQUEE) ================= -->
+<!-- Placeholder wordmarks — swap each .logo-item for a real client logo (SVG/img) later. -->
+<section aria-label="Značky, ktoré nám dôverujú" class="logo-band py-14 md:py-16 overflow-hidden bg-ink">
+  <div class="logo-marquee">
+    <div class="logo-track">
+      <!-- set A -->
+      <span class="logo-item"><img src="brand_assets/clients/nextklima.webp" alt="Next Klima" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/trenerzien.webp" alt="Tréner Žien" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/valicek.webp" alt="Valiček s.r.o." loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/mamacup.webp" alt="MamaCup" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/solma.webp" alt="Solma — Soľná jaskyňa" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/acp.webp" alt="Aliancia cestnej pomoci" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/naturbio.webp" alt="NaturBio" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/ams.webp" alt="AMS Systems" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/plavanie.webp" alt="Pokojné Plávanie" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/pohostav.webp" alt="Pohostav" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/renovia.webp" alt="Renovia — strechy" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/certici.webp" alt="Čertíci" loading="lazy"></span>
+      <span class="logo-item"><img src="brand_assets/clients/peak.webp" alt="Klient" loading="lazy"></span>
+      <!-- set B (duplicate for seamless loop) -->
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/nextklima.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/trenerzien.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/valicek.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/mamacup.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/solma.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/acp.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/naturbio.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/ams.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/plavanie.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/pohostav.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/renovia.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/certici.webp" alt="" loading="lazy"></span>
+      <span class="logo-item logo-dupe" aria-hidden="true"><img src="brand_assets/clients/peak.webp" alt="" loading="lazy"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATEMENT ================= -->
+<!-- Asymmetric padding: this section ends on a small INSTAGRAM label, so a full
+     py-40 foot plus Práce's own head stacked 251px of dead space under it. -->
+<section class="pt-28 md:pt-40 pb-10 md:pb-16 relative">
+  <!-- Ambient glow: contained + soft-faded top & bottom so it reads clearly yet never hard-cuts into neighbouring sections -->
+  <div class="mission-glow-wrap">
+    <div class="mission-glow mission-glow-1" style="width:760px;height:520px;background:var(--navy);top:50%;left:50%;"></div>
+    <div class="mission-glow mission-glow-2" style="width:460px;height:320px;background:var(--blue);top:46%;left:50%;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1050px] mx-auto px-5 md:px-8 text-center">
+    <h2 class="display text-[clamp(1.8rem,4.2vw,3.9rem)] reveal" style="--d:.05s">
+      Toto je pre tých, ktorí už <span class="text-blue">NECHCÚ</span> stáť na tom istom mieste rok čo rok…
+    </h2>
+    <!-- text-white overrides .body-m's muted grey: this is the one body block sitting
+         on the glow rather than flat ink, and grey-on-blue lost too much contrast. -->
+    <div class="body-m text-white text-[clamp(1rem,1.2vw,1.18rem)] max-w-[58ch] mx-auto mt-9 space-y-4 reveal" style="--d:.12s">
+      <p>Zabudnite na nekonečné hádanie, pokusy, omyly a trápenie sa s tým, prečo to stále nefunguje.</p>
+      <p>Namiesto toho rozvíjajte svoj biznis s overenými funnelmi na získavanie klientov, osvedčeným procesom a partnerom ktorý chce dominovať spolu s vami!</p>
+    </div>
+    <div class="mt-10 flex flex-col items-center gap-6 reveal" style="--d:.18s">
+      <a href="kontakt.html" class="btn btn-primary cta-glow">Chcem dominovať!</a>
+      <div class="flex items-center gap-5 label text-white/40">
+        <a href="https://www.instagram.com/benik_peter" target="_blank" rel="noopener noreferrer" class="link-hover">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section id="prace" class="pt-14 md:pt-20 pb-16 md:pb-24">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+    <!-- was a space-between row holding a single block; nothing sits opposite it
+         any more, so it collapses to one centred stack -->
+    <div class="text-center reveal">
+      <h2 class="display text-[clamp(2.4rem,6vw,5rem)]">Práce</h2>
+    </div>
+
+    <!-- Three across only from lg. At md the columns are ~221px wide, which is
+         narrower than the service line, the eyebrow and the result line all
+         need: every one of them wrapped three ways and the tile number ended
+         up floating in the middle of the wrapped text. One column carries the
+         768–1023 band instead. -->
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <!-- Case study 01 -->
+      <a href="praca-01.html" class="work-card work-photo work-photo-ad duo duo-hover group relative block rounded-[14px] overflow-hidden aspect-[16/11] lg:aspect-[4/5] reveal" style="--d:.04s">
+        <!-- a frame from the produced ad. 1036×1300 against the 4/5 crop is a
+             0.797 vs 0.800 ratio, so the tile renders it near 1:1. -->
+        <img src="assets/naturbio-hero.webp" alt="" class="w-full h-full object-cover">
+        <img src="brand_assets/clients/naturbio.webp" alt="" aria-hidden="true" class="work-photo-logo work-photo-logo-colour">
+        <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
+          <div class="flex items-start justify-between gap-3 label text-white/80">
+            <span class="text-blue">01</span>
+            <span class="text-right">Prieskum · Copywriting · Kampaň</span>
+          </div>
+          <div>
+            <p class="label text-blue mb-2.5">Kampaň postavená na prieskume</p>
+            <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">NaturBio</h3>
+            <p class="work-result mt-3"><b>15&nbsp;280&nbsp;€</b> z jednej kampane, priemerný ROAS <b>5,18x</b>.</p>
+            <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+              Pozrieť case study <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Case study 02 -->
+      <a href="praca-02.html" class="work-card work-photo duo duo-hover group relative block rounded-[14px] overflow-hidden aspect-[16/11] lg:aspect-[4/5] reveal" style="--d:.12s">
+        <!-- Resized to 1800×1200 from a 5964×3976 original. The 4/5 crop binds
+             on height, so 1200 covers the tile's 1080 device px at 2× DPR with
+             a little to spare; the 5.7MB source would have been absurd here. -->
+        <img src="assets/renovia-card.webp" alt="" class="w-full h-full object-cover">
+        <img src="brand_assets/clients/renovia.webp" alt="" aria-hidden="true" class="work-photo-logo work-photo-logo-colour work-photo-logo-renovia">
+        <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
+          <div class="flex items-start justify-between gap-3 label text-white/80">
+            <span class="text-blue">02</span>
+            <span class="text-right">Brand · Reklamy · Web · GMB Opt.</span>
+          </div>
+          <div>
+            <p class="label text-blue mb-2.5">Dominancia odvetvia</p>
+            <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">Renovia Strechy</h3>
+            <p class="work-result mt-3"><b>80&nbsp;000&nbsp;€</b> z dvoch kampaní a <b>~22,86x</b> ROAS!</p>
+            <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+              Pozrieť case study <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Case study 03 -->
+      <a href="praca-03.html" class="work-card work-photo duo duo-hover group relative block rounded-[14px] overflow-hidden aspect-[16/11] lg:aspect-[4/5] reveal" style="--d:.20s">
+        <!-- framing lives in .work-photo — it differs per breakpoint. The tile
+             renders at roughly the photo's native size, so this is the one
+             place on the site the image is genuinely 1:1. -->
+        <img src="assets/pokojne-plavanie-hero.webp" alt="" class="w-full h-full object-cover">
+        <img src="brand_assets/clients/plavanie.webp" alt="" aria-hidden="true" class="work-photo-logo work-photo-logo-colour">
+        <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
+          <div class="flex items-start justify-between gap-3 label text-white/80">
+            <span class="text-blue">03</span>
+            <span class="text-right">Reklamy · Web · Registrácia</span>
+          </div>
+          <div>
+            <p class="label text-blue mb-2.5">Akvizičný systém od nuly</p>
+            <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">Pokojné plávanie</h3>
+            <p class="work-result mt-3"><b>100&nbsp;%</b> vypredanie kurzov, <b>2&nbsp;mesiace</b> od spustenia.</p>
+            <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+              Pozrieť case study <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOTE FROM FOUNDER ================= -->
+<!-- overflow-x-clip, not overflow-hidden: the portrait column is sticky now, and
+     `hidden` on an ancestor makes that ancestor the scroll container, so the pin
+     never engages (the FAQ column hit the same thing). `clip` leaves the y axis
+     visible and creates no scroll container, while still stopping the glow below
+     from adding horizontal scroll. The painting clips itself — .art-bg is
+     overflow:hidden in its own right. -->
+<section id="onas" class="py-24 md:py-36 relative overflow-x-clip">
+  <!-- Subtle atmospheric background (the charge / dominance) — heavily darkened, slow drift, not a foreground photo -->
+  <div class="art-bg" aria-hidden="true">
+    <!-- lazy + async: this is decorative, sits deep below the fold, and used to be a
+         3.1 MB PNG loaded eagerly — it was competing for bandwidth with everything
+         above it. Now WebP and deferred until it is nearly in view. -->
+    <img src="Horses.webp" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="glow" style="width:440px;height:440px;background:var(--navy);top:20%;right:-160px;opacity:.4;z-index:1;"></div>
+  <div class="relative z-10 max-w-[1150px] mx-auto px-5 md:px-8">
+    <div class="text-center reveal">
+      <h2 class="h-sec text-[clamp(2rem,4.4vw,3.6rem)]">Slovo od zakladateľa</h2>
+    </div>
+
+    <!-- items-start, not items-stretch: the letter is now ~1060px against the
+         portrait's ~620px, and a stretched track would hand the portrait a
+         definite height that beats aspect-[3/4] and smears the crop. The portrait
+         sizes itself and pins instead — same mechanism as the FAQ left column. -->
+    <div class="mt-16 grid md:grid-cols-[1fr_0.82fr] gap-10 md:gap-14 items-start">
+      <!-- bg-black/55, not the old bg-white/[.02]: a 2%-white film was enough over the
+           near-black crop this section used to carry, but the painting is zoomed out
+           now and its light passages run straight under the letter, so the grey body
+           copy was reading over moving highlights. A dark plate holds the copy at an
+           even contrast without shutting the painting out — it still shows through. -->
+      <div class="border border-line rounded-[14px] p-8 md:p-12 bg-black/55 reveal">
+        <!-- space-y-4, not -5: most beats here are single lines, and 20 gaps at
+             the old spacing added 400px of air to a letter that reads as one voice. -->
+        <div class="body-m space-y-4 text-[.98rem] text-white/72">
+          <p>Vážený podnikateľ,</p>
+          <p>presne pred 5 rokmi som si na strednej škole vyberal firmu na prax.</p>
+          <p>Študoval som na elektrotechnickej škole, ale vždy ma to ťahalo viac do predaja a marketingu.</p>
+          <p>Vybral som si jednu nemenovanú firmu, kde som bol ako intern.</p>
+          <p>Nemal som žiadne skúsenosti ani vzdelanie ohľadom marketingu. Predsa len som študoval na elektrotechnickej škole…</p>
+          <p>Dali mi robiť design a texty v Canve do klientových príspevkov.</p>
+          <p>Jediné info, čo som mal o ich klientovi, bolo, v akom odvetví robí a čo predáva.</p>
+          <p>Nič viac…</p>
+          <p>Masovo vyrábané marketingové kreatívy bez stratégie, emócií a znalosti toho, komu vlastne píšu…</p>
+          <p><span class="text-white font-semibold">V ten moment som našiel dieru na trhu.</span></p>
+          <p>Pochopil som, ako to robia veľké marketingové agentúry, a videl som priestor, ako byť lepším.</p>
+          <p>Preto som v druhom ročníku na strednej škole začal budovať svoju firmu!</p>
+          <p>Momentálne stojím na čele Benzo Marketing.</p>
+          <p>Našou úlohou je pomáhať značkám s veľkými ambíciami objaviť, čo ich posunie vpred, a naplno to využiť cez marketing, ktorý skutočne dominuje.</p>
+          <p><span class="text-white font-semibold">Benzo Marketing je ako Achilles a vy ste ako kráľ Grékov.</span></p>
+          <p>Vaša konkurencia je Trója.</p>
+          <p>A všetci vieme, ako to dopadlo s Trójou…</p>
+          <p>Mojou úlohou je bojovať po vašom boku za váš biznis!</p>
+          <p class="pt-2">Prajem vám veľa síl,</p>
+          <p class="text-white font-semibold text-lg">Peter Michael Beník</p>
+        </div>
+      </div>
+      <div class="reveal md:sticky md:top-32 self-start" style="--d:.1s">
+        <div class="duo duo-portrait rounded-[14px] aspect-[3/4]">
+          <img src="brand_assets/peter-benik-portrait.webp" alt="Peter Michael Beník" loading="lazy" class="w-full h-full object-cover">
+          <div class="duo-body absolute inset-0 p-6 flex flex-col justify-between">
+            <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="portrait-omega self-end w-11 md:w-12 h-auto">
+            <div>
+              <p class="h-sec text-2xl md:text-3xl">Peter Michael Beník</p>
+              <p class="label text-blue mt-1.5">Benzo Marketing</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY BENZO — DIFFERENTIATION ================= -->
+<!-- Differentiation, not comparison: no competitor is named anywhere. No painting here —
+     it sits directly under #onas, and two copies of it back to back read as a duplicate. -->
+<!-- overflow-x-clip, not overflow-hidden: the glow below is meant to bleed DOWN into
+     #metoda (clipping it is what left a hard edge between the sections), but on a
+     narrow viewport an 820px glow would also escape sideways and add ~215px of
+     horizontal scroll. `clip` on one axis leaves the other axis visible; `hidden`
+     would force a scroll container on both. -->
+<section id="preco" class="py-24 md:py-36 relative overflow-x-clip">
+  <div class="glow" style="width:820px;height:620px;background:var(--navy);bottom:-24%;left:50%;transform:translateX(-50%);opacity:.24;z-index:0;"></div>
+
+  <div class="relative z-10 max-w-[1100px] mx-auto px-5 md:px-8">
+    <div class="text-center max-w-[760px] mx-auto reveal">
+      <!-- The old subline ("Padli, lebo prestali rozumieť svetu okolo seba.") was the
+           back half of the previous headline's sentence and became an orphan here. -->
+      <h2 class="h-sec text-[clamp(1.85rem,4.2vw,3.3rem)]">V čom sme odlišní?</h2>
+    </div>
+
+    <!-- Porovnanie — the seam. One panel split down the middle, left half carved
+         in and right half lifted out, with the omega breaking the top edge where
+         the seam meets it. Grid rows keep each pair level across the seam. -->
+    <div class="seam-wrap mt-16 md:mt-24 max-w-[1000px] mx-auto reveal">
+      <div class="seam">
+        <span class="seam-lit" aria-hidden="true"></span>
+        <span class="seam-line" aria-hidden="true"></span>
+        <span class="seam-mark" aria-hidden="true"><img src="brand_assets/benzo-omega-mark.png" alt=""></span>
+
+        <div class="seam-grid">
+          <p class="label seam-head seam-head-them">Bežné agentúry</p>
+          <p class="label seam-head seam-head-us">BENZO Marketing</p>
+
+          <p class="seam-them">Na prvom mieste je zmluva a mesačné faktúry</p>
+          <p class="seam-us">Náš cieľ je dobyť váš trh a poraziť vašu konkurenciu</p>
+
+          <p class="seam-them">Mimo pracovných hodín na vás kašlú</p>
+          <p class="seam-us">Komunikácia 24/7</p>
+
+          <p class="seam-them">Každý dostane podľa balíčka tú istú šablónu</p>
+          <p class="seam-us">Každý projekt je na mieru poskladaný pre váš cieľ</p>
+
+          <p class="seam-them">Narozprávajú vám rozprávky, no podložené číslami to nemajú</p>
+          <p class="seam-us">Ukážem vám čísla a potom sa dohodneme ďalej</p>
+
+          <p class="seam-them">Ste pre nich len ďalší riadok v Exceli</p>
+          <p class="seam-us">Partnerstvo, v ktorom dobývame váš trh</p>
+
+          <p class="seam-them">Dajú vám balíček a nechajú vás rozmýšľať, prečo nič nefunguje</p>
+          <p class="seam-us">Každá časť funnelu do seba dokonale zapadá</p>
+
+          <p class="seam-them">Dokým neplatíte tisíce mesačne, máte na starosti juniorov a internistov</p>
+          <p class="seam-us">Team troch hladných workaholikov po úspechu</p>
+
+          <p class="seam-them">Platíte rovnako, bez ohľadu na to, čo dostanete</p>
+          <p class="seam-us">Náš úspech meriame vašimi výsledkami</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= THE METHOD ================= -->
+<!-- relative z-[1] keeps the temple painting above the glow bleeding down from #preco -->
+<section id="metoda" class="py-24 md:py-36 relative z-[1]">
+  <div class="max-w-[1150px] mx-auto px-5 md:px-8">
+    <!-- The pillars line IS the headline now — no kicker, no one-word title above it.
+         Sized off the FAQ headline rather than the one-word "Metóda" it replaced: a
+         5rem display size is built for a single word, and a 32-character sentence at
+         that size runs three lines deep and swamps the colonnade underneath. 15ch,
+         not 18: a ch is the width of "0", which in Montserrat 900 is wider than the
+         average letter, so 18ch fit "…každého" onto line one and left "projektu"
+         orphaned. 15ch breaks after "piliere" — where the sentence wants to break,
+         and where it already broke on mobile — so the wrap now matches at both ends. -->
+    <!-- Centred, so mx-auto as well as text-center: the 15ch measure makes this a
+         narrow block inside a 1150px container, and text-center alone would only
+         centre the lines inside a box still pinned to the left. -->
+    <div class="reveal text-center">
+      <h2 class="display text-[clamp(2rem,4.4vw,3.4rem)] max-w-[15ch] mx-auto">3 nosné piliere každého projektu</h2>
+    </div>
+
+    <div class="temple mt-16 md:mt-20">
+      <div class="entab reveal hidden lg:block" aria-hidden="true" style="--d:.22s">
+        <div class="pediment"></div>
+        <span class="cornice"></span>
+        <span class="frieze"></span>
+        <span class="architrave"></span>
+      </div>
+
+      <!-- The three steps stand as columns — the pillars the partnership rests on.
+           Ionic order (volute capitals) inside a Parthenon front: stepped stylobate
+           below, architrave/triglyph frieze/cornice and a shallow pediment above. -->
+      <div class="colonnade grid lg:grid-cols-3 gap-12 lg:gap-10 items-stretch">
+        <article class="pillar reveal">
+          <div class="col-cap" aria-hidden="true">
+            <svg class="cap-svg" viewBox="0 0 300 88" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 2.5H296V10.5H4Z"/>
+              <path d="M42 12 Q150 20 258 12"/>
+              <path d="M42 18 Q150 27 258 18"/>
+              <path d="M42.00,12.00L43.37,12.18L44.73,12.45L46.05,12.78L47.35,13.19L48.61,13.67L49.84,14.22L51.03,14.84L52.17,15.52L53.26,16.26L54.30,17.05L55.29,17.90L56.23,18.80L57.10,19.75L57.92,20.74L58.67,21.76L59.35,22.83L59.97,23.92L60.53,25.04L61.01,26.19L61.43,27.35L61.77,28.53L62.05,29.72L62.25,30.91L62.39,32.11L62.46,33.31L62.45,34.50L62.38,35.68L62.24,36.85L62.04,38.00L61.77,39.13L61.44,40.24L61.05,41.32L60.60,42.37L60.09,43.38L59.53,44.36L58.92,45.30L58.25,46.20L57.55,47.05L56.79,47.85L56.00,48.61L55.17,49.31L54.31,49.96L53.42,50.56L52.50,51.10L51.55,51.59L50.59,52.01L49.60,52.38L48.61,52.69L47.60,52.94L46.59,53.13L45.58,53.26L44.56,53.34L43.55,53.35L42.54,53.30L41.55,53.20L40.57,53.05L39.60,52.83L38.66,52.57L37.74,52.25L36.84,51.88L35.97,51.46L35.13,51.00L34.33,50.49L33.56,49.94L32.82,49.35L32.13,48.72L31.48,48.06L30.87,47.37L30.30,46.64L29.79,45.89L29.31,45.12L28.89,44.32L28.51,43.51L28.19,42.68L27.91,41.84L27.69,40.98L27.51,40.13L27.39,39.27L27.31,38.41L27.29,37.55L27.31,36.69L27.38,35.85L27.51,35.01L27.67,34.19L27.89,33.38L28.14,32.60L28.45,31.83L28.79,31.09L29.17,30.37L29.59,29.68L30.05,29.02L30.54,28.39L31.06,27.79L31.62,27.23L32.20,26.70L32.81,26.21L33.44,25.76L34.09,25.35L34.76,24.98L35.45,24.65L36.15,24.36L36.86,24.11L37.58,23.91L38.30,23.75L39.03,23.63L39.76,23.56L40.49,23.53L41.22,23.53L41.93,23.59L42.65,23.68L43.35,23.81L44.03,23.98L44.71,24.19L45.36,24.43L46.00,24.71L46.61,25.03L47.20,25.38L47.77,25.76L48.31,26.17L48.83,26.60L49.31,27.07L49.77,27.55L50.19,28.06L50.58,28.59L50.94,29.14L51.26,29.70L51.55,30.28L51.81,30.87L52.03,31.47L52.21,32.08L52.35,32.70L52.46,33.31L52.54,33.93L52.57,34.55L52.58,35.17L52.54,35.78L52.47,36.38L52.37,36.98L52.24,37.57L52.07,38.14L51.87,38.70L51.64,39.24L51.38,39.77L51.09,40.28L50.78,40.76L50.44,41.23L50.07,41.67L49.69,42.09L49.28,42.48L48.85,42.85L48.41,43.19L47.95,43.50L47.47,43.78L46.98,44.04L46.49,44.26L45.98,44.45L45.46,44.62L44.94,44.75L44.42,44.85L43.90,44.92L43.37,44.96L42.85,44.97L42.33,44.95L41.81,44.90L41.31,44.82L40.81,44.71L40.32,44.58L39.84,44.42L39.37,44.23L38.92,44.01L38.49,43.78L38.07,43.52L37.67,43.23L37.29,42.93L36.93,42.61L36.59,42.27L36.27,41.91L35.98,41.54L35.71,41.15L35.46,40.75L35.24,40.34L35.04,39.92L34.87,39.49L34.73,39.06L34.61,38.62L34.52,38.17L34.45,37.73L34.41,37.28L34.39,36.84L34.40,36.40L34.44,35.96L34.50,35.53L34.58,35.10L34.69,34.69L34.82,34.28L34.98,33.88L35.15,33.49L35.35,33.12L35.56,32.76L35.80,32.42L36.05,32.09L36.32,31.78L36.61,31.49L36.91,31.22L37.22,30.96L37.54,30.73L37.88,30.51L38.22,30.32L38.58,30.15L38.94,29.99L39.31,29.87L39.68,29.76L40.05,29.67L40.43,29.61L40.81,29.57L41.19,29.55L41.56,29.55L41.93,29.58L42.30,29.62L42.66,29.69L43.02,29.78L43.37,29.88L43.71,30.01L44.04,30.15L44.36,30.31L44.66,30.49L44.96,30.69L45.24,30.90L45.51,31.12L45.76,31.36L46.00,31.61L46.22,31.87L46.42,32.14L46.61,32.43L46.78,32.72L46.93,33.02L47.06,33.32L47.17,33.63L47.27,33.95L47.35,34.26"/>
+              <path d="M258.00,12.00L256.63,12.18L255.27,12.45L253.95,12.78L252.65,13.19L251.39,13.67L250.16,14.22L248.97,14.84L247.83,15.52L246.74,16.26L245.70,17.05L244.71,17.90L243.77,18.80L242.90,19.75L242.08,20.74L241.33,21.76L240.65,22.83L240.03,23.92L239.47,25.04L238.99,26.19L238.57,27.35L238.23,28.53L237.95,29.72L237.75,30.91L237.61,32.11L237.54,33.31L237.55,34.50L237.62,35.68L237.76,36.85L237.96,38.00L238.23,39.13L238.56,40.24L238.95,41.32L239.40,42.37L239.91,43.38L240.47,44.36L241.08,45.30L241.75,46.20L242.45,47.05L243.21,47.85L244.00,48.61L244.83,49.31L245.69,49.96L246.58,50.56L247.50,51.10L248.45,51.59L249.41,52.01L250.40,52.38L251.39,52.69L252.40,52.94L253.41,53.13L254.42,53.26L255.44,53.34L256.45,53.35L257.46,53.30L258.45,53.20L259.43,53.05L260.40,52.83L261.34,52.57L262.26,52.25L263.16,51.88L264.03,51.46L264.87,51.00L265.67,50.49L266.44,49.94L267.18,49.35L267.87,48.72L268.52,48.06L269.13,47.37L269.70,46.64L270.21,45.89L270.69,45.12L271.11,44.32L271.49,43.51L271.81,42.68L272.09,41.84L272.31,40.98L272.49,40.13L272.61,39.27L272.69,38.41L272.71,37.55L272.69,36.69L272.62,35.85L272.49,35.01L272.33,34.19L272.11,33.38L271.86,32.60L271.55,31.83L271.21,31.09L270.83,30.37L270.41,29.68L269.95,29.02L269.46,28.39L268.94,27.79L268.38,27.23L267.80,26.70L267.19,26.21L266.56,25.76L265.91,25.35L265.24,24.98L264.55,24.65L263.85,24.36L263.14,24.11L262.42,23.91L261.70,23.75L260.97,23.63L260.24,23.56L259.51,23.53L258.78,23.53L258.07,23.59L257.35,23.68L256.65,23.81L255.97,23.98L255.29,24.19L254.64,24.43L254.00,24.71L253.39,25.03L252.80,25.38L252.23,25.76L251.69,26.17L251.17,26.60L250.69,27.07L250.23,27.55L249.81,28.06L249.42,28.59L249.06,29.14L248.74,29.70L248.45,30.28L248.19,30.87L247.97,31.47L247.79,32.08L247.65,32.70L247.54,33.31L247.46,33.93L247.43,34.55L247.42,35.17L247.46,35.78L247.53,36.38L247.63,36.98L247.76,37.57L247.93,38.14L248.13,38.70L248.36,39.24L248.62,39.77L248.91,40.28L249.22,40.76L249.56,41.23L249.93,41.67L250.31,42.09L250.72,42.48L251.15,42.85L251.59,43.19L252.05,43.50L252.53,43.78L253.02,44.04L253.51,44.26L254.02,44.45L254.54,44.62L255.06,44.75L255.58,44.85L256.10,44.92L256.63,44.96L257.15,44.97L257.67,44.95L258.19,44.90L258.69,44.82L259.19,44.71L259.68,44.58L260.16,44.42L260.63,44.23L261.08,44.01L261.51,43.78L261.93,43.52L262.33,43.23L262.71,42.93L263.07,42.61L263.41,42.27L263.73,41.91L264.02,41.54L264.29,41.15L264.54,40.75L264.76,40.34L264.96,39.92L265.13,39.49L265.27,39.06L265.39,38.62L265.48,38.17L265.55,37.73L265.59,37.28L265.61,36.84L265.60,36.40L265.56,35.96L265.50,35.53L265.42,35.10L265.31,34.69L265.18,34.28L265.02,33.88L264.85,33.49L264.65,33.12L264.44,32.76L264.20,32.42L263.95,32.09L263.68,31.78L263.39,31.49L263.09,31.22L262.78,30.96L262.46,30.73L262.12,30.51L261.78,30.32L261.42,30.15L261.06,29.99L260.69,29.87L260.32,29.76L259.95,29.67L259.57,29.61L259.19,29.57L258.81,29.55L258.44,29.55L258.07,29.58L257.70,29.62L257.34,29.69L256.98,29.78L256.63,29.88L256.29,30.01L255.96,30.15L255.64,30.31L255.34,30.49L255.04,30.69L254.76,30.90L254.49,31.12L254.24,31.36L254.00,31.61L253.78,31.87L253.58,32.14L253.39,32.43L253.22,32.72L253.07,33.02L252.94,33.32L252.83,33.63L252.73,33.95L252.65,34.26"/>
+              <circle cx="42" cy="36" r="2.2"/>
+              <circle cx="258" cy="36" r="2.2"/>
+              <path d="M22 57H278"/>
+              <circle cx="30.0" cy="66" r="2.8"/>
+              <circle cx="60.0" cy="66" r="2.8"/>
+              <circle cx="90.0" cy="66" r="2.8"/>
+              <circle cx="120.0" cy="66" r="2.8"/>
+              <circle cx="150.0" cy="66" r="2.8"/>
+              <circle cx="180.0" cy="66" r="2.8"/>
+              <circle cx="210.0" cy="66" r="2.8"/>
+              <circle cx="240.0" cy="66" r="2.8"/>
+              <circle cx="270.0" cy="66" r="2.8"/>
+              <path d="M21.7 76H278.3"/>
+              <path d="M21.7 83H278.3"/>
+            </svg>
+          </div>
+          <div class="col-shaft">
+            <p class="method-num col-num">01</p>
+            <div class="col-text">
+              <h3 class="h-sec col-title">Prieskum</h3>
+              <p class="body-m col-body">Predtým, než si otvorím dokument na písanie, trávim desiatky hodín ponorený v príbehoch, recenziách a rozhovoroch, kde spoznávam vášho cieľového zákazníka. Ani jedno slovo nie je napísané z mojej alebo AI „hlavy“.</p>
+            </div>
+          </div>
+          <div class="col-base" aria-hidden="true">
+            <svg class="base-svg" viewBox="0 0 300 58" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.7 2H278.3"/>
+              <rect x="26" y="6" width="248" height="13" rx="6.5"/>
+              <path d="M34 22H266"/>
+              <path d="M34 22C34 26 40 28 40 30M266 22C266 26 260 28 260 30"/>
+              <path d="M40 30H260"/>
+              <rect x="18" y="33" width="264" height="13" rx="6.5"/>
+              <path d="M5 49H295V56H5Z"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="pillar reveal" style="--d:.08s">
+          <div class="col-cap" aria-hidden="true">
+            <svg class="cap-svg" viewBox="0 0 300 88" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 2.5H296V10.5H4Z"/>
+              <path d="M42 12 Q150 20 258 12"/>
+              <path d="M42 18 Q150 27 258 18"/>
+              <path d="M42.00,12.00L43.37,12.18L44.73,12.45L46.05,12.78L47.35,13.19L48.61,13.67L49.84,14.22L51.03,14.84L52.17,15.52L53.26,16.26L54.30,17.05L55.29,17.90L56.23,18.80L57.10,19.75L57.92,20.74L58.67,21.76L59.35,22.83L59.97,23.92L60.53,25.04L61.01,26.19L61.43,27.35L61.77,28.53L62.05,29.72L62.25,30.91L62.39,32.11L62.46,33.31L62.45,34.50L62.38,35.68L62.24,36.85L62.04,38.00L61.77,39.13L61.44,40.24L61.05,41.32L60.60,42.37L60.09,43.38L59.53,44.36L58.92,45.30L58.25,46.20L57.55,47.05L56.79,47.85L56.00,48.61L55.17,49.31L54.31,49.96L53.42,50.56L52.50,51.10L51.55,51.59L50.59,52.01L49.60,52.38L48.61,52.69L47.60,52.94L46.59,53.13L45.58,53.26L44.56,53.34L43.55,53.35L42.54,53.30L41.55,53.20L40.57,53.05L39.60,52.83L38.66,52.57L37.74,52.25L36.84,51.88L35.97,51.46L35.13,51.00L34.33,50.49L33.56,49.94L32.82,49.35L32.13,48.72L31.48,48.06L30.87,47.37L30.30,46.64L29.79,45.89L29.31,45.12L28.89,44.32L28.51,43.51L28.19,42.68L27.91,41.84L27.69,40.98L27.51,40.13L27.39,39.27L27.31,38.41L27.29,37.55L27.31,36.69L27.38,35.85L27.51,35.01L27.67,34.19L27.89,33.38L28.14,32.60L28.45,31.83L28.79,31.09L29.17,30.37L29.59,29.68L30.05,29.02L30.54,28.39L31.06,27.79L31.62,27.23L32.20,26.70L32.81,26.21L33.44,25.76L34.09,25.35L34.76,24.98L35.45,24.65L36.15,24.36L36.86,24.11L37.58,23.91L38.30,23.75L39.03,23.63L39.76,23.56L40.49,23.53L41.22,23.53L41.93,23.59L42.65,23.68L43.35,23.81L44.03,23.98L44.71,24.19L45.36,24.43L46.00,24.71L46.61,25.03L47.20,25.38L47.77,25.76L48.31,26.17L48.83,26.60L49.31,27.07L49.77,27.55L50.19,28.06L50.58,28.59L50.94,29.14L51.26,29.70L51.55,30.28L51.81,30.87L52.03,31.47L52.21,32.08L52.35,32.70L52.46,33.31L52.54,33.93L52.57,34.55L52.58,35.17L52.54,35.78L52.47,36.38L52.37,36.98L52.24,37.57L52.07,38.14L51.87,38.70L51.64,39.24L51.38,39.77L51.09,40.28L50.78,40.76L50.44,41.23L50.07,41.67L49.69,42.09L49.28,42.48L48.85,42.85L48.41,43.19L47.95,43.50L47.47,43.78L46.98,44.04L46.49,44.26L45.98,44.45L45.46,44.62L44.94,44.75L44.42,44.85L43.90,44.92L43.37,44.96L42.85,44.97L42.33,44.95L41.81,44.90L41.31,44.82L40.81,44.71L40.32,44.58L39.84,44.42L39.37,44.23L38.92,44.01L38.49,43.78L38.07,43.52L37.67,43.23L37.29,42.93L36.93,42.61L36.59,42.27L36.27,41.91L35.98,41.54L35.71,41.15L35.46,40.75L35.24,40.34L35.04,39.92L34.87,39.49L34.73,39.06L34.61,38.62L34.52,38.17L34.45,37.73L34.41,37.28L34.39,36.84L34.40,36.40L34.44,35.96L34.50,35.53L34.58,35.10L34.69,34.69L34.82,34.28L34.98,33.88L35.15,33.49L35.35,33.12L35.56,32.76L35.80,32.42L36.05,32.09L36.32,31.78L36.61,31.49L36.91,31.22L37.22,30.96L37.54,30.73L37.88,30.51L38.22,30.32L38.58,30.15L38.94,29.99L39.31,29.87L39.68,29.76L40.05,29.67L40.43,29.61L40.81,29.57L41.19,29.55L41.56,29.55L41.93,29.58L42.30,29.62L42.66,29.69L43.02,29.78L43.37,29.88L43.71,30.01L44.04,30.15L44.36,30.31L44.66,30.49L44.96,30.69L45.24,30.90L45.51,31.12L45.76,31.36L46.00,31.61L46.22,31.87L46.42,32.14L46.61,32.43L46.78,32.72L46.93,33.02L47.06,33.32L47.17,33.63L47.27,33.95L47.35,34.26"/>
+              <path d="M258.00,12.00L256.63,12.18L255.27,12.45L253.95,12.78L252.65,13.19L251.39,13.67L250.16,14.22L248.97,14.84L247.83,15.52L246.74,16.26L245.70,17.05L244.71,17.90L243.77,18.80L242.90,19.75L242.08,20.74L241.33,21.76L240.65,22.83L240.03,23.92L239.47,25.04L238.99,26.19L238.57,27.35L238.23,28.53L237.95,29.72L237.75,30.91L237.61,32.11L237.54,33.31L237.55,34.50L237.62,35.68L237.76,36.85L237.96,38.00L238.23,39.13L238.56,40.24L238.95,41.32L239.40,42.37L239.91,43.38L240.47,44.36L241.08,45.30L241.75,46.20L242.45,47.05L243.21,47.85L244.00,48.61L244.83,49.31L245.69,49.96L246.58,50.56L247.50,51.10L248.45,51.59L249.41,52.01L250.40,52.38L251.39,52.69L252.40,52.94L253.41,53.13L254.42,53.26L255.44,53.34L256.45,53.35L257.46,53.30L258.45,53.20L259.43,53.05L260.40,52.83L261.34,52.57L262.26,52.25L263.16,51.88L264.03,51.46L264.87,51.00L265.67,50.49L266.44,49.94L267.18,49.35L267.87,48.72L268.52,48.06L269.13,47.37L269.70,46.64L270.21,45.89L270.69,45.12L271.11,44.32L271.49,43.51L271.81,42.68L272.09,41.84L272.31,40.98L272.49,40.13L272.61,39.27L272.69,38.41L272.71,37.55L272.69,36.69L272.62,35.85L272.49,35.01L272.33,34.19L272.11,33.38L271.86,32.60L271.55,31.83L271.21,31.09L270.83,30.37L270.41,29.68L269.95,29.02L269.46,28.39L268.94,27.79L268.38,27.23L267.80,26.70L267.19,26.21L266.56,25.76L265.91,25.35L265.24,24.98L264.55,24.65L263.85,24.36L263.14,24.11L262.42,23.91L261.70,23.75L260.97,23.63L260.24,23.56L259.51,23.53L258.78,23.53L258.07,23.59L257.35,23.68L256.65,23.81L255.97,23.98L255.29,24.19L254.64,24.43L254.00,24.71L253.39,25.03L252.80,25.38L252.23,25.76L251.69,26.17L251.17,26.60L250.69,27.07L250.23,27.55L249.81,28.06L249.42,28.59L249.06,29.14L248.74,29.70L248.45,30.28L248.19,30.87L247.97,31.47L247.79,32.08L247.65,32.70L247.54,33.31L247.46,33.93L247.43,34.55L247.42,35.17L247.46,35.78L247.53,36.38L247.63,36.98L247.76,37.57L247.93,38.14L248.13,38.70L248.36,39.24L248.62,39.77L248.91,40.28L249.22,40.76L249.56,41.23L249.93,41.67L250.31,42.09L250.72,42.48L251.15,42.85L251.59,43.19L252.05,43.50L252.53,43.78L253.02,44.04L253.51,44.26L254.02,44.45L254.54,44.62L255.06,44.75L255.58,44.85L256.10,44.92L256.63,44.96L257.15,44.97L257.67,44.95L258.19,44.90L258.69,44.82L259.19,44.71L259.68,44.58L260.16,44.42L260.63,44.23L261.08,44.01L261.51,43.78L261.93,43.52L262.33,43.23L262.71,42.93L263.07,42.61L263.41,42.27L263.73,41.91L264.02,41.54L264.29,41.15L264.54,40.75L264.76,40.34L264.96,39.92L265.13,39.49L265.27,39.06L265.39,38.62L265.48,38.17L265.55,37.73L265.59,37.28L265.61,36.84L265.60,36.40L265.56,35.96L265.50,35.53L265.42,35.10L265.31,34.69L265.18,34.28L265.02,33.88L264.85,33.49L264.65,33.12L264.44,32.76L264.20,32.42L263.95,32.09L263.68,31.78L263.39,31.49L263.09,31.22L262.78,30.96L262.46,30.73L262.12,30.51L261.78,30.32L261.42,30.15L261.06,29.99L260.69,29.87L260.32,29.76L259.95,29.67L259.57,29.61L259.19,29.57L258.81,29.55L258.44,29.55L258.07,29.58L257.70,29.62L257.34,29.69L256.98,29.78L256.63,29.88L256.29,30.01L255.96,30.15L255.64,30.31L255.34,30.49L255.04,30.69L254.76,30.90L254.49,31.12L254.24,31.36L254.00,31.61L253.78,31.87L253.58,32.14L253.39,32.43L253.22,32.72L253.07,33.02L252.94,33.32L252.83,33.63L252.73,33.95L252.65,34.26"/>
+              <circle cx="42" cy="36" r="2.2"/>
+              <circle cx="258" cy="36" r="2.2"/>
+              <path d="M22 57H278"/>
+              <circle cx="30.0" cy="66" r="2.8"/>
+              <circle cx="60.0" cy="66" r="2.8"/>
+              <circle cx="90.0" cy="66" r="2.8"/>
+              <circle cx="120.0" cy="66" r="2.8"/>
+              <circle cx="150.0" cy="66" r="2.8"/>
+              <circle cx="180.0" cy="66" r="2.8"/>
+              <circle cx="210.0" cy="66" r="2.8"/>
+              <circle cx="240.0" cy="66" r="2.8"/>
+              <circle cx="270.0" cy="66" r="2.8"/>
+              <path d="M21.7 76H278.3"/>
+              <path d="M21.7 83H278.3"/>
+            </svg>
+          </div>
+          <div class="col-shaft">
+            <p class="method-num col-num">02</p>
+            <div class="col-text">
+              <h3 class="h-sec col-title">Projekt na mieru</h3>
+              <p class="body-m col-body">Podľa povedomia a sofistikácie vášho trhu vytvoríme funnely, ktoré zachytávajú vašu cieľovku tam, kde sa najviac zdržiavajú. Komunikujeme ich vlastným jazykom a vyvolávame v nich emócie tak, aby vykonali akciu ktorú chceme.</p>
+            </div>
+          </div>
+          <div class="col-base" aria-hidden="true">
+            <svg class="base-svg" viewBox="0 0 300 58" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.7 2H278.3"/>
+              <rect x="26" y="6" width="248" height="13" rx="6.5"/>
+              <path d="M34 22H266"/>
+              <path d="M34 22C34 26 40 28 40 30M266 22C266 26 260 28 260 30"/>
+              <path d="M40 30H260"/>
+              <rect x="18" y="33" width="264" height="13" rx="6.5"/>
+              <path d="M5 49H295V56H5Z"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="pillar reveal" style="--d:.16s">
+          <div class="col-cap" aria-hidden="true">
+            <svg class="cap-svg" viewBox="0 0 300 88" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 2.5H296V10.5H4Z"/>
+              <path d="M42 12 Q150 20 258 12"/>
+              <path d="M42 18 Q150 27 258 18"/>
+              <path d="M42.00,12.00L43.37,12.18L44.73,12.45L46.05,12.78L47.35,13.19L48.61,13.67L49.84,14.22L51.03,14.84L52.17,15.52L53.26,16.26L54.30,17.05L55.29,17.90L56.23,18.80L57.10,19.75L57.92,20.74L58.67,21.76L59.35,22.83L59.97,23.92L60.53,25.04L61.01,26.19L61.43,27.35L61.77,28.53L62.05,29.72L62.25,30.91L62.39,32.11L62.46,33.31L62.45,34.50L62.38,35.68L62.24,36.85L62.04,38.00L61.77,39.13L61.44,40.24L61.05,41.32L60.60,42.37L60.09,43.38L59.53,44.36L58.92,45.30L58.25,46.20L57.55,47.05L56.79,47.85L56.00,48.61L55.17,49.31L54.31,49.96L53.42,50.56L52.50,51.10L51.55,51.59L50.59,52.01L49.60,52.38L48.61,52.69L47.60,52.94L46.59,53.13L45.58,53.26L44.56,53.34L43.55,53.35L42.54,53.30L41.55,53.20L40.57,53.05L39.60,52.83L38.66,52.57L37.74,52.25L36.84,51.88L35.97,51.46L35.13,51.00L34.33,50.49L33.56,49.94L32.82,49.35L32.13,48.72L31.48,48.06L30.87,47.37L30.30,46.64L29.79,45.89L29.31,45.12L28.89,44.32L28.51,43.51L28.19,42.68L27.91,41.84L27.69,40.98L27.51,40.13L27.39,39.27L27.31,38.41L27.29,37.55L27.31,36.69L27.38,35.85L27.51,35.01L27.67,34.19L27.89,33.38L28.14,32.60L28.45,31.83L28.79,31.09L29.17,30.37L29.59,29.68L30.05,29.02L30.54,28.39L31.06,27.79L31.62,27.23L32.20,26.70L32.81,26.21L33.44,25.76L34.09,25.35L34.76,24.98L35.45,24.65L36.15,24.36L36.86,24.11L37.58,23.91L38.30,23.75L39.03,23.63L39.76,23.56L40.49,23.53L41.22,23.53L41.93,23.59L42.65,23.68L43.35,23.81L44.03,23.98L44.71,24.19L45.36,24.43L46.00,24.71L46.61,25.03L47.20,25.38L47.77,25.76L48.31,26.17L48.83,26.60L49.31,27.07L49.77,27.55L50.19,28.06L50.58,28.59L50.94,29.14L51.26,29.70L51.55,30.28L51.81,30.87L52.03,31.47L52.21,32.08L52.35,32.70L52.46,33.31L52.54,33.93L52.57,34.55L52.58,35.17L52.54,35.78L52.47,36.38L52.37,36.98L52.24,37.57L52.07,38.14L51.87,38.70L51.64,39.24L51.38,39.77L51.09,40.28L50.78,40.76L50.44,41.23L50.07,41.67L49.69,42.09L49.28,42.48L48.85,42.85L48.41,43.19L47.95,43.50L47.47,43.78L46.98,44.04L46.49,44.26L45.98,44.45L45.46,44.62L44.94,44.75L44.42,44.85L43.90,44.92L43.37,44.96L42.85,44.97L42.33,44.95L41.81,44.90L41.31,44.82L40.81,44.71L40.32,44.58L39.84,44.42L39.37,44.23L38.92,44.01L38.49,43.78L38.07,43.52L37.67,43.23L37.29,42.93L36.93,42.61L36.59,42.27L36.27,41.91L35.98,41.54L35.71,41.15L35.46,40.75L35.24,40.34L35.04,39.92L34.87,39.49L34.73,39.06L34.61,38.62L34.52,38.17L34.45,37.73L34.41,37.28L34.39,36.84L34.40,36.40L34.44,35.96L34.50,35.53L34.58,35.10L34.69,34.69L34.82,34.28L34.98,33.88L35.15,33.49L35.35,33.12L35.56,32.76L35.80,32.42L36.05,32.09L36.32,31.78L36.61,31.49L36.91,31.22L37.22,30.96L37.54,30.73L37.88,30.51L38.22,30.32L38.58,30.15L38.94,29.99L39.31,29.87L39.68,29.76L40.05,29.67L40.43,29.61L40.81,29.57L41.19,29.55L41.56,29.55L41.93,29.58L42.30,29.62L42.66,29.69L43.02,29.78L43.37,29.88L43.71,30.01L44.04,30.15L44.36,30.31L44.66,30.49L44.96,30.69L45.24,30.90L45.51,31.12L45.76,31.36L46.00,31.61L46.22,31.87L46.42,32.14L46.61,32.43L46.78,32.72L46.93,33.02L47.06,33.32L47.17,33.63L47.27,33.95L47.35,34.26"/>
+              <path d="M258.00,12.00L256.63,12.18L255.27,12.45L253.95,12.78L252.65,13.19L251.39,13.67L250.16,14.22L248.97,14.84L247.83,15.52L246.74,16.26L245.70,17.05L244.71,17.90L243.77,18.80L242.90,19.75L242.08,20.74L241.33,21.76L240.65,22.83L240.03,23.92L239.47,25.04L238.99,26.19L238.57,27.35L238.23,28.53L237.95,29.72L237.75,30.91L237.61,32.11L237.54,33.31L237.55,34.50L237.62,35.68L237.76,36.85L237.96,38.00L238.23,39.13L238.56,40.24L238.95,41.32L239.40,42.37L239.91,43.38L240.47,44.36L241.08,45.30L241.75,46.20L242.45,47.05L243.21,47.85L244.00,48.61L244.83,49.31L245.69,49.96L246.58,50.56L247.50,51.10L248.45,51.59L249.41,52.01L250.40,52.38L251.39,52.69L252.40,52.94L253.41,53.13L254.42,53.26L255.44,53.34L256.45,53.35L257.46,53.30L258.45,53.20L259.43,53.05L260.40,52.83L261.34,52.57L262.26,52.25L263.16,51.88L264.03,51.46L264.87,51.00L265.67,50.49L266.44,49.94L267.18,49.35L267.87,48.72L268.52,48.06L269.13,47.37L269.70,46.64L270.21,45.89L270.69,45.12L271.11,44.32L271.49,43.51L271.81,42.68L272.09,41.84L272.31,40.98L272.49,40.13L272.61,39.27L272.69,38.41L272.71,37.55L272.69,36.69L272.62,35.85L272.49,35.01L272.33,34.19L272.11,33.38L271.86,32.60L271.55,31.83L271.21,31.09L270.83,30.37L270.41,29.68L269.95,29.02L269.46,28.39L268.94,27.79L268.38,27.23L267.80,26.70L267.19,26.21L266.56,25.76L265.91,25.35L265.24,24.98L264.55,24.65L263.85,24.36L263.14,24.11L262.42,23.91L261.70,23.75L260.97,23.63L260.24,23.56L259.51,23.53L258.78,23.53L258.07,23.59L257.35,23.68L256.65,23.81L255.97,23.98L255.29,24.19L254.64,24.43L254.00,24.71L253.39,25.03L252.80,25.38L252.23,25.76L251.69,26.17L251.17,26.60L250.69,27.07L250.23,27.55L249.81,28.06L249.42,28.59L249.06,29.14L248.74,29.70L248.45,30.28L248.19,30.87L247.97,31.47L247.79,32.08L247.65,32.70L247.54,33.31L247.46,33.93L247.43,34.55L247.42,35.17L247.46,35.78L247.53,36.38L247.63,36.98L247.76,37.57L247.93,38.14L248.13,38.70L248.36,39.24L248.62,39.77L248.91,40.28L249.22,40.76L249.56,41.23L249.93,41.67L250.31,42.09L250.72,42.48L251.15,42.85L251.59,43.19L252.05,43.50L252.53,43.78L253.02,44.04L253.51,44.26L254.02,44.45L254.54,44.62L255.06,44.75L255.58,44.85L256.10,44.92L256.63,44.96L257.15,44.97L257.67,44.95L258.19,44.90L258.69,44.82L259.19,44.71L259.68,44.58L260.16,44.42L260.63,44.23L261.08,44.01L261.51,43.78L261.93,43.52L262.33,43.23L262.71,42.93L263.07,42.61L263.41,42.27L263.73,41.91L264.02,41.54L264.29,41.15L264.54,40.75L264.76,40.34L264.96,39.92L265.13,39.49L265.27,39.06L265.39,38.62L265.48,38.17L265.55,37.73L265.59,37.28L265.61,36.84L265.60,36.40L265.56,35.96L265.50,35.53L265.42,35.10L265.31,34.69L265.18,34.28L265.02,33.88L264.85,33.49L264.65,33.12L264.44,32.76L264.20,32.42L263.95,32.09L263.68,31.78L263.39,31.49L263.09,31.22L262.78,30.96L262.46,30.73L262.12,30.51L261.78,30.32L261.42,30.15L261.06,29.99L260.69,29.87L260.32,29.76L259.95,29.67L259.57,29.61L259.19,29.57L258.81,29.55L258.44,29.55L258.07,29.58L257.70,29.62L257.34,29.69L256.98,29.78L256.63,29.88L256.29,30.01L255.96,30.15L255.64,30.31L255.34,30.49L255.04,30.69L254.76,30.90L254.49,31.12L254.24,31.36L254.00,31.61L253.78,31.87L253.58,32.14L253.39,32.43L253.22,32.72L253.07,33.02L252.94,33.32L252.83,33.63L252.73,33.95L252.65,34.26"/>
+              <circle cx="42" cy="36" r="2.2"/>
+              <circle cx="258" cy="36" r="2.2"/>
+              <path d="M22 57H278"/>
+              <circle cx="30.0" cy="66" r="2.8"/>
+              <circle cx="60.0" cy="66" r="2.8"/>
+              <circle cx="90.0" cy="66" r="2.8"/>
+              <circle cx="120.0" cy="66" r="2.8"/>
+              <circle cx="150.0" cy="66" r="2.8"/>
+              <circle cx="180.0" cy="66" r="2.8"/>
+              <circle cx="210.0" cy="66" r="2.8"/>
+              <circle cx="240.0" cy="66" r="2.8"/>
+              <circle cx="270.0" cy="66" r="2.8"/>
+              <path d="M21.7 76H278.3"/>
+              <path d="M21.7 83H278.3"/>
+            </svg>
+          </div>
+          <div class="col-shaft">
+            <p class="method-num col-num">03</p>
+            <div class="col-text">
+              <h3 class="h-sec col-title">Partnerstvo</h3>
+              <p class="body-m col-body">Nemáme v pláne spustiť kampaň a už sa neozvať, ako ste na to zvyknutí… Prvý projekt je iba začiatok našej cesty k dominancii vášho trhu. Nemusíte byť ten, ktorý chodí za nami s nápadmi, ale naopak. My sme tí, ktorí chodia za vami s možnosťami, ako sa ďalej posunúť…</p>
+            </div>
+          </div>
+          <div class="col-base" aria-hidden="true">
+            <svg class="base-svg" viewBox="0 0 300 58" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.7 2H278.3"/>
+              <rect x="26" y="6" width="248" height="13" rx="6.5"/>
+              <path d="M34 22H266"/>
+              <path d="M34 22C34 26 40 28 40 30M266 22C266 26 260 28 260 30"/>
+              <path d="M40 30H260"/>
+              <rect x="18" y="33" width="264" height="13" rx="6.5"/>
+              <path d="M5 49H295V56H5Z"/>
+            </svg>
+          </div>
+        </article>
+      </div><!-- /.colonnade -->
+
+      <div class="stylobate reveal hidden lg:block" aria-hidden="true">
+        <span class="sty-1"></span><span class="sty-2"></span><span class="sty-3"></span>
+      </div>
+    </div><!-- /.temple -->
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<!-- No border-t, and the black is reached by a gradient rather than switched on at
+     the edge. Metóda sits on --ink and this sits on black, so the flat swap plus a
+     hairline rule put a measurable step (11.9) across the full width exactly where
+     the bloom below fades in. Same reasoning as #kontakt: the rule only earns its
+     place between two sections that would otherwise merge. -->
+<section id="faq" class="relative py-24 md:py-36" style="background:linear-gradient(to bottom, var(--ink) 0, #000 190px);">
+  <!-- omega watermark; clipping lives on the wrapper, never on the section,
+       because overflow:hidden on an ancestor would break the sticky column -->
+  <div class="faq-mark" aria-hidden="true">
+    <span class="faq-mark-glow"></span>
+    <img src="brand_assets/benzo-omega-mark.png" alt="" class="faq-mark-halo">
+    <img src="brand_assets/benzo-omega-mark.png" alt="" class="faq-mark-core">
+  </div>
+
+  <div class="relative z-10 max-w-[1240px] mx-auto px-5 md:px-8 grid md:grid-cols-[0.82fr_1.18fr] gap-12 md:gap-16 items-start">
+    <div class="reveal md:sticky md:top-40">
+      <h2 class="display text-[clamp(2rem,4.4vw,3.4rem)] max-w-[14ch]">Často pýtané otázky.</h2>
+    </div>
+
+    <div class="faq-list border-t border-line reveal" style="--d:.08s">
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span class="h-sec text-lg md:text-xl pr-4">Čím sa odlišujete od konkurencie?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-in body-m text-sm max-w-[62ch]">
+            <p>Nepracujeme s každým, kto nám príde do cesty.</p>
+            <p>Preto má každý z našich klientov prémiovú starostlivosť.</p>
+            <p>Komunikácia 24/7.</p>
+            <p>Taktiež proces pred a po projekte, o ktorom vám viem bližšie povedať až na spoločnom hovore.</p>
+            <div class="faq-cta"><a href="kontakt.html" class="btn btn-primary cta-glow">Chcem vedieť viac <span class="btn-arrow">→</span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span class="h-sec text-lg md:text-xl pr-4">Ako vlastne celá spolupráca vyzerá?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-in body-m text-sm max-w-[62ch]">
+            <p>Prvý krok je spoznávací hovor, na ktorom sa porozprávame o vás, o vašom biznise a vašej situácii. Ak si budeme rozumieť, tak si dohodneme druhý hovor, na ktorom vám predstavím na mieru vytvorenú stratégiu.</p>
+            <p>Povieme si, či áno alebo nie, a môžeme začať s projektom.</p>
+            <p>Behom 2 týždňov pracujem iba na prieskume, aby som pochopil, ako funguje psychológia vo vašom odvetví.</p>
+            <p>Následne kráčame fáza po fáze, až kým nebude všetko pripravené na spustenie.</p>
+            <p>Po spustení nasleduje testovacia fáza, kde testujeme a optimalizujeme výsledky z kampaní a stránok pre najväčší zisk…</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span class="h-sec text-lg md:text-xl pr-4">Čo konkrétne pre mňa urobíte?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-in body-m text-sm max-w-[62ch]">
+            <p>Závisí od projektu a cieľa. Nefungujeme ako ostatné agentúry podľa nejakých balíkov a šablón.</p>
+            <p>Každá fáza je na mieru a strategicky vytvorená pre čo najväčší dopad vo vašom biznise.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span class="h-sec text-lg md:text-xl pr-4">Koľko ma to bude stáť?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-in body-m text-sm max-w-[62ch]">
+            <p>Každý projekt je iný, preto cenu nerieším vopred online.</p>
+            <p>Vždy si o nej pohovoríme priamo na hovore, kde presne uvidíte, čo dostanete a za koľko.</p>
+            <p>Jedna vec je však jasná: <span class="text-white font-semibold">minimálna vstupná investícia začína na 2 000 €.</span></p>
+            <p>Ak to momentálne nie je vo vašich možnostiach, formulár radšej nevypĺňajte.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">
+          <span class="h-sec text-lg md:text-xl pr-4">Ako spoznám, že som pre vás ten správny klient?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-in body-m text-sm max-w-[62ch]">
+            <p>Ak máte ambíciu rásť, viete pracovať aj cez víkendy a ste odhodlaný na objem dopytu, na ktorý nie ste zvyknutý…</p>
+            <div class="faq-cta"><a href="kontakt.html" class="btn btn-primary cta-glow">Vyplňte formulár <span class="btn-arrow">→</span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAPACITY ================= -->
+<!-- Its own section, straight after the process: you've just seen how the work is done,
+     now here's how little of it is available. Scarcity does the arguing, so no
+     competitor has to be named. -->
+<section id="kapacita" class="py-14 md:py-20 relative overflow-hidden bg-black">
+  <div class="glow" style="width:620px;height:420px;background:var(--blue);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.09;z-index:0;"></div>
+
+  <div class="relative z-10 max-w-[1100px] mx-auto px-5 md:px-8 text-center reveal">
+    <div class="capacity-rule"></div>
+    <!-- h2, not the p this used to be: the section lost its only heading when the
+         "Kapacita" eyebrow went, so this restores the outline. Sized by class, never
+         on the bare tag — Preflight resets h2's own font-size and weight.
+         mt-14 carries the space that eyebrow used to hold open between the rule and
+         the count (its own mt-10 + mb-6 + line box). -->
+    <h2 class="h-sec text-[clamp(1.35rem,2.6vw,2.05rem)] mt-14">Posledné <span class="text-alert">2</span> miesta zo 4</h2>
+    <!-- aria-hidden, like the dot row it replaces: the headline above already states
+         the same count in words, and announcing it twice helps nobody. No written
+         legend under it either — a "2 obsadené / 2 voľné" caption would put the same
+         number on the page a third time, which is the whole problem being fixed. -->
+    <div class="cap-gauge mt-8" aria-hidden="true">
+      <span class="cap-seg cap-seg-taken"></span>
+      <span class="cap-seg cap-seg-taken"></span>
+      <span class="cap-seg cap-seg-next"></span>
+      <span class="cap-seg"></span>
+    </div>
+    <p class="body-m text-[.95rem] mt-8 max-w-[62ch] mx-auto">Kým bežné agentúry majú desiatky klientov, ktorých posúvajú internistom a juniorom, aby z vás mali peniaze, ja pracujem iba so 4 kvalifikovanými firmami, ktoré majú ambíciu dobyť ich odvetvie.</p>
+    <p class="h-sec text-[clamp(1.1rem,1.8vw,1.5rem)] mt-8">Takže…</p>
+    <div class="mt-6">
+      <a href="#kontakt" class="scroll-cue" aria-label="Prejsť na rozhodnutie">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 4v15M5.5 12.5 12 19l6.5-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DECISION (TWO OPTIONS) ================= -->
+<!-- overflow-x-clip, not overflow-hidden: the glow below sits at top:-14% and is meant
+     to bleed UP across the boundary into #kapacita, so the blue arrives before the
+     section does rather than switching on at the edge. `hidden` sliced it exactly at
+     the seam. The painting doesn't need the section to clip it — .art-bg clips its own
+     image — and clipping x still prevents the 760px glow scrolling at 390. -->
+<!-- no border-t here, unlike every other section: that rule exists to separate two flat
+     black sections that would otherwise merge, and this one doesn't need the help —
+     the painting delineates it. Keeping the rule left one crisp line as the only hard
+     edge in an otherwise dissolved transition. -->
+<section id="kontakt" class="relative overflow-x-clip py-24 md:py-36 bg-black">
+  <div class="art-bg art-bg-war" aria-hidden="true">
+    <img src="washington-crossing.webp" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="glow" style="width:760px;height:760px;background:var(--blue);top:-14%;left:50%;transform:translateX(-50%);opacity:.09;"></div>
+
+  <div class="relative z-10 max-w-[1180px] mx-auto px-5 md:px-8">
+    <div class="text-center max-w-[720px] mx-auto reveal">
+      <h2 class="display text-[clamp(2.2rem,5vw,4rem)] leading-[1.03]">Máte iba <span class="text-blue">2 možnosti…</span></h2>
+    </div>
+
+    <div class="mt-14 md:mt-20 grid md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-6 items-stretch">
+      <!-- Možnosť 01 — status quo -->
+      <div class="decision-card decision-stay reveal" style="--d:.05s">
+        <div class="p-8 md:p-10 flex flex-col">
+          <div class="flex items-center justify-between">
+            <span class="label text-white/40">Možnosť 01</span>
+            <svg width="52" height="20" viewBox="0 0 52 20" fill="none" class="text-white/25" aria-hidden="true">
+              <path d="M2 10 H50" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
+            </svg>
+          </div>
+          <h3 class="h-sec text-2xl md:text-3xl mt-6">Necháte to tak.</h3>
+          <p class="body-m text-sm mt-4 max-w-[38ch]">Kliknete na tlačidlo v tomto boxe a váš život ostane ako doteraz. Žiadna stratégia ani plán, len prázdné povzbudenie od AI, ktoré ste už počuli milión krát.</p>
+          <div class="mt-auto pt-8">
+            <!-- the walk-away button never glows, and it genuinely walks away -->
+            <a href="https://chatgpt.com" rel="noopener" class="btn btn-ghost w-full justify-center">Odísť.</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OR -->
+      <div class="decision-or reveal" style="--d:.12s"><span>alebo</span></div>
+
+      <!-- Možnosť 02 — act -->
+      <div class="decision-card decision-go reveal" style="--d:.18s">
+        <div class="decision-inner p-8 md:p-10 flex flex-col">
+          <div class="flex items-center justify-between">
+            <span class="label text-blue">Možnosť 02</span>
+            <svg width="52" height="20" viewBox="0 0 52 20" fill="none" class="text-blue" aria-hidden="true">
+              <path class="rise-path" pathLength="1" d="M2 18 L18 12 L34 13 L50 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="rise-path" pathLength="1" d="M50 3 L43 4 M50 3 L49 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="h-sec text-2xl md:text-3xl mt-6">Pustíme sa do toho.</h3>
+          <p class="body-m text-sm mt-4 text-white/72 max-w-[46ch]">Kliknete na tlačidlo v tomto boxe, vyplňíte formulár a spoznáte team, ktorý vám dá možnosť vyberať si, s kým chcete pracovať a s kým nie. Team, na ktorý sa viete spoľahnúť, že vám odpovie aj v sobotu o 20:00. Team, ktorý chce dominovať v každom odvetví, ktorého sa dotkne. Vidíte sa v tom aj vy?</p>
+          <div class="mt-auto pt-8">
+            <a href="kontakt.html" class="btn btn-primary cta-glow w-full justify-center">Áno, chcem dominovať! <span class="btn-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pt-4 pb-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <div>
+      <img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto">
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+      <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
+        <a href="#prace" class="link-hover">Práce</a>
+        <a href="#preco" class="link-hover">Prečo</a>
+        <a href="#metoda" class="link-hover">Metóda</a>
+        <a href="#onas" class="link-hover">O nás</a>
+        <a href="#faq" class="link-hover">FAQ</a>
+        <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
+      </nav>
+      <a href="https://www.instagram.com/benik_peter" target="_blank" rel="noopener noreferrer"
+         class="social-ico flex-none" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5.2" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+</footer>
+
+<!-- ================= EXIT-INTENT ================= -->
+<div id="exitModal" class="exit" role="dialog" aria-modal="true" aria-labelledby="exitTitle" hidden>
+  <div class="exit-scrim" data-exit-close></div>
+
+  <div class="exit-glow" aria-hidden="true">
+    <span class="exit-glow-1"></span>
+    <span class="exit-glow-2"></span>
+  </div>
+
+  <div class="exit-panel" tabindex="-1">
+    <button type="button" class="exit-close" data-exit-close aria-label="Zavrieť">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <span class="exit-medal" aria-hidden="true">
+      <img src="brand_assets/benzo-omega-mark.png" alt="">
+    </span>
+
+    <div class="exit-spine" aria-hidden="true">
+      <span class="exit-spine-base"></span>
+      <span class="exit-spine-fill"></span>
+      <span class="exit-spine-pulse"></span>
+    </div>
+
+    <div class="exit-body">
+      <p class="exit-eyebrow">Ešte neodchádzajte</p>
+      <h2 id="exitTitle" class="exit-title">Váš trh sa medzitým nezastaví.</h2>
+      <p class="exit-lead">Kým to zvažujete, vaši zákazníci počúvajú niekoho iného. Pozrieme sa na vašu situáciu bez záväzku.</p>
+
+      <ul class="exit-list">
+        <li class="exit-row">
+          <b>Kde vám unikajú peniaze.</b>
+          <span>Prejdeme vaše čísla a ukážeme, ktoré miesto vás stojí najviac.</span>
+        </li>
+        <li class="exit-row">
+          <b>Prečo zákazník povie nie.</b>
+          <span>Rozhodovanie vašich zákazníkov skúmame, nehádame.</span>
+        </li>
+        <li class="exit-row">
+          <b>Čo by sme robili na vašom mieste.</b>
+          <span>Konkrétny plán na deväť mesiacov, aj keby ste sa nakoniec rozhodli inak.</span>
+        </li>
+      </ul>
+
+      <div class="exit-actions">
+        <a href="kontakt.html" class="btn btn-primary cta-glow" data-exit-go>Chcem vidieť plán</a>
+        <button type="button" class="exit-dismiss" data-exit-close>Zatiaľ nie, ďakujem</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/benzo.js"></script>
+
+<!-- ================= HERO SHADER BACKGROUND ================= -->
+<!-- Vanilla-JS WebGL2 port of the animated shader (orig. by Matthias Hurrle / @atzedent),
+     recolored to Benzo brand: electric-blue #04A7E7 + deep-navy #000080 nebula on ink. -->
+<script>
+(function(){
+  'use strict';
+  var canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  var gl = canvas.getContext('webgl2', { antialias:false, alpha:false });
+  if (!gl){ canvas.style.display = 'none'; return; }   // fall back to the CSS gradient
+
+  var vsrc = `#version 300 es
+precision highp float;
+in vec4 position;
+void main(){ gl_Position = position; }`;
+
+  var fsrc = `#version 300 es
+precision highp float;
+out vec4 O;
+uniform vec2 resolution;
+uniform float time;
+#define FC gl_FragCoord.xy
+#define T time
+#define R resolution
+#define MN min(R.x,R.y)
+float rnd(vec2 p){ p=fract(p*vec2(12.9898,78.233)); p+=dot(p,p+34.56); return fract(p.x*p.y); }
+float noise(in vec2 p){
+  vec2 i=floor(p), f=fract(p), u=f*f*(3.-2.*f);
+  float a=rnd(i), b=rnd(i+vec2(1,0)), c=rnd(i+vec2(0,1)), d=rnd(i+1.);
+  return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+}
+float fbm(vec2 p){
+  float t=.0, a=1.; mat2 m=mat2(1.,-.5,.2,1.2);
+  for(int i=0;i<5;i++){ t+=a*noise(p); p*=2.*m; a*=.5; }
+  return t;
+}
+float clouds(vec2 p){
+  float d=1., t=.0;
+  for(float i=.0;i<3.;i++){
+    float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);
+    t=mix(t,d,a); d=a; p*=2./(i+1.);
+  }
+  return t;
+}
+void main(void){
+  vec2 uv=(FC-.5*R)/MN, st=uv*vec2(2,1);
+  vec3 col=vec3(0);
+  float bg=clouds(vec2(st.x+T*.5,-st.y));
+  uv*=1.-.3*(sin(T*.2)*.5+.5);
+  for(float i=1.;i<12.;i++){
+    uv+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.5+.1*uv.x);
+    vec2 p=uv;
+    float d=length(p);
+    // star glow — biased toward electric blue while keeping subtle variation
+    col+=.00125/d*(cos(sin(i)*vec3(1,2,3))+1.)*vec3(.32,.74,1.18);
+    float b=noise(i+p+bg*1.731);
+    col+=.0022*b/length(max(p,vec2(b*p.x*.02,p.y)))*vec3(.28,.7,1.15);
+    // deep navy -> electric-blue cloud body
+    col=mix(col,vec3(bg*.03,bg*.16,bg*.4),d);
+  }
+  O=vec4(col,1);
+}`;
+
+  function compile(type, src){
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)){
+      console.error('Hero shader error:', gl.getShaderInfoLog(s));
+    }
+    return s;
+  }
+
+  var prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)){
+    console.error('Hero shader link error:', gl.getProgramInfoLog(prog));
+    canvas.style.display = 'none'; return;
+  }
+  gl.useProgram(prog);
+
+  var buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,1,-1,-1,1,1,1,-1]), gl.STATIC_DRAW);
+  var pos = gl.getAttribLocation(prog, 'position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+  var uRes  = gl.getUniformLocation(prog, 'resolution');
+  var uTime = gl.getUniformLocation(prog, 'time');
+
+  function resize(){
+    var dpr = Math.max(1, .5 * window.devicePixelRatio);
+    var w = Math.max(1, Math.round(canvas.clientWidth  * dpr));
+    var h = Math.max(1, Math.round(canvas.clientHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h){
+      canvas.width = w; canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+  }
+
+  function frame(now){
+    resize();
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, now * 1e-3);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+
+  var raf = null, running = false;
+  function loop(now){ frame(now); raf = requestAnimationFrame(loop); }
+  function start(){ if (!running){ running = true; raf = requestAnimationFrame(loop); } }
+  function stop(){ running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+
+  window.addEventListener('resize', resize, { passive:true });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches){
+    // one static, composed frame — no animation
+    frame(2600);
+  } else {
+    start();
+    // pause the shader whenever the hero isn't on screen
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+      }, { threshold: 0 });
+      io.observe(canvas);
+    }
+    document.addEventListener('visibilitychange', function(){
+      document.hidden ? stop() : start();
+    });
+  }
+})();
+</script>
+
+<!-- ================= CLIENT LOGO MARQUEE (JS-driven for accurate hover) ================= -->
+<script>
+(function(){
+  'use strict';
+  var track = document.querySelector('.logo-track');
+  if (!track) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // CSS static fallback
+
+  var half = 0, x = 0, last = null, raf = null, running = false;
+  var SPEED = 70; // px per second
+
+  function measure(){ half = track.scrollWidth / 2; if (x <= -half) x = 0; } // set A === set B
+  function step(now){
+    if (!running) return;
+    if (last === null) last = now;
+    var dt = (now - last) / 1000; last = now;
+    x -= SPEED * dt;
+    if (x <= -half) x += half;                      // seamless wrap
+    track.style.transform = 'translateX(' + x + 'px)';
+    raf = requestAnimationFrame(step);
+  }
+  function start(){ if (!running){ running = true; last = null; raf = requestAnimationFrame(step); } }
+  function stop(){ running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+
+  // widths change as logos load / on resize
+  window.addEventListener('load', measure);
+  window.addEventListener('resize', measure, { passive:true });
+  Array.prototype.forEach.call(track.querySelectorAll('img'), function(img){
+    if (!img.complete) img.addEventListener('load', measure, { once:true });
+  });
+
+  measure();
+  start();
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0 });
+    io.observe(track);
+  }
+  document.addEventListener('visibilitychange', function(){
+    document.hidden ? stop() : start();
+  });
+})();
+</script>
+
+<!-- ================= CURSOR FOLLOWER ================= -->
+<script src="assets/benzo-cursor.js"></script>
+
+<!-- ================= FAQ ACCORDION ================= -->
+<script>
+(function(){
+  'use strict';
+  Array.prototype.forEach.call(document.querySelectorAll('.faq-item'), function(item){
+    var btn = item.querySelector('.faq-q');
+    var panel = item.querySelector('.faq-a');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function(){
+      var open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+    });
+    window.addEventListener('resize', function(){
+      if (item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px';
+    }, { passive:true });
+  });
+})();
+</script>
+
+<!-- Exit-intent dialog -->
+<script>
+(function(){
+  'use strict';
+  var modal = document.getElementById('exitModal');
+  if (!modal) return;
+
+  var KEY      = 'benzo.exitIntent.shown';
+  var FORM_KEY = 'benzo.formReached';
+  var panel = modal.querySelector('.exit-panel');
+  var lastFocus = null, armed = false;
+
+  // Is a mouse available at all? This must use any-hover/any-pointer, not
+  // hover/pointer: those describe the PRIMARY input, so a touchscreen laptop
+  // reports coarse/none even though it has a trackpad, and exit intent would
+  // silently never arm.
+  var finePointer = window.matchMedia('(any-hover:hover) and (any-pointer:fine)').matches;
+
+  // Load index.html?exit=test to try the gesture over and over: it arms at once
+  // instead of after 5s, ignores both session flags and never records that the
+  // dialog has been shown. Without the parameter nothing here changes, so the
+  // production path is exactly the guarded one.
+  var testMode = /(^|[?&])exit=test(&|$)/.test(location.search);
+
+  function seen(){
+    if (testMode) return false;
+    try { return sessionStorage.getItem(KEY) === '1'; } catch(e){ return false; }
+  }
+  function markSeen(){
+    if (testMode) return;
+    try { sessionStorage.setItem(KEY, '1'); } catch(e){}
+  }
+
+  // Someone who already reached the enquiry form has seen the offer, so
+  // "don't leave without..." would be noise at that point. The form lives on
+  // kontakt.html, which sets this flag on arrival.
+  //
+  // This used to be an IntersectionObserver on #kontakt. That was correct when
+  // the form sat on this page; it is not any more. #kontakt is now the closing
+  // "dve možnosti" CTA band, so every visitor who simply read to the bottom of
+  // the homepage was permanently excluded from the dialog.
+  function reachedForm(){
+    if (testMode) return false;
+    try { return sessionStorage.getItem(FORM_KEY) === '1'; } catch(e){ return false; }
+  }
+
+  function focusables(){
+    return Array.prototype.filter.call(
+      modal.querySelectorAll('a[href],button:not([disabled])'),
+      function(el){ return el.offsetParent !== null; });
+  }
+
+  function open(){
+    if (modal.classList.contains('is-open') || seen()) return;
+    markSeen();
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    // let the browser paint the hidden->shown swap before transitioning
+    requestAnimationFrame(function(){ modal.classList.add('is-open'); });
+    document.body.style.overflow = 'hidden';
+    // Focus the dialog itself rather than its first control. A programmatic
+    // focus() on a button matches :focus-visible even in a pure mouse session,
+    // so focusing the close button put a 2px brand ring on the X and made the
+    // dismiss the loudest thing in the panel. Tab from here still lands on the
+    // first control, so the trap below is unaffected.
+    panel.focus();
+  }
+
+  function close(){
+    if (!modal.classList.contains('is-open')) return;
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    window.setTimeout(function(){
+      if (!modal.classList.contains('is-open')) modal.hidden = true;
+    }, 380);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  Array.prototype.forEach.call(modal.querySelectorAll('[data-exit-close]'), function(el){
+    el.addEventListener('click', close);
+  });
+  var go = modal.querySelector('[data-exit-go]');
+  if (go) go.addEventListener('click', close);   // let the #kontakt jump happen
+
+  document.addEventListener('keydown', function(e){
+    if (!modal.classList.contains('is-open')) return;
+    if (e.key === 'Escape'){ close(); return; }
+    if (e.key !== 'Tab') return;
+    var f = focusables();
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    // focus sits on the panel itself right after open; Tab falls through to
+    // `first` on its own, but Shift+Tab would escape the dialog backwards
+    if (document.activeElement === panel){
+      e.preventDefault(); (e.shiftKey ? last : first).focus(); return;
+    }
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
+  // arm late so a cursor that starts off-window doesn't trip it on load
+  if (testMode) armed = true;
+  else window.setTimeout(function(){ armed = true; }, 5000);
+
+  // Track the cursor so we know which way it was heading. A hand flicking up to
+  // the tab bar moves far faster than the browser samples, so the last position
+  // reported when it leaves is often nowhere near the top edge — keying purely
+  // off the leave event's clientY misses most genuine exits.
+  var lastY = 9999, prevY = 9999;
+  document.addEventListener('mousemove', function(e){
+    prevY = lastY; lastY = e.clientY;
+  }, { passive:true });
+
+  function maybeOpen(e){
+    if (!finePointer || !armed || reachedForm()) return;
+    // relatedTarget empty is the reliable "pointer left the document" signal;
+    // on a real exit e.target is whatever it was last over, never documentElement
+    if (e && (e.relatedTarget || e.toElement)) return;
+    var y = (e && typeof e.clientY === 'number') ? e.clientY : lastY;
+    var leftViaTop   = y <= 0;
+    // fast flick toward the browser chrome: near the top and genuinely rising.
+    // Requiring a real upward delta keeps it from firing on someone who simply
+    // drifted up to the nav and then left the window sideways.
+    var headingUpTop = lastY <= 120 && (prevY - lastY) >= 6;
+    if (leftViaTop || headingUpTop) open();
+  }
+  document.addEventListener('mouseout', maybeOpen);
+  document.documentElement.addEventListener('mouseleave', maybeOpen);
+
+  // Always exposed, whatever the pointer situation — this is the hook used to
+  // tell "the dialog is broken" apart from "the gesture never registered".
+  function clearGuards(){
+    try { sessionStorage.removeItem(KEY); sessionStorage.removeItem(FORM_KEY); } catch(e){}
+    armed = true;
+  }
+  window.benzoExitIntent = {
+    open: function(){ clearGuards(); open(); },
+    reset: function(){ clearGuards(); return 're-armed'; },
+    status: function(){
+      return { hasMouse:finePointer, armed:armed, testMode:testMode,
+               alreadyShownThisSession:seen(), formAlreadySeen:reachedForm(),
+               isOpen:modal.classList.contains('is-open'), lastY:lastY };
+    }
+  };
+})();
+</script>
+</body>
+</html>

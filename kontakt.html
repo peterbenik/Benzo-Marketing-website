@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kvalifikácia — Benzo Marketing</title>
+<meta name="description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<!-- noindex stays: this is a form, not a landing page. Note it is deliberately NOT
+     disallowed in robots.txt — a page blocked from crawling is never read, so the
+     noindex below would never be seen and the URL could still surface bare. -->
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- OG tags on a noindex page are not a contradiction: people paste this link into
+     WhatsApp and Slack, and those unfurlers read OG regardless of indexing. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benzo Marketing">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:url" content="https://benzomarketing.com/kontakt.html">
+<meta property="og:title" content="Kvalifikácia — Benzo Marketing">
+<meta property="og:description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<meta property="og:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kvalifikácia — Benzo Marketing">
+<meta name="twitter:description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<meta name="twitter:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+
+<script>document.documentElement.className += ' js';</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { ink:'#0D0D0D', black:'#000000', navy:'#000080', blue:'#04A7E7',
+                muted:'#9CA5AF', line:'rgba(255,255,255,.11)' },
+      fontFamily: { sans: ['Montserrat','system-ui','sans-serif'] },
+    } }
+  }
+</script>
+
+<link rel="stylesheet" href="assets/benzo.css">
+
+<!-- page-specific: the multi-step form only -->
+<style>
+  /* ===== Qualifier form =====
+     Progressive enhancement: with no JS every step is visible and the form is a
+     single long page that still POSTs. The `js` class on <html> is what switches
+     it into one-step-at-a-time mode, so a script failure degrades to a usable
+     form rather than a blank page. */
+  .qf-wrap{ position:relative; min-height:100svh; display:flex; align-items:center;
+    padding:150px 0 90px;
+    background:radial-gradient(120% 90% at 50% 8%, rgba(4,167,231,.13), rgba(0,0,128,.08) 42%, #000 78%); }
+  @media (min-width:768px){ .qf-wrap{ padding:190px 0 110px; } }
+
+  /* ===== The fall of Rome =====
+     Framed exactly the way the homepage frames the cavalry charge behind the
+     closing decision — the .art-bg / .art-bg-war pattern. Full bleed over the
+     whole section, grayscale so it reads as painted atmosphere rather than a
+     picture the form sits on, and drifting slowly so it is never quite still.
+     The section is the page here, so the painting is the page.
+     The keyframes are restated rather than shared: index.html's live in its
+     own <style>, and this page never loads it. */
+  .qf-art{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  /* This canvas is 3840px wide at almost exactly the section's own 1.6 ratio, so
+     unlike the homepage crops it arrives whole and pin-sharp — nothing is lost to
+     cropping and nothing is softened by upscaling. That is precisely why it has to
+     be pulled DOWN rather than let through: at .46 opacity it read as a photograph
+     the form was sitting on. Full grayscale (the burning city is a warm canvas and
+     the warm fights the blue CTA), roughly half the luminance, contrast kept above
+     1 so the darks crush to true black instead of going milky. */
+  .qf-art img{ width:100%; height:100%; object-fit:cover; object-position:50% 44%;
+    filter:grayscale(1) contrast(1.14) brightness(.82); opacity:.4;
+    /* Less zoom than the crop this replaced (1.26): the ratios match here, so scale
+       is pure crop — 1.26 cut the colossus in half at the right edge and threw away
+       the temple on the left, i.e. the whole sweep of the composition. 1.13 keeps
+       the canvas nearly entire and still leaves the drift its headroom.
+       The drift's own starting transform has to be restated here too, or
+       prefers-reduced-motion drops the scale and the framing with it. */
+    transform:scale(1.13) translate3d(0,1.4%,0);
+    animation:qf-art-drift 34s ease-in-out infinite alternate; }
+  /* The clear window sits low and wide so the painting reaches the edges rather
+     than being pinched into a vignette. No top fade at all — the painting runs
+     straight up behind the crown, which carries its own fill and so keeps the
+     nav readable on its own. The foot keeps a long tail down to pure black: a
+     short ramp reads as an edge however dark it goes, and this end has to join
+     the section to the footer without a visible cut. */
+  .qf-art::after{ content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(132% 96% at 50% 52%, transparent 0%, rgba(0,0,0,.24) 68%, rgba(0,0,0,.66) 100%),
+      linear-gradient(to bottom, transparent 0%, transparent 72%, rgba(0,0,0,.16) 84%,
+                      rgba(0,0,0,.5) 93%, #000 100%); }
+  @keyframes qf-art-drift{
+    from{ transform:scale(1.13) translate3d(0,1.4%,0); }
+    to  { transform:scale(1.19) translate3d(1.2%,3%,0); }
+  }
+  @media (prefers-reduced-motion:reduce){ .qf-art img{ animation:none; } }
+
+  /* the light stays — it lifts the card off the painting */
+  .qf-mark{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .qf-mark > *{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+  .qf-mark-glow{ width:min(940px,110vw); aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(closest-side, rgba(255,255,255,.07), rgba(150,215,245,.055) 34%,
+      rgba(4,167,231,.05) 52%, rgba(4,167,231,.02) 70%, transparent 80%); filter:blur(30px); }
+
+  .qf-shell{ position:relative; z-index:2; width:100%; max-width:760px;
+    margin:0 auto; padding:0 20px; }
+  @media (min-width:768px){ .qf-shell{ padding:0 32px; } }
+
+  .qf-card{ position:relative; border-radius:28px; padding:2.2rem 1.5rem 2rem;
+    background:linear-gradient(180deg, rgba(17,23,31,.92), rgba(9,10,14,.96));
+    border:1px solid rgba(4,167,231,.26);
+    box-shadow:0 44px 96px -40px rgba(0,0,0,.9), 0 0 70px -30px rgba(4,167,231,.3); }
+  @media (min-width:768px){ .qf-card{ padding:3rem 3rem 2.6rem; } }
+
+  /* progress */
+  .qf-prog{ display:flex; align-items:center; gap:1rem; margin-bottom:2rem; }
+  .qf-prog-track{ flex:1; height:4px; border-radius:9999px; background:rgba(255,255,255,.09); overflow:hidden; }
+  .qf-prog-fill{ height:100%; width:0%; border-radius:9999px;
+    background:linear-gradient(90deg, var(--blue), var(--blue-hi));
+    box-shadow:0 0 14px rgba(4,167,231,.65);
+    transition:width .5s var(--ease); }
+  .qf-prog-num{ flex:none; font-weight:600; font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; color:rgba(255,255,255,.45); }
+
+  /* steps */
+  .qf-step{ border:0; padding:0; margin:0 0 2.2rem; min-inline-size:0; }
+  .js .qf-step{ display:none; }
+  .js .qf-step.is-active{ display:block; animation:qf-in .45s var(--ease); }
+  @keyframes qf-in{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  .qf-legend{ display:block; padding:0; font-weight:800; letter-spacing:-.02em; line-height:1.16;
+    font-size:clamp(1.35rem,3.4vw,1.95rem); color:var(--white); }
+  .qf-sub{ margin-top:.7rem; color:rgba(255,255,255,.6); font-size:.95rem; line-height:1.6; }
+  .qf-hint{ margin-top:.55rem; color:rgba(255,255,255,.38); font-size:.8rem; }
+  .qf-fields{ margin-top:1.7rem; display:flex; flex-direction:column; gap:1rem; }
+
+  .qf-label{ display:block; font-weight:600; font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:.5rem; }
+  .qf-input, .qf-textarea, .qf-select{
+    width:100%; border-radius:14px; padding:.95rem 1.1rem;
+    background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--white);
+    font-family:inherit; font-size:1rem; line-height:1.5;
+    transition:border-color .3s var(--ease), background-color .3s var(--ease), box-shadow .3s var(--ease); }
+  .qf-textarea{ min-height:150px; resize:vertical; }
+  .qf-input::placeholder, .qf-textarea::placeholder{ color:rgba(255,255,255,.26); }
+  .qf-input:hover, .qf-textarea:hover, .qf-select:hover{ border-color:rgba(255,255,255,.2); }
+  .qf-input:focus, .qf-textarea:focus, .qf-select:focus{ outline:none; border-color:var(--blue);
+    background:rgba(4,167,231,.06); box-shadow:0 0 0 3px rgba(4,167,231,.16); }
+  .qf-input[aria-invalid="true"], .qf-textarea[aria-invalid="true"]{
+    border-color:#ff7a6e; box-shadow:0 0 0 3px rgba(255,122,110,.14); }
+
+  /* dial code — native select, restyled. The chevron is drawn rather than
+     left to the platform, whose default arrow renders near-black on this
+     background. The options themselves fall back to the OS palette, so they
+     are given an explicit dark pair. */
+  .qf-select{ appearance:none; -webkit-appearance:none; cursor:pointer;
+    padding-right:2.4rem;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='rgba(255,255,255,.5)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 1.05rem center; }
+  .qf-select option{ background:#11171f; color:#fff; }
+  /* the dial code needs only its own width; the number takes the rest.
+     Sized for a flag plus a four-digit code — Windows has no flag emoji font
+     and substitutes the two-letter code ("SK +421"), which is wider still, so
+     there is slack here on purpose. */
+  .qf-row{ display:grid; gap:1rem; grid-template-columns:minmax(0,9.75rem) minmax(0,1fr); }
+
+  /* choices — real radios, styled as capsule cards so no-JS still works */
+  .qf-choices{ margin-top:1.7rem; display:flex; flex-direction:column; gap:.7rem; }
+  .qf-choice{ position:relative; display:block; cursor:pointer; }
+  .qf-choice input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .qf-choice span{ display:flex; align-items:center; gap:.9rem;
+    border-radius:9999px; padding:1rem 1.4rem; font-size:.98rem;
+    background:rgba(255,255,255,.035); border:1px solid var(--line); color:rgba(255,255,255,.86);
+    transition:border-color .3s var(--ease), background-color .3s var(--ease), transform .3s var(--ease); }
+  .qf-choice span::before{ content:""; flex:none; width:18px; height:18px; border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.28);
+    transition:border-color .3s var(--ease), box-shadow .3s var(--ease), background-color .3s var(--ease); }
+  .qf-choice:hover span{ border-color:rgba(4,167,231,.45); background:rgba(4,167,231,.06); transform:translateX(3px); }
+  .qf-choice input:checked + span{ border-color:var(--blue); background:rgba(4,167,231,.12); }
+  .qf-choice input:checked + span::before{ border-color:var(--blue); background:var(--blue);
+    box-shadow:inset 0 0 0 3px rgba(9,10,14,.95), 0 0 12px rgba(4,167,231,.7); }
+  .qf-choice input:focus-visible + span{ outline:2px solid var(--blue); outline-offset:3px; }
+
+  /* revenue slider */
+  .qf-slider-out{ margin-top:1.6rem; font-weight:900; letter-spacing:-.03em; color:var(--blue);
+    font-size:clamp(2rem,6vw,2.9rem); line-height:1; text-shadow:0 0 34px rgba(4,167,231,.45); }
+  .qf-range{ -webkit-appearance:none; appearance:none; width:100%; margin-top:1.5rem;
+    height:26px; background:transparent; cursor:pointer; }
+  .qf-range::-webkit-slider-runnable-track{ height:6px; border-radius:9999px;
+    background:linear-gradient(90deg, var(--blue) 0 var(--fill,0%), rgba(255,255,255,.1) var(--fill,0%) 100%); }
+  .qf-range::-moz-range-track{ height:6px; border-radius:9999px; background:rgba(255,255,255,.1); }
+  .qf-range::-moz-range-progress{ height:6px; border-radius:9999px; background:var(--blue); }
+  .qf-range::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none;
+    width:24px; height:24px; margin-top:-9px; border-radius:50%;
+    background:var(--white); border:4px solid var(--blue);
+    box-shadow:0 0 18px rgba(4,167,231,.75); transition:transform .2s var(--ease); }
+  .qf-range::-moz-range-thumb{ width:24px; height:24px; border-radius:50%;
+    background:var(--white); border:4px solid var(--blue); box-shadow:0 0 18px rgba(4,167,231,.75); }
+  .qf-range:active::-webkit-slider-thumb{ transform:scale(1.12); }
+  .qf-range:focus-visible{ outline:2px solid var(--blue); outline-offset:6px; border-radius:9999px; }
+  .qf-scale{ display:flex; justify-content:space-between; margin-top:.7rem;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.32); }
+  /* typed amount — the slider is fast but coarse, and past ~100k a drag cannot
+     hit a specific figure. The two are one control: whichever is touched last
+     drives the hidden field the mail actually reports. */
+  .qf-eur{ margin-top:1.7rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .qf-eur-field{ position:relative; max-width:16rem; }
+  /* room on the right for the € that sits inside the box */
+  .qf-eur-input{ padding-right:2.6rem; font-variant-numeric:tabular-nums; }
+  .qf-eur-cur{ position:absolute; right:1.1rem; top:50%; transform:translateY(-50%);
+    color:rgba(255,255,255,.4); font-weight:700; pointer-events:none; }
+
+  /* errors + actions */
+  .qf-err{ margin-top:.7rem; color:#ff8a7e; font-size:.85rem; min-height:1.1em; }
+  .qf-actions{ display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding-top:.4rem; }
+  .qf-back{ display:inline-flex; align-items:center; gap:.5rem; cursor:pointer;
+    background:none; border:0; padding:.6rem .2rem; font-family:inherit;
+    font-weight:600; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.42); transition:color .3s var(--ease); }
+  .qf-back:hover{ color:rgba(255,255,255,.75); }
+  .qf-back:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:6px; }
+  .qf-back[hidden]{ display:none; }
+
+  /* The success state used to live here as a hidden card. It is now a page of
+     its own — dakujeme.html — because a conversion has to have a URL before an
+     ad platform can count it. */
+
+  @media (prefers-reduced-motion:reduce){
+    .js .qf-step.is-active{ animation:none; }
+    .qf-prog-fill{ transition:none; }
+    .qf-choice:hover span{ transform:none; }
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 pt-[32px] md:pt-[44px]">
+    <div class="crown">
+      <span class="crown-cast" aria-hidden="true"></span>
+
+      <div class="crown-body">
+        <div class="crown-fill">
+          <span class="crown-key" aria-hidden="true"></span>
+
+          <div class="crown-row">
+            <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+              <a href="index.html#prace" class="link-hover">Práce</a>
+              <a href="index.html#preco" class="link-hover">Prečo</a>
+              <a href="index.html#metoda" class="link-hover">Metóda</a>
+            </nav>
+
+            <span class="crown-seat" aria-hidden="true"></span>
+
+            <div class="crown-actions flex items-center gap-6 xl:gap-8">
+              <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+                <a href="index.html#onas" class="link-hover">O nás</a>
+                <a href="index.html#faq" class="link-hover">FAQ</a>
+              </nav>
+              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Späť na web</a>
+              <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — domov">
+        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      </a>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
+      <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
+        <a href="index.html#prace" class="mobile-link">Práce</a>
+        <a href="index.html#preco" class="mobile-link">Prečo</a>
+        <a href="index.html#metoda" class="mobile-link">Metóda</a>
+        <a href="index.html#onas" class="mobile-link">O nás</a>
+        <a href="index.html#faq" class="mobile-link">FAQ</a>
+        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Späť na web</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="qf-wrap">
+  <div class="qf-art" aria-hidden="true">
+    <img src="brand_assets/Fall of Rome.webp" alt="">
+  </div>
+  <div class="qf-mark" aria-hidden="true">
+    <span class="qf-mark-glow"></span>
+  </div>
+
+  <div class="qf-shell">
+
+    <!-- ---------- intro ---------- -->
+    <div id="qfIntro" class="qf-card text-center">
+      <h1 class="display text-[clamp(1.7rem,4vw,2.6rem)]">Týmito pár otázkami zistíme, či spolu máme potenciál dobyť váš trh!</h1>
+      <div class="mt-10 flex flex-col items-center gap-4">
+        <button type="button" id="qfStart" class="btn btn-primary cta-glow">Chcem dominovať! <span class="btn-arrow">→</span></button>
+        <a href="index.html" class="label text-white/35 link-hover">Späť na web</a>
+      </div>
+    </div>
+
+    <!-- ---------- form ---------- -->
+    <form id="qfForm" class="qf-card hidden" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="3dc18006-ada6-492b-9cd5-075f7ec840d4">
+      <input type="hidden" name="subject" value="Nová kvalifikácia z webu — Benzo Marketing">
+      <input type="hidden" name="from_name" value="Benzo Marketing — formulár">
+      <!-- The no-JS path only. With JS the submit handler navigates by itself and
+           Web3Forms ignores this; without it the browser does a plain POST and
+           Web3Forms would land the visitor on its own generic success page, so
+           this sends them to ours instead. Absolute by requirement — it shares
+           the domain assumption already baked into canonical and og:url. -->
+      <input type="hidden" name="redirect" value="https://benzomarketing.com/dakujeme.html">
+      <!-- honeypot: real people never see or fill this -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="qf-prog">
+        <div class="qf-prog-track"><div class="qf-prog-fill" id="qfFill"></div></div>
+        <span class="qf-prog-num" id="qfNum">1 z 8</span>
+      </div>
+
+      <div id="qfLive" class="sr-only" aria-live="polite"></div>
+
+      <!-- 1 -->
+      <fieldset class="qf-step" data-step="1">
+        <legend class="qf-legend">Ako sa voláte?</legend>
+        <div class="qf-fields">
+          <div>
+            <label class="qf-label" for="f-meno">Meno a priezvisko</label>
+            <input class="qf-input" id="f-meno" name="Meno" type="text" autocomplete="name" placeholder="Peter Novák" data-required>
+          </div>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 2 -->
+      <fieldset class="qf-step" data-step="2">
+        <legend class="qf-legend">Kontaktné údaje</legend>
+        <div class="qf-fields">
+          <div>
+            <label class="qf-label" for="f-email">Email</label>
+            <input class="qf-input" id="f-email" name="E-mail" type="email" autocomplete="email" placeholder="peter@vasafirma.sk" data-required data-type="email">
+          </div>
+          <div class="qf-row">
+            <div>
+              <label class="qf-label" for="f-predvolba">Predvoľba</label>
+              <!-- the flag is display only — value stays the bare dial code so
+                   what lands in the inbox is still just "+421" -->
+              <select class="qf-select" id="f-predvolba" name="Predvoľba" autocomplete="tel-country-code">
+                <option value="+421" selected>🇸🇰 +421</option>
+                <option value="+420">🇨🇿 +420</option>
+                <option value="+43">🇦🇹 +43</option>
+                <option value="+48">🇵🇱 +48</option>
+                <option value="+36">🇭🇺 +36</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+1">🇺🇸 +1</option>
+              </select>
+            </div>
+            <div>
+              <label class="qf-label" for="f-tel">Telefónne číslo</label>
+              <input class="qf-input" id="f-tel" name="Telefónne číslo" type="tel" autocomplete="tel-national" placeholder="900 000 000" data-required>
+            </div>
+          </div>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 3 -->
+      <fieldset class="qf-step" data-step="3">
+        <legend class="qf-legend">Aktuálny web alebo sociálne siete</legend>
+        <p class="qf-sub">Čokoľvek, kde vidíme, ako dnes komunikujete.</p>
+        <div class="qf-fields">
+          <div>
+            <label class="qf-label" for="f-link">Web alebo sociálne siete</label>
+            <input class="qf-input" id="f-link" name="Web alebo SM" type="text" inputmode="url" placeholder="www.stránka.com" data-required>
+          </div>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 4 -->
+      <fieldset class="qf-step" data-step="4">
+        <legend class="qf-legend">Pozícia vo firme</legend>
+        <div class="qf-fields">
+          <div>
+            <label class="qf-label" for="f-pozicia">Pozícia</label>
+            <input class="qf-input" id="f-pozicia" name="Pozícia" type="text" autocomplete="organization-title" placeholder="Majiteľ / konateľ" data-required>
+          </div>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 5 -->
+      <fieldset class="qf-step" data-step="5" data-auto>
+        <legend class="qf-legend">Akým spôsobom funguje váš marketing?</legend>
+        <div class="qf-choices">
+          <label class="qf-choice">
+            <input type="radio" name="Marketing" value="Mám agentúru" required>
+            <span>Mám agentúru</span>
+          </label>
+          <label class="qf-choice">
+            <input type="radio" name="Marketing" value="Robím si ho sám s AI" required>
+            <span>Robím si ho sám s AI</span>
+          </label>
+          <label class="qf-choice">
+            <input type="radio" name="Marketing" value="Marketingové oddelenie" required>
+            <span>Marketingové oddelenie</span>
+          </label>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 6 -->
+      <fieldset class="qf-step" data-step="6">
+        <legend class="qf-legend">Aký je váš priemerný mesačný obrat?</legend>
+        <p class="qf-sub">Stačí približne — pomáha nám to odhadnúť, čo má zmysel stavať.</p>
+        <output class="qf-slider-out" id="qfRevOut" for="f-obrat">0 €</output>
+        <input class="qf-range" id="f-obrat" type="range" min="0" max="1000" step="1" value="180"
+               aria-label="Priemerný mesačný obrat v eurách">
+        <div class="qf-scale"><span>0 €</span><span>1 000 000 €</span></div>
+        <div class="qf-eur">
+          <label class="qf-label" for="f-obrat-text">Alebo napíšte presnú sumu</label>
+          <div class="qf-eur-field">
+            <input class="qf-input qf-eur-input" id="f-obrat-text" type="text"
+                   inputmode="numeric" autocomplete="off" placeholder="napr. 12 000">
+            <span class="qf-eur-cur" aria-hidden="true">€</span>
+          </div>
+        </div>
+        <input type="hidden" name="Priemerný mesačný obrat" id="f-obrat-eur" value="">
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 7 -->
+      <fieldset class="qf-step" data-step="7">
+        <legend class="qf-legend">Popíšte váš cieľ na najbližších 9 mesiacov.</legend>
+        <p class="qf-sub">A prečo si myslíte, že ste ho doteraz nedosiahli?</p>
+        <div class="qf-fields">
+          <textarea class="qf-textarea" id="f-ciel" name="Cieľ na 9 mesiacov"
+            placeholder="Kam sa chcete dostať a čo vás zatiaľ zastavilo…" data-required data-min="20"></textarea>
+        </div>
+        <p class="qf-hint">Čím konkrétnejšie, tým lepšie sa vieme pripraviť.</p>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <!-- 8 -->
+      <fieldset class="qf-step" data-step="8" data-auto>
+        <legend class="qf-legend">Máte ambíciu rásť?</legend>
+        <div class="qf-choices">
+          <label class="qf-choice">
+            <input type="radio" name="Ambícia rásť" value="Áno" required>
+            <span>Áno</span>
+          </label>
+          <label class="qf-choice">
+            <input type="radio" name="Ambícia rásť" value="Nie" required>
+            <span>Nie</span>
+          </label>
+        </div>
+        <p class="qf-err" data-err></p>
+      </fieldset>
+
+      <div class="qf-actions">
+        <button type="button" class="qf-back" id="qfBack" hidden>← Späť</button>
+        <button type="submit" class="btn btn-primary cta-glow" id="qfNext">
+          <span id="qfNextLabel">Ďalej</span> <span class="btn-arrow">→</span>
+        </button>
+      </div>
+      <p class="qf-err text-center" id="qfFormErr"></p>
+    </form>
+
+    <!-- the success card that used to sit here is now dakujeme.html -->
+
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-line">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <div>
+      <a href="index.html" class="inline-block"><img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+      <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
+        <a href="index.html#prace" class="link-hover">Práce</a>
+        <a href="index.html#preco" class="link-hover">Prečo</a>
+        <a href="index.html#metoda" class="link-hover">Metóda</a>
+        <a href="index.html#onas" class="link-hover">O nás</a>
+        <a href="index.html#faq" class="link-hover">FAQ</a>
+        <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
+      </nav>
+      <a href="https://www.instagram.com/benik_peter" target="_blank" rel="noopener noreferrer"
+         class="social-ico flex-none" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5.2" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+</footer>
+
+<script src="assets/benzo.js"></script>
+
+<!-- Reaching this page means the visitor has seen the offer, so the homepage's
+     exit-intent dialog should not nag them if they go back. Read by the dialog
+     script in index.html. -->
+<script>try{ sessionStorage.setItem('benzo.formReached','1'); }catch(e){}</script>
+
+<script>
+/* ===== qualifier form ===== */
+(function(){
+  'use strict';
+  var form  = document.getElementById('qfForm');
+  if (!form) return;
+
+  var intro = document.getElementById('qfIntro');
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.qf-step'));
+  var fill  = document.getElementById('qfFill');
+  var num   = document.getElementById('qfNum');
+  var live  = document.getElementById('qfLive');
+  var back  = document.getElementById('qfBack');
+  var next  = document.getElementById('qfNext');
+  var nextLabel = document.getElementById('qfNextLabel');
+  var formErr   = document.getElementById('qfFormErr');
+  var STORE = 'benzo.qualifier.v1';
+  var i = 0;
+
+  /* ---- revenue slider ----------------------------------------------------
+     A linear 0–1 000 000 track is unusable: almost every real answer lands in
+     the first few percent. Position is mapped through a cubic curve so the
+     lower range gets most of the travel, then snapped to a readable figure. */
+  var range = document.getElementById('f-obrat');
+  var revOut = document.getElementById('qfRevOut');
+  var revEur = document.getElementById('f-obrat-eur');
+  var revText = document.getElementById('f-obrat-text');
+  var MAXEUR = 1000000, fmt;
+  try { fmt = new Intl.NumberFormat('sk-SK'); } catch(e){ fmt = { format:function(n){ return String(n); } }; }
+
+  function posToEur(pos){
+    var t = pos / 1000;
+    var raw = MAXEUR * Math.pow(t, 3);
+    var step = raw < 10000 ? 500 : (raw < 100000 ? 1000 : 10000);
+    return Math.round(raw / step) * step;
+  }
+  /* inverse of the curve above, so a typed figure parks the thumb where a drag
+     to that figure would have left it */
+  function eurToPos(eur){
+    var t = Math.pow(Math.min(eur, MAXEUR) / MAXEUR, 1/3);
+    return Math.max(0, Math.min(1000, Math.round(t * 1000)));
+  }
+  /* Paint everything downstream of a value. `src` is whichever control the user
+     is driving; it is left alone so we never rewrite the box mid-keystroke. */
+  function paintRev(eur, src){
+    revEur.value = eur;
+    revOut.textContent = fmt.format(eur) + ' €' + (eur >= MAXEUR ? '+' : '');
+    if (range && src !== range){
+      range.value = eurToPos(eur);
+    }
+    if (range){
+      range.style.setProperty('--fill', (range.value / 10) + '%');
+      range.setAttribute('aria-valuetext', fmt.format(eur) + ' eur');
+    }
+    if (revText && src !== revText) revText.value = fmt.format(eur);
+  }
+  function paintRange(){ if (range) paintRev(posToEur(+range.value), range); }
+  if (range) range.addEventListener('input', paintRange);
+
+  if (revText){
+    revText.addEventListener('input', function(){
+      // strip everything but digits: thousands separators, spaces, a stray "€"
+      var digits = revText.value.replace(/\D+/g, '');
+      if (!digits){ paintRev(0, revText); return; }
+      paintRev(Math.min(parseInt(digits, 10), MAXEUR), revText);
+    });
+    // on the way out, normalise what they typed to the grouped form
+    revText.addEventListener('blur', function(){
+      if (revText.value !== '') revText.value = fmt.format(+revEur.value || 0);
+    });
+  }
+  paintRange();
+
+  /* ---- persistence ---- */
+  function save(){
+    try {
+      var d = {};
+      Array.prototype.forEach.call(form.elements, function(el){
+        if (!el.name || el.name === 'botcheck' || el.type === 'hidden') return;
+        if (el.type === 'radio'){ if (el.checked) d[el.name] = el.value; }
+        else d[el.name] = el.value;
+      });
+      if (range) d.__pos = range.value;
+      d.__step = i;
+      sessionStorage.setItem(STORE, JSON.stringify(d));
+    } catch(e){}
+  }
+  function restore(){
+    try {
+      var d = JSON.parse(sessionStorage.getItem(STORE) || 'null');
+      if (!d) return null;
+      Array.prototype.forEach.call(form.elements, function(el){
+        if (!el.name || !(el.name in d)) return;
+        if (el.type === 'radio'){ el.checked = (el.value === d[el.name]); }
+        else if (el.type !== 'hidden') el.value = d[el.name];
+      });
+      if (range && d.__pos != null){ range.value = d.__pos; paintRange(); }
+      return d;
+    } catch(e){ return null; }
+  }
+
+  /* ---- validation ---- */
+  function fieldsOf(step){
+    return Array.prototype.slice.call(step.querySelectorAll('input,textarea')).filter(function(el){
+      return el.type !== 'hidden';
+    });
+  }
+  function setErr(step, msg, el){
+    var slot = step.querySelector('[data-err]');
+    if (slot) slot.textContent = msg || '';
+    fieldsOf(step).forEach(function(f){ f.removeAttribute('aria-invalid'); });
+    if (msg && el && el.setAttribute) el.setAttribute('aria-invalid','true');
+  }
+  function validate(step){
+    var radios = step.querySelectorAll('input[type=radio]');
+    if (radios.length){
+      var picked = Array.prototype.some.call(radios, function(r){ return r.checked; });
+      if (!picked){ setErr(step, 'Vyberte jednu z možností.'); return false; }
+      setErr(step, ''); return true;
+    }
+    var ok = true;
+    fieldsOf(step).forEach(function(el){
+      if (!ok) return;
+      var v = (el.value || '').trim();
+      if (el.hasAttribute('data-required') && !v){
+        setErr(step, 'Toto pole je povinné.', el); ok = false; return;
+      }
+      if (el.getAttribute('data-type') === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
+        setErr(step, 'Skontrolujte formát e-mailu.', el); ok = false; return;
+      }
+      var min = +el.getAttribute('data-min') || 0;
+      if (min && v.length < min){
+        setErr(step, 'Napíšte prosím aspoň pár viet — pomôže nám to.', el); ok = false; return;
+      }
+    });
+    if (ok) setErr(step, '');
+    return ok;
+  }
+
+  /* ---- navigation ---- */
+  function show(n, focus){
+    i = Math.max(0, Math.min(steps.length - 1, n));
+    steps.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
+    var pct = ((i + 1) / steps.length) * 100;
+    fill.style.width = pct + '%';
+    num.textContent = (i + 1) + ' z ' + steps.length;
+    live.textContent = 'Krok ' + (i + 1) + ' z ' + steps.length;
+    back.hidden = (i === 0);
+    nextLabel.textContent = (i === steps.length - 1) ? 'Odoslať' : 'Ďalej';
+    if (focus !== false){
+      var first = steps[i].querySelector('input:not([type=hidden]),textarea');
+      if (first) { try { first.focus({ preventScroll:true }); } catch(e){ first.focus(); } }
+    }
+    save();
+  }
+
+  function advance(){
+    if (!validate(steps[i])) {
+      var bad = steps[i].querySelector('[aria-invalid="true"]');
+      if (bad) bad.focus();
+      return false;
+    }
+    save();
+    if (i < steps.length - 1){ show(i + 1); return false; }
+    return true;                       // last step passed -> caller submits
+  }
+
+  back.addEventListener('click', function(){ show(i - 1); });
+
+  /* choice steps advance on their own once an option is picked */
+  form.addEventListener('change', function(e){
+    if (e.target.type !== 'radio') return;
+    save();
+    var step = e.target.closest('.qf-step');
+    if (!step || !step.hasAttribute('data-auto')) return;
+    if (steps.indexOf(step) !== i) return;
+    setErr(step, '');
+    window.setTimeout(function(){ if (i < steps.length - 1) show(i + 1); }, 240);
+  });
+
+  /* Enter advances, except inside the textarea where it should make a newline */
+  form.addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA') return;
+    e.preventDefault();
+    if (advance()) form.requestSubmit ? form.requestSubmit() : form.submit();
+  });
+
+  document.getElementById('qfStart').addEventListener('click', function(){
+    intro.classList.add('hidden');
+    form.classList.remove('hidden');
+    show(i, true);
+  });
+
+  /* ---- submit ---- */
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!advance()) return;            // not on the last step yet, or invalid
+
+    formErr.textContent = '';
+    next.disabled = true;
+    nextLabel.textContent = 'Odosielam…';
+
+    // JSON rather than FormData: Web3Forms decodes multipart field *names* as
+    // Latin-1, which turned "Predvoľba" into "PredvoÄ¾ba" in the notification
+    // mail. JSON is UTF-8 by spec, so the diacritics survive the round trip.
+    var payload = {};
+    new FormData(form).forEach(function(v, k){
+      if (k === 'redirect') return;    // no-JS only — never send it up this path
+      payload[k] = v;
+    });
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json; charset=utf-8', 'Accept':'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function(r){ return r.json().catch(function(){ return { success:r.ok }; }); })
+      .then(function(res){
+        if (!res || res.success !== true) throw new Error((res && res.message) || 'send failed');
+        try { sessionStorage.removeItem(STORE); } catch(err){}
+        // The confirmation is a page now, so the conversion has a URL an ad
+        // platform can fire on. replace() rather than assign(): Back from the
+        // thank-you page should return to the site, not to a spent form sitting
+        // on its last step inviting a second submit.
+        nextLabel.textContent = 'Ďakujeme…';
+        window.location.replace('dakujeme.html');
+      })
+      .catch(function(){
+        next.disabled = false;
+        nextLabel.textContent = 'Odoslať';
+        formErr.innerHTML = 'Odoslanie zlyhalo. Skúste to znova, alebo nám napíšte na ' +
+          '<a class="text-blue underline" href="mailto:peterbenik@benzomarketing.com">peterbenik@benzomarketing.com</a>.';
+      });
+  });
+
+  /* resume a part-filled form after a refresh */
+  var saved = restore();
+  if (saved && typeof saved.__step === 'number' && saved.__step > 0){
+    intro.classList.add('hidden');
+    form.classList.remove('hidden');
+    show(saved.__step, false);
+  } else {
+    show(0, false);
+  }
+})();
+</script>
+</body>
+</html>

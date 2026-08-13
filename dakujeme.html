@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ďakujeme — Benzo Marketing</title>
+<meta name="description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<!-- noindex is not optional on a thank-you page: if it ranks, strangers land on it
+     directly and every one of them counts as a conversion. Like kontakt.html it is
+     deliberately NOT disallowed in robots.txt — a blocked page is never crawled, so
+     this line would never be read. It is also kept out of sitemap.xml. -->
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benzo Marketing">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:url" content="https://benzomarketing.com/dakujeme.html">
+<meta property="og:title" content="Ďakujeme — Benzo Marketing">
+<meta property="og:description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<meta property="og:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ďakujeme — Benzo Marketing">
+<meta name="twitter:description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<meta name="twitter:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+
+<script>document.documentElement.className += ' js';</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { ink:'#0D0D0D', black:'#000000', navy:'#000080', blue:'#04A7E7',
+                muted:'#9CA5AF', line:'rgba(255,255,255,.11)' },
+      fontFamily: { sans: ['Montserrat','system-ui','sans-serif'] },
+    } }
+  }
+</script>
+
+<link rel="stylesheet" href="assets/benzo.css">
+
+<!-- page-specific: the confirmation card only -->
+<style>
+  /* ===== Thank you =====
+     Same stage as the qualifier, one object on it. The section geometry and the
+     painting treatment below are lifted verbatim from kontakt.html so the two
+     pages read as one continuous room — the visitor should feel they stayed put
+     and the form simply resolved, not that they were sent somewhere else.
+     Restated rather than shared for the same reason the homepage restates its
+     own: these are three separate pages that never load each other's <style>. */
+  .ty-wrap{ position:relative; min-height:100svh; display:flex; align-items:center;
+    padding:150px 0 90px;
+    background:radial-gradient(120% 90% at 50% 8%, rgba(4,167,231,.13), rgba(0,0,128,.08) 42%, #000 78%); }
+  @media (min-width:768px){ .ty-wrap{ padding:190px 0 110px; } }
+
+  /* ===== The fall of Rome ===== (kontakt.html's .qf-art, unchanged) */
+  .ty-art{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .ty-art img{ width:100%; height:100%; object-fit:cover; object-position:50% 44%;
+    filter:grayscale(1) contrast(1.14) brightness(.82); opacity:.4;
+    transform:scale(1.13) translate3d(0,1.4%,0);
+    animation:ty-art-drift 34s ease-in-out infinite alternate; }
+  .ty-art::after{ content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(132% 96% at 50% 52%, transparent 0%, rgba(0,0,0,.24) 68%, rgba(0,0,0,.66) 100%),
+      linear-gradient(to bottom, transparent 0%, transparent 72%, rgba(0,0,0,.16) 84%,
+                      rgba(0,0,0,.5) 93%, #000 100%); }
+  @keyframes ty-art-drift{
+    from{ transform:scale(1.13) translate3d(0,1.4%,0); }
+    to  { transform:scale(1.19) translate3d(1.2%,3%,0); }
+  }
+
+  .ty-mark-bg{ position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .ty-mark-bg > *{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+  .ty-glow{ width:min(940px,110vw); aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(closest-side, rgba(255,255,255,.07), rgba(150,215,245,.055) 34%,
+      rgba(4,167,231,.05) 52%, rgba(4,167,231,.02) 70%, transparent 80%); filter:blur(30px); }
+
+  /* narrower than the form's 760px — nothing here needs a line length, and the
+     tighter column makes the card read as a seal rather than a page */
+  .ty-shell{ position:relative; z-index:2; width:100%; max-width:620px;
+    margin:0 auto; padding:0 20px; }
+  @media (min-width:768px){ .ty-shell{ padding:0 32px; } }
+
+  .ty-card{ position:relative; border-radius:28px; padding:3.2rem 1.6rem 2.8rem; text-align:center;
+    background:linear-gradient(180deg, rgba(17,23,31,.92), rgba(9,10,14,.96));
+    border:1px solid rgba(4,167,231,.26);
+    box-shadow:0 44px 96px -40px rgba(0,0,0,.9), 0 0 70px -30px rgba(4,167,231,.3); }
+  @media (min-width:768px){ .ty-card{ padding:4.2rem 3.2rem 3.4rem; } }
+
+  /* ---- the seal ----
+     The qualifier's 64px tick, given the room a page of its own affords. The ring
+     is a separate element so it can expand once and stop: a permanently pulsing
+     halo would turn a full stop into a waiting state. */
+  .ty-seal{ position:relative; width:78px; height:78px; margin:0 auto 1.9rem;
+    border-radius:9999px; display:grid; place-items:center; color:#03121b;
+    background:linear-gradient(150deg, var(--blue-hi), #0384b8);
+    box-shadow:0 16px 38px -14px rgba(4,167,231,.9); }
+  .ty-seal svg{ width:36px; height:36px; }
+  .ty-seal::after{ content:""; position:absolute; inset:-6px; border-radius:inherit;
+    border:1px solid rgba(4,167,231,.6); opacity:0; }
+
+  .ty-h{ font-size:clamp(2.5rem,8vw,4rem); color:var(--white); }
+  /* the headline takes focus on load so a screen reader announces the outcome
+     instead of the nav. It is tabindex="-1" and never reachable by keyboard, so
+     the ring marks nothing the visitor can act on — it just draws a box. */
+  .ty-h:focus{ outline:none; }
+
+  /* the nav's key band, run flat and dissolved at both ends — an ornament, not a
+     rule. Artwork in the background, dissolve in the mask: the .crown-key pattern.
+     Sized so roughly five whole tiles clear the fade: below that the key stops
+     reading as a meander and turns into a dashed line. */
+  .ty-rule{ display:block; width:168px; height:15px; margin:1.5rem auto 0; opacity:.7;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 17.1H36M0 .9H36M28.4 17.1V6.2H9V11.8H19.4' fill='none' stroke='%2304A7E7' stroke-width='1.7'/%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-position:center; background-size:auto 100%;
+    -webkit-mask-image:linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+            mask-image:linear-gradient(to right, transparent, #000 16%, #000 84%, transparent); }
+
+  .ty-p{ margin:1.5rem auto 0; max-width:40ch; font-size:1.02rem; }
+  .ty-note{ margin-top:1.1rem; font-size:.86rem; color:rgba(255,255,255,.34); }
+  .ty-note a{ color:rgba(255,255,255,.55); text-decoration:underline;
+    text-underline-offset:3px; transition:color .3s var(--ease); }
+  .ty-note a:hover{ color:var(--blue); }
+  .ty-note a:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:4px; }
+  .ty-cta{ margin-top:2.4rem; }
+
+  /* ---- arrival ----
+     One orchestrated landing: seal, then headline, then the rest, each a beat
+     behind the last. Transform and opacity only. .js gates it so a script-off
+     visitor is never left staring at an invisible card. */
+  .js .ty-anim{ opacity:0; animation:ty-rise .7s var(--ease) forwards; animation-delay:var(--d,0s); }
+  @keyframes ty-rise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+  .js .ty-seal{ opacity:0; animation:ty-seal-in .75s var(--ease) .06s forwards; }
+  @keyframes ty-seal-in{ from{ opacity:0; transform:scale(.72); } to{ opacity:1; transform:scale(1); } }
+  .js .ty-seal::after{ animation:ty-ring .9s var(--ease) .5s forwards; }
+  @keyframes ty-ring{
+    from{ opacity:.85; transform:scale(.86); }
+    to  { opacity:0;   transform:scale(1.38); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    /* the drift's own transform has to be restated or the framing goes with it */
+    .ty-art img{ animation:none; transform:scale(1.13) translate3d(0,1.4%,0); }
+    .js .ty-anim, .js .ty-seal{ opacity:1; animation:none; transform:none; }
+    .js .ty-seal::after{ animation:none; }
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 pt-[32px] md:pt-[44px]">
+    <div class="crown">
+      <span class="crown-cast" aria-hidden="true"></span>
+
+      <div class="crown-body">
+        <div class="crown-fill">
+          <span class="crown-key" aria-hidden="true"></span>
+
+          <div class="crown-row">
+            <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+              <a href="index.html#prace" class="link-hover">Práce</a>
+              <a href="index.html#preco" class="link-hover">Prečo</a>
+              <a href="index.html#metoda" class="link-hover">Metóda</a>
+            </nav>
+
+            <span class="crown-seat" aria-hidden="true"></span>
+
+            <div class="crown-actions flex items-center gap-6 xl:gap-8">
+              <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+                <a href="index.html#onas" class="link-hover">O nás</a>
+                <a href="index.html#faq" class="link-hover">FAQ</a>
+              </nav>
+              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Späť na web</a>
+              <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — domov">
+        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      </a>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
+      <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
+        <a href="index.html#prace" class="mobile-link">Práce</a>
+        <a href="index.html#preco" class="mobile-link">Prečo</a>
+        <a href="index.html#metoda" class="mobile-link">Metóda</a>
+        <a href="index.html#onas" class="mobile-link">O nás</a>
+        <a href="index.html#faq" class="mobile-link">FAQ</a>
+        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Späť na web</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="ty-wrap">
+  <div class="ty-art" aria-hidden="true">
+    <img src="brand_assets/Fall of Rome.webp" alt="" fetchpriority="high">
+  </div>
+  <div class="ty-mark-bg" aria-hidden="true">
+    <span class="ty-glow"></span>
+  </div>
+
+  <div class="ty-shell">
+    <div class="ty-card">
+
+      <div class="ty-seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m4.5 12.5 5 5 10-11" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <h1 class="display ty-h ty-anim" style="--d:.18s" tabindex="-1">Ďakujeme!</h1>
+      <span class="ty-rule ty-anim" style="--d:.28s" aria-hidden="true"></span>
+
+      <p class="body-m ty-p ty-anim" style="--d:.36s">
+        Pozrieme sa na vašu situáciu a dáme vám vedieť, či ste postúpili na spoznávací hovor.
+      </p>
+      <p class="ty-note ty-anim" style="--d:.44s">
+        Medzitým nám môžete napísať na
+        <a href="mailto:peterbenik@benzomarketing.com">peterbenik@benzomarketing.com</a>
+      </p>
+
+      <a href="index.html" class="btn btn-outline ty-cta ty-anim" style="--d:.52s">Späť na web</a>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-line">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <div>
+      <a href="index.html" class="inline-block"><img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+      <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
+        <a href="index.html#prace" class="link-hover">Práce</a>
+        <a href="index.html#preco" class="link-hover">Prečo</a>
+        <a href="index.html#metoda" class="link-hover">Metóda</a>
+        <a href="index.html#onas" class="link-hover">O nás</a>
+        <a href="index.html#faq" class="link-hover">FAQ</a>
+        <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
+      </nav>
+      <a href="https://www.instagram.com/benik_peter" target="_blank" rel="noopener noreferrer"
+         class="social-ico flex-none" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5.2" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+</footer>
+
+<script src="assets/benzo.js"></script>
+
+<script>
+  /* Anyone who reached this page has submitted, so the homepage exit-intent
+     dialog must not nag them on the way back. Same flag kontakt.html sets. */
+  try{ sessionStorage.setItem('benzo.formReached','1'); }catch(e){}
+  /* the qualifier's saved answers are dead now — clear them so a return visit
+     to kontakt.html opens a clean form instead of the last filled step */
+  try{ sessionStorage.removeItem('benzo.qualifier.v1'); }catch(e){}
+  /* the headline takes focus so a screen reader announces the outcome rather
+     than starting the visitor at the top of the nav */
+  try{ document.querySelector('.ty-h').focus({ preventScroll:true }); }catch(e){}
+</script>
+
+<!-- ============================================================
+     KONVERZIA / CONVERSION TRACKING
+     ------------------------------------------------------------
+     This page exists to be a URL. Most platforms need nothing more than that:
+       · Meta Ads      — Custom Conversion on URL contains "dakujeme"
+       · Google Ads    — conversion action, page load of /dakujeme.html
+       · GA4           — key event on page_view where page_path = /dakujeme.html
+     Paste any pixel/tag base code in the <head> (sitewide, all pages). The
+     hooks below then fire the event here and nowhere else.
+
+     Note it counts every load, including refreshes and anyone who bookmarks
+     the URL. That is normal and why the page is noindex — it is the reason
+     conversion numbers should be read against form submissions in the inbox.
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  /* Google Tag Manager — harmless if GTM was never installed. Trigger on the
+     custom event "benzo_lead". */
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event:'benzo_lead', form:'kvalifikacia' });
+
+  /* Meta Pixel — fires only if the base code is present sitewide. */
+  if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+
+  /* Google Ads — needs the real conversion ID, so it stays commented out.
+     Replace both halves of the send_to string, uncomment, done.
+  if (typeof window.gtag === 'function') window.gtag('event', 'conversion', {
+    send_to: 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXXX'
+  });
+  */
+})();
+</script>
+
+</body>
+</html>

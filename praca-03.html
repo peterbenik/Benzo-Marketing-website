@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pokojné plávanie — case study | Benzo Marketing</title>
+<meta name="description" content="100 % vypredanie kurzov, 2 mesiace od spustenia kampane. Akvizičný systém od nuly — ako prieskum cieľovej skupiny rozhodol o výsledku.">
+<link rel="canonical" href="https://benzomarketing.com/praca-03.html">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Benzo Marketing">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:url" content="https://benzomarketing.com/praca-03.html">
+<meta property="og:title" content="Pokojné plávanie — case study | Benzo Marketing">
+<meta property="og:description" content="100 % vypredanie kurzov, 2 mesiace od spustenia kampane. Akvizičný systém od nuly — ako prieskum cieľovej skupiny rozhodol o výsledku.">
+<meta property="og:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pokojné plávanie — case study | Benzo Marketing">
+<meta name="twitter:description" content="100 % vypredanie kurzov, 2 mesiace od spustenia kampane. Akvizičný systém od nuly — ako prieskum cieľovej skupiny rozhodol o výsledku.">
+<meta name="twitter:image" content="https://benzomarketing.com/assets/og-benzo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { ink:'#0D0D0D', black:'#000000', navy:'#000080', blue:'#04A7E7',
+                muted:'#9CA5AF', line:'rgba(255,255,255,.11)' },
+      fontFamily: { sans: ['Montserrat','system-ui','sans-serif'] },
+    } }
+  }
+</script>
+
+<link rel="stylesheet" href="assets/benzo.css">
+
+<!-- page-specific: the case study layout only -->
+<style>
+  /* ===== Case study =====
+     One long editorial column: full-bleed hero, prose, a stat row, then the
+     numbered proof blocks. Everything rounded, per the site's capsule language.
+     The only rules here are the ones no other page needs — tokens, type,
+     buttons, the header and the footer furniture all come from benzo.css. */
+  .cs-hero{ position:relative; display:flex; align-items:flex-end;
+    min-height:min(80svh,780px); padding:180px 0 clamp(2.6rem,6vw,4.4rem); overflow:hidden; }
+  @media (min-width:768px){ .cs-hero{ padding-top:230px; } }
+  @media (min-width:1024px){ .cs-hero{ min-height:min(88svh,880px); } }
+  .cs-hero-in{ position:relative; z-index:5; }
+
+  /* ===== Hero photograph =====
+     The source is a 768×1024 phone frame, so how large it can be drawn is
+     fixed by arithmetic, not taste: past ~2× upscale it visibly falls apart.
+     Deliberately NOT wearing .duo — that duotone is built for the small work
+     cards and its grayscale + blue colour-blend is most of what made this
+     read dim. Everything here is local and light-handed. */
+
+  /* --- phones: full bleed ---
+     At 390px the file renders at roughly native size on a 2× screen, so it is
+     genuinely sharp here and only needs enough weighting to carry the copy
+     that sits on top of it. */
+  .cs-hero-art{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+  .cs-hero-art img{ width:100%; height:100%; object-fit:cover; object-position:50% 24%;
+    filter:grayscale(.15) contrast(1.04) saturate(.96) brightness(.64); }
+  /* unlike desktop, the copy sits directly ON the photo here, so the wash has
+     to be doing real work by the time it reaches the eyebrow label — it stays
+     light across the top third and ramps hard from there down */
+  .cs-hero-art::after{ content:""; position:absolute; inset:0; z-index:4; pointer-events:none;
+    background:linear-gradient(180deg, rgba(13,13,13,.58), rgba(13,13,13,.30) 17%, rgba(13,13,13,.74) 40%, rgba(13,13,13,.88) 64%, var(--ink)); }
+
+  /* --- 1024px and up: bleed panel down the right edge ---
+     The photo stops spanning the full width and instead holds the right side
+     at close to its honest resolution. The 760px ceiling is arithmetic: at 2×
+     that asks 1520 device px of a 768px file, just under the 2× limit. Raising
+     it is what makes the panel go soft, so it stays. */
+  .cs-hero-panel{ display:none; }
+  @media (min-width:1024px){
+    .cs-hero-panel{ display:block; position:absolute; top:0; right:0; bottom:0;
+      width:clamp(420px,52vw,760px); z-index:1; pointer-events:none; }
+    /* feathered on every open edge so the photo dissolves into the page
+       instead of sitting in a frame. The vertical layer clears the nav at the
+       top — the ceiling beams were running straight into the crown — and
+       carries the foot down into the meta panel. Two mask layers intersected,
+       which needs the -webkit- pair for Safari beside the standard property. */
+    .cs-hero-panel{
+      -webkit-mask-image:linear-gradient(to right, transparent, #000 26%),
+                         linear-gradient(to bottom, transparent, #000 25%, #000 54%, transparent 93%);
+      -webkit-mask-composite:source-in;
+              mask-image:linear-gradient(to right, transparent, #000 26%),
+                         linear-gradient(to bottom, transparent, #000 25%, #000 54%, transparent 93%);
+              mask-composite:intersect; }
+    .cs-hero-panel img{ position:relative; z-index:0; width:100%; height:100%;
+      object-fit:cover; object-position:50% 30%;
+      filter:contrast(1.06) saturate(.96) brightness(.97); }
+    /* the only colour layer — a whisper of the palette, not a wash */
+    .cs-hero-panel::before{ content:""; position:absolute; inset:0; z-index:1;
+      pointer-events:none; mix-blend-mode:multiply; opacity:.16;
+      background:radial-gradient(120% 88% at 62% 38%, rgba(4,167,231,.7), rgba(0,0,128,1)); }
+    /* grain — what lets a ~2× upscale read as an editorial treatment rather
+       than a soft photo. It breaks up the interpolated pixels. */
+    .cs-hero-panel::after{ content:""; position:absolute; inset:0; z-index:2;
+      pointer-events:none; opacity:.16; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:140px 140px; }
+    /* with the photo off to the right the headline sits on near-black and
+       needs no scrim of its own — this only softens the seam behind the copy */
+    .cs-hero-art{ display:none; }
+    .cs-hero::after{ content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+      background:linear-gradient(90deg, var(--ink) 26%, rgba(13,13,13,.55) 48%, rgba(13,13,13,0) 68%),
+                 linear-gradient(180deg, rgba(13,13,13,.5), rgba(13,13,13,0) 22%, rgba(13,13,13,0) 76%, var(--ink)); }
+  }
+
+  .cs-hero-grid{ display:grid; gap:2.6rem; align-items:end; }
+  @media (min-width:1024px){ .cs-hero-grid{ max-width:62%; } }
+
+  /* ===== The result line =====
+     This is the reason anyone opens the page, so it stops being body copy and
+     becomes a statement: near-white instead of muted, semibold, and roughly
+     half again the size it was. The figures themselves carry brand blue, the
+     same emphasis the homepage uses inside its section headings. Capped near
+     24ch so it breaks into two short lines rather than one long thin one. */
+  .cs-result{ font-weight:600; letter-spacing:-.02em; line-height:1.3;
+    color:rgba(255,255,255,.95); max-width:24ch;
+    font-size:clamp(1.35rem,3vw,2rem); }
+  .cs-result b{ color:var(--blue); font-weight:800; }
+
+  /* service pills */
+  .cs-tags{ display:flex; flex-wrap:wrap; gap:.55rem; }
+  .cs-tag{ display:inline-flex; align-items:center; border-radius:9999px;
+    padding:.52rem 1.05rem; font-weight:600; font-size:.68rem;
+    text-transform:uppercase; letter-spacing:.16em; color:rgba(255,255,255,.72);
+    border:1px solid var(--line); background:rgba(255,255,255,.045);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+
+  /* hairline-divided panels: the 1px gap over a line-coloured bed draws the
+     rules, so the rounded corner clips them cleanly with no border joins */
+  .cs-panel{ display:grid; gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+  .cs-panel > div{ background:var(--ink); }
+
+  /* ===== Editorial chapters =====
+     The section name is a real heading over a single readable column, which
+     is the shape the rest of the site already uses (see the homepage's
+     Statement and Prečo sections). The previous layout parked a 0.72rem
+     uppercase label in a narrow left column, which read as a caption rather
+     than a heading and was the hardest thing on the page to scan. */
+  .cs-chapter{ max-width:64ch; }
+  .cs-chapter-title{ font-size:clamp(1.9rem,4vw,2.9rem); }
+  .cs-chapter-rule{ height:1px; background:var(--line); margin:1.5rem 0 2rem; }
+
+  /* the opening sentence carries the section — set above the body so the eye
+     has somewhere to land before the argument starts */
+  .cs-lead{ font-weight:500; letter-spacing:-.012em; line-height:1.55;
+    color:rgba(255,255,255,.92); font-size:clamp(1.15rem,2.2vw,1.38rem); }
+  .cs-body{ margin-top:1.5rem; }
+  .cs-body p{ font-size:1.05rem; line-height:1.75; color:var(--muted); }
+  .cs-body p + p{ margin-top:1.15rem; }
+
+  /* the standfirst under the meta panel — one line about the client, which
+     would look thin under a heading of its own */
+  .cs-standfirst{ font-weight:500; letter-spacing:-.012em; line-height:1.5;
+    color:rgba(255,255,255,.9); font-size:clamp(1.22rem,2.6vw,1.5rem); max-width:46ch; }
+
+  /* blue rule + bold — used exactly twice on the page: the three research
+     questions, and the line that closes the Výzva. Spending it more often
+     would flatten it back into ordinary body copy. */
+  .cs-asks, .cs-accent{ position:relative; padding-left:1.5rem; }
+  .cs-asks{ margin:1.6rem 0; display:flex; flex-direction:column; gap:.8rem; }
+  /* one line tall, so without the padding the rule renders as a stray tick
+     rather than the deliberate mark it is over the three questions */
+  .cs-accent{ margin:1.9rem 0 0; padding-top:.6rem; padding-bottom:.6rem; }
+  .cs-asks::before, .cs-accent::before{ content:""; position:absolute; left:0;
+    top:.4rem; bottom:.4rem; width:2px; border-radius:9999px;
+    background:linear-gradient(180deg, var(--blue), rgba(4,167,231,.1)); }
+  .cs-accent::before{ top:0; bottom:0;
+    background:linear-gradient(180deg, var(--blue), rgba(4,167,231,.35)); }
+  .cs-asks p, .cs-accent p{ font-weight:600; letter-spacing:-.012em; line-height:1.4;
+    color:rgba(255,255,255,.9); font-size:clamp(1.02rem,1.9vw,1.2rem); }
+  .cs-asks p + p{ margin-top:0; }
+
+  /* stat row — two counters on this study, so they split the panel in half */
+  .cs-stats > div{ padding:2.1rem 1.6rem 1.9rem; }
+  @media (min-width:768px){ .cs-stats{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .cs-stat-num{ font-weight:900; letter-spacing:-.05em; line-height:.85; color:var(--blue);
+    font-size:clamp(2.5rem,5.6vw,3.9rem); text-shadow:0 0 46px rgba(4,167,231,.42); }
+  .cs-stat-cap{ margin-top:.95rem; font-size:.85rem; line-height:1.5; color:rgba(255,255,255,.55); }
+
+  /* ===== The three pillars =====
+     These used to be stacked blocks, each hanging a row of screenshots under a
+     numbered heading. There is no photography from this shoot, so the images
+     are gone and with them the reason for the stacked layout: three headings
+     spaced 112px apart with nothing between them reads as a page still waiting
+     for its assets. They are cards now, the same ones praca-01 and praca-02
+     use for exactly this situation — the number carries the weight the image
+     would have, and the row reads across in one line of sight. */
+  .cs-steps{ display:grid; gap:1rem; }
+  @media (min-width:768px){ .cs-steps{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.25rem; } }
+  /* Room for the chapter rail, which is fixed 98px wide and sits 32px inside
+     the container's right edge — the third card's title otherwise runs under
+     it. Same reservation on praca-01 and praca-02. */
+  @media (min-width:1180px){ .cs-steps{ padding-right:116px; } }
+  .cs-step{ position:relative; border-radius:18px; overflow:hidden;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
+    padding:2.1rem 1.6rem 2rem;
+    box-shadow:0 30px 70px -38px rgba(4,167,231,.4), inset 0 1px 0 rgba(255,255,255,.05); }
+  @media (min-width:768px){ .cs-step{ padding:2.4rem 1.9rem 2.2rem; } }
+  .cs-step-num{ font-weight:900; color:var(--blue); line-height:1; letter-spacing:-.05em;
+    font-size:clamp(2.4rem,5vw,3.2rem); text-shadow:0 0 40px rgba(4,167,231,.38); }
+  .cs-step-title{ margin-top:1.4rem; font-weight:700; letter-spacing:-.02em;
+    line-height:1.32; font-size:clamp(1.05rem,1.9vw,1.2rem); color:rgba(255,255,255,.94); }
+  /* a short key run along the foot, the crown's band at card scale — it gives
+     the card a floor without inventing content to fill it */
+  .cs-step::after{ content:""; position:absolute; left:1.6rem; right:1.6rem; bottom:1.1rem;
+    height:9px; opacity:.3; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='18' viewBox='0 0 36 18'%3E%3Cpath d='M0 17.1H36M0 .9H36M28.4 17.1V6.2H9V11.8H19.4' fill='none' stroke='%2304A7E7' stroke-width='1.7'/%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-position:left bottom; background-size:auto 100%;
+    -webkit-mask-image:linear-gradient(to right, #000 55%, transparent);
+            mask-image:linear-gradient(to right, #000 55%, transparent); }
+  @media (min-width:768px){ .cs-step::after{ left:1.9rem; right:1.9rem; } }
+
+  /* client mark in the hero — real client logos are full-colour artwork on
+     transparent, so they get rendered as flat white, same as the homepage
+     marquee does, rather than fighting the dark page */
+  .cs-logo{ height:52px; width:auto; max-width:220px; object-fit:contain;
+    filter:brightness(0) invert(1); opacity:.85; }
+  @media (min-width:768px){ .cs-logo{ height:62px; max-width:280px; } }
+
+  /* client quote — the quotation marks live in the text as real Slovak
+     typography rather than as an oversized background glyph, which collided
+     with both the first line and the attribution */
+  .cs-quote{ position:relative; border-radius:18px; border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+    padding:2.2rem 1.5rem 1.9rem 2.4rem;
+    box-shadow:0 30px 70px -38px rgba(4,167,231,.4), inset 0 1px 0 rgba(255,255,255,.05); }
+  @media (min-width:768px){ .cs-quote{ padding:2.9rem 3.2rem 2.4rem 3.6rem; } }
+  /* a single brand accent down the left edge, inset so it never rides the rim */
+  .cs-quote::before{ content:""; position:absolute; left:1.1rem; top:2.3rem; bottom:2.3rem;
+    width:3px; border-radius:9999px; pointer-events:none;
+    background:linear-gradient(180deg, var(--blue), rgba(4,167,231,.12)); }
+  @media (min-width:768px){ .cs-quote::before{ left:1.9rem; } }
+  .cs-quote blockquote{ position:relative; font-weight:600; letter-spacing:-.015em;
+    line-height:1.45; font-size:clamp(1.15rem,2.5vw,1.7rem); color:rgba(255,255,255,.94); }
+  .cs-quote figcaption{ margin-top:1.5rem; display:flex; align-items:baseline; gap:.6rem;
+    flex-wrap:wrap; }
+  .cs-quote-who{ font-weight:700; font-size:.95rem; color:var(--blue); }
+  .cs-quote-role{ font-weight:500; font-size:.85rem; color:rgba(255,255,255,.45); }
+
+  /* next / all links — inside the page container so the copy lines up with the
+     prose column above it rather than hugging the viewport edge */
+  .cs-next{ display:grid; gap:1px; background:var(--line);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  @media (min-width:768px){ .cs-next{ grid-template-columns:1fr 1fr; } }
+  .cs-next a{ background:var(--ink); padding:2.4rem 0;
+    display:flex; flex-direction:column; gap:.7rem;
+    transition:background-color .4s var(--ease); }
+  /* the 1px gap draws the divider, so the second cell needs its own inset */
+  @media (min-width:768px){ .cs-next a + a{ padding-left:2.8rem; } }
+  .cs-next a:hover{ background:rgba(4,167,231,.05); }
+  .cs-next a:focus-visible{ outline:2px solid var(--blue); outline-offset:-3px; }
+  .cs-next-name{ font-weight:800; letter-spacing:-.025em; line-height:1.05;
+    font-size:clamp(1.5rem,3.2vw,2.2rem); }
+  .cs-next a:hover .btn-arrow{ transform:translateX(5px); }
+
+  /* closing decision — the cavalry charge, dissolved into the page at both edges
+     so it reads as atmosphere rather than a photograph dropped on top */
+  .cs-close{ position:relative; overflow:hidden; }
+  .cs-close-art{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+  .cs-close-art img{ width:100%; height:100%; object-fit:cover; object-position:46% 42%;
+    opacity:.3; filter:grayscale(.5) contrast(1.04) brightness(.74); }
+  .cs-close-art::after{ content:""; position:absolute; inset:0;
+    background:radial-gradient(128% 82% at 50% 56%, rgba(13,13,13,.18), rgba(13,13,13,.88) 72%),
+               linear-gradient(180deg, var(--ink), rgba(13,13,13,0) 24%, rgba(13,13,13,0) 74%, var(--ink)); }
+  .cs-close-in{ position:relative; z-index:2; }
+
+  /* ===== Body atmosphere =====
+     The reading column is capped at 64ch inside an 1180px container, which
+     leaves ~500px of dead space beside every chapter and a flat black page
+     behind them. Three devices fill it, each in its own zone and its own
+     register so they never compete: atmosphere behind, ornament at the left
+     margin, interface at the right. The copy column itself is untouched. */
+  .cs-atmos{ position:relative; }
+  .cs-atmos > section{ position:relative; z-index:1; }
+
+  /* --- drifting glow ---
+     The homepage's .mission-glow recipe, pitched well below its intensity —
+     this sits behind body copy, not a hero. The mask is the load-bearing part:
+     without it the glow hard-cuts at the hero seam above and the CTA below. */
+  .cs-glow{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+            mask-image:linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+  .cs-glow span{ position:absolute; border-radius:9999px; display:block;
+    transform:translate(-50%,-50%); }
+  .cs-glow-1{ width:min(760px,86vw); height:560px; background:var(--blue);
+    top:26%; left:62%; filter:blur(120px); animation:cs-drift-1 19s ease-in-out infinite; }
+  .cs-glow-2{ width:min(620px,74vw); height:480px; background:var(--navy);
+    top:72%; left:34%; filter:blur(88px);  animation:cs-drift-2 24s ease-in-out infinite; }
+  @keyframes cs-drift-1{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.22; }
+    50%    { transform:translate(-52%,-54%) scale(1.09); opacity:.31; }
+  }
+  @keyframes cs-drift-2{
+    0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.26; }
+    50%    { transform:translate(-48%,-46%) scale(1.12); opacity:.36; }
+  }
+
+  /* --- meander spine ---
+     The nav's key band (assets/benzo.css:145) rotated 90° — same 1.7 stroke and
+     same rhythm, so it reads as the one motif rather than a second ornament.
+     Two layers share a single tile: the mask carries the artwork and the
+     element's background carries the colour, so the blue fill needs no second
+     copy. It is revealed by a clip rather than a stroke draw — dashoffset
+     cannot work against a repeating background without generating the path
+     per frame, and the clip reads identically. */
+  /* 1280, not 1024: below that `left` bottoms out at its .5rem floor and the key
+     ends up pinned against the browser edge with no margin to sit in. */
+  .cs-spine{ display:none; }
+  @media (min-width:1280px){
+    .cs-spine{ display:block; position:absolute; z-index:0; top:0; bottom:0;
+      width:18px; pointer-events:none;
+      left:max(.5rem, calc((100% - 1180px) / 2 + .35rem));
+      /* dissolved at both ends rather than butted against the hero and the CTA
+         — running it edge to edge read as a hard rule down the page, which is
+         the one thing nothing else on this site does */
+      -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 6%, #000 93%, transparent 100%);
+              mask-image:linear-gradient(to bottom, transparent 0, #000 6%, #000 93%, transparent 100%); }
+    .cs-spine span{ position:absolute; inset:0;
+      -webkit-mask-image:var(--key); mask-image:var(--key);
+      -webkit-mask-repeat:repeat-y; mask-repeat:repeat-y;
+      -webkit-mask-size:18px 36px; mask-size:18px 36px; }
+    .cs-spine{ --key:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='36' viewBox='0 0 18 36'%3E%3Cpath d='M0.9 0V36M17.1 0V36M0.9 28.4H11.8V9H6.2V19.4' fill='none' stroke='%23fff' stroke-width='1.7'/%3E%3C/svg%3E"); }
+    .cs-spine-base{ background:rgba(255,255,255,.10); }
+    /* --clip is the share still unread; JS drives it from scroll position.
+       Pitched at the nav key band's .62 rather than full strength — at .85 the
+       drawn part pulled the eye off the copy, which is the one thing an
+       ornament in the margin must not do. */
+    .cs-spine-fill{ background:var(--blue); opacity:.5;
+      filter:drop-shadow(0 0 6px rgba(4,167,231,.28));
+      clip-path:inset(0 0 var(--clip,100%) 0); }
+  }
+
+  /* --- chapter rail ---
+     Fixed rather than sticky-in-grid so the sections need no layout refactor.
+     Anchored to the container's right edge, in the dead space beside the copy. */
+  .cs-rail{ display:none; }
+  @media (min-width:1180px){
+    .cs-rail{ display:flex; position:fixed; z-index:40; flex-direction:column; gap:.15rem;
+      top:50%; transform:translateY(-50%);
+      right:max(2rem, calc((100vw - 1180px) / 2 + 2rem));
+      opacity:0; visibility:hidden;
+      transition:opacity .5s var(--ease), visibility .5s var(--ease); }
+    .cs-rail.on{ opacity:1; visibility:visible; }
+    .cs-rail a{ display:flex; align-items:center; gap:.75rem;
+      padding:.5rem .2rem; border-radius:8px;
+      font-weight:600; font-size:.68rem; text-transform:uppercase; letter-spacing:.16em;
+      color:rgba(255,255,255,.34);
+      transition:color .35s var(--ease), transform .35s var(--ease); }
+    .cs-rail a::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%;
+      background:rgba(255,255,255,.22);
+      transition:background-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease); }
+    .cs-rail a:hover{ color:rgba(255,255,255,.8); transform:translateX(2px); }
+    .cs-rail a:hover::before{ background:rgba(4,167,231,.7); }
+    .cs-rail a:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+    .cs-rail a:active{ transform:translateX(1px) scale(.98); }
+    .cs-rail a[aria-current="true"]{ color:var(--blue); }
+    .cs-rail a[aria-current="true"]::before{ background:var(--blue);
+      transform:scale(1.28); box-shadow:0 0 12px rgba(4,167,231,.85); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .cs-glow-1, .cs-glow-2{ animation:none; opacity:.2; }
+    .cs-spine-fill{ transition:none; }
+    .cs-rail{ transition:none; }
+  }
+</style>
+
+<!-- The headline numbers are repeated into the Article description on purpose: they are
+     the most quotable thing on the site, and an answer engine that cites this page will
+     lift them from here. datePublished is the file's own date — correct it if the real
+     publication date differs. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://benzomarketing.com/praca-03.html#article",
+      "headline": "Pokojné plávanie — 100 % vypredanie kurzov za 2 mesiace",
+      "description": "Case study plaveckej školy Pokojné plávanie: akvizičný systém postavený od nuly, 100 % vypredanie kurzov do 2 mesiacov od spustenia kampane.",
+      "inLanguage": "sk-SK",
+      "datePublished": "2026-08-09",
+      "dateModified": "2026-08-13",
+      "image": "https://benzomarketing.com/assets/pokojne-plavanie-hero.webp",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://benzomarketing.com/praca-03.html" },
+      "author": { "@id": "https://benzomarketing.com/#organization" },
+      "publisher": { "@id": "https://benzomarketing.com/#organization" },
+      "about": { "@type": "Organization", "name": "Pokojné plávanie" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://benzomarketing.com/praca-03.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domov", "item": "https://benzomarketing.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Práce", "item": "https://benzomarketing.com/#prace" },
+        { "@type": "ListItem", "position": 3, "name": "Pokojné plávanie" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body id="top">
+
+<!-- ================= NAV ================= -->
+<header id="nav" class="nav fixed top-0 inset-x-0 z-50">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 pt-[32px] md:pt-[44px]">
+    <div class="crown">
+      <div class="crown-body">
+        <div class="crown-fill">
+          <span class="crown-key" aria-hidden="true"></span>
+
+          <div class="crown-row">
+            <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+              <a href="index.html#prace" class="link-hover">Práce</a>
+              <a href="index.html#preco" class="link-hover">Prečo</a>
+              <a href="index.html#metoda" class="link-hover">Metóda</a>
+            </nav>
+
+            <span class="crown-seat" aria-hidden="true"></span>
+
+            <div class="crown-actions flex items-center gap-6 xl:gap-8">
+              <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
+                <a href="index.html#onas" class="link-hover">O nás</a>
+                <a href="index.html#faq" class="link-hover">FAQ</a>
+              </nav>
+              <a href="kontakt.html" class="btn btn-primary cta-glow hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Porozprávajme sa</a>
+              <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+                <span class="block w-5 h-[1.5px] bg-white"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — domov">
+        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      </a>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
+      <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
+        <a href="index.html#prace" class="mobile-link">Práce</a>
+        <a href="index.html#preco" class="mobile-link">Prečo</a>
+        <a href="index.html#metoda" class="mobile-link">Metóda</a>
+        <a href="index.html#onas" class="mobile-link">O nás</a>
+        <a href="index.html#faq" class="mobile-link">FAQ</a>
+        <a href="kontakt.html" class="btn btn-primary cta-glow mt-1 mobile-link justify-center">Porozprávajme sa</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="cs-hero">
+  <!-- phones: the photo runs full bleed behind the copy -->
+  <div class="cs-hero-art" aria-hidden="true">
+    <img src="assets/pokojne-plavanie-hero.webp" alt="">
+  </div>
+  <!-- 1024px up: the same photo holds the right edge at close to native size -->
+  <div class="cs-hero-panel">
+    <img src="assets/pokojne-plavanie-hero.webp" alt="Žaneta z Pokojného plávania s tímom Benzo Marketing na bazéne">
+  </div>
+
+  <div class="cs-hero-in w-full max-w-[1180px] mx-auto px-5 md:px-8">
+    <div class="cs-hero-grid">
+      <div>
+        <img src="brand_assets/clients/plavanie.webp" alt="Pokojné plávanie" class="cs-logo mb-7">
+        <h1 class="display text-[clamp(2.9rem,9vw,6.4rem)] mt-5">Pokojné plávanie</h1>
+        <p class="cs-result mt-6"><b>100&nbsp;%</b> vypredanie kurzov, <b>2&nbsp;mesiace</b> od spustenia kampane.</p>
+        <div class="cs-tags mt-9">
+            <span class="cs-tag">Prieskum</span>
+            <span class="cs-tag">Reklamy a VSL</span>
+            <span class="cs-tag">Nový web</span>
+            <span class="cs-tag">Registračná stránka</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BODY ================= -->
+<div class="cs-atmos" id="csAtmos">
+
+  <div class="cs-glow" aria-hidden="true">
+    <span class="cs-glow-1"></span>
+    <span class="cs-glow-2"></span>
+  </div>
+
+  <div class="cs-spine" aria-hidden="true">
+    <span class="cs-spine-base"></span>
+    <span class="cs-spine-fill" id="csSpineFill"></span>
+  </div>
+
+  <nav class="cs-rail" id="csRail" aria-label="Kapitoly">
+    <a href="#vyzva">Výzva</a>
+    <a href="#riesenie">Riešenie</a>
+    <a href="#vysledky">Výsledky</a>
+    <a href="#piliere">Piliere</a>
+  </nav>
+
+<!-- ================= O KLIENTOVI ================= -->
+<section class="max-w-[1180px] mx-auto px-5 md:px-8 pt-24 md:pt-32">
+  <div class="reveal">
+    <p class="label text-blue mb-5">O klientovi</p>
+    <p class="cs-standfirst">Žaneta koná kurzy plávania po celom Slovensku pre ľudí, ktorí sa boja vody a nevedia plávať.</p>
+  </div>
+</section>
+
+<!-- ================= CHALLENGE / SOLUTION ================= -->
+<section class="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="cs-chapter reveal" id="vyzva">
+    <h2 class="h-sec cs-chapter-title">Výzva</h2>
+    <div class="cs-chapter-rule" aria-hidden="true"></div>
+    <p class="cs-lead">Žaneta nás kontaktovala v období, kedy bežali reklamy na jej kurzy, ale nedarilo sa jej predať viac ako pár kurzov za mesiac…</p>
+    <div class="cs-body">
+        <p>Koreň problému bol v komunikácii s jej cieľovým zákazníkom, pretože reklamy ukazovali iba termíny a miesta kurzov, nič viac.</p>
+        <p>Web stránka bola príliš zložitá a nedôveryhodná na to, aby nový človek bez váhania vyplnil formulár a zaplatil za viacdňový kurz plávania v priemernej hodnote 200 €.</p>
+    </div>
+    <div class="cs-accent">
+      <p>Práve vtedy sme na scénu prišli my.</p>
+    </div>
+  </div>
+
+  <div class="divider my-14 md:my-20" aria-hidden="true"></div>
+
+  <div class="cs-chapter reveal" id="riesenie">
+    <h2 class="h-sec cs-chapter-title">Riešenie</h2>
+    <div class="cs-chapter-rule" aria-hidden="true"></div>
+    <p class="cs-lead">2 týždne sme spoznávali jej cieľovú skupinu.</p>
+    <div class="cs-asks">
+      <p>Čoho sa bojí…</p>
+      <p>Čo im ide hlavou, keď niekto spomenie plávanie…</p>
+      <p>Prečo sa doteraz nenaučili plávať?</p>
+    </div>
+    <div class="cs-body">
+        <p>Vyspovedali sme jej klientov a odkryli každý kútik Google na to, aby sme sa vedeli vžiť do ich kože.</p>
+        <p>Na základe tohto hlavného piliera sme postavili každú jednu vetu v celom funnely.</p>
+        <p>Zjednodušili sme týmto ľuďom cestu natoľko, že sme vypredali 100 % jej kurzov po celom Slovensku do 2 mesiacov od spustenia.</p>
+        <p>Teraz rozširuje jej kurzy na viac miest a do online priestoru…</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section class="max-w-[1180px] mx-auto px-5 md:px-8 pb-20 md:pb-28" id="vysledky">
+  <div class="cs-chapter reveal">
+    <p class="label text-blue">Výsledky</p>
+  </div>
+  <div class="cs-panel cs-stats mt-10 md:mt-12">
+      <div class="reveal" style="--d:.6s">
+        <p class="cs-stat-num">100 %</p>
+        <p class="cs-stat-cap">Vypredaných kurzov</p>
+      </div>
+      <div class="reveal" style="--d:.12s">
+        <p class="cs-stat-num">2</p>
+        <p class="cs-stat-cap">Mesiace po spustení</p>
+      </div>
+  </div>
+
+  <figure class="cs-quote mt-12 md:mt-16 reveal">
+    <blockquote>„Uvedomenie, že sú výsledky prišlo s tým, že sa mi naplnili kurzy.“</blockquote>
+    <figcaption>
+      <span class="cs-quote-who">Žaneta</span>
+      <span class="cs-quote-role">Pokojné plávanie</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ================= PROOF ================= -->
+<section class="max-w-[1180px] mx-auto px-5 md:px-8 pb-24 md:pb-32" id="piliere">
+  <div class="cs-chapter reveal">
+    <h2 class="h-sec cs-chapter-title">Tri piliere, na ktorých to stálo.</h2>
+  </div>
+
+  <div class="cs-steps mt-12 md:mt-16">
+    <article class="cs-step reveal" style="--d:.06s">
+      <p class="cs-step-num">01</p>
+      <h3 class="cs-step-title">Natáčanie 3 hlavných reklám a VSL</h3>
+    </article>
+    <article class="cs-step reveal" style="--d:.12s">
+      <p class="cs-step-num">02</p>
+      <h3 class="cs-step-title">Budovanie kompletne nového webu</h3>
+    </article>
+    <article class="cs-step reveal" style="--d:.18s">
+      <p class="cs-step-num">03</p>
+      <h3 class="cs-step-title">Optimalizácia registračnej stránky s odstránením frikčných miest vo funneli</h3>
+    </article>
+  </div>
+</section>
+
+</div><!-- /.cs-atmos -->
+
+<!-- ================= NEXT ================= -->
+<div class="max-w-[1180px] mx-auto px-5 md:px-8">
+  <nav class="cs-next" aria-label="Ďalšie case studies">
+    <a href="praca-01.html">
+      <span class="label text-blue">Ďalšia case study</span>
+      <span class="cs-next-name">NaturBio</span>
+      <span class="label text-white/50 inline-flex items-center gap-2">Pozrieť <span class="btn-arrow inline-block transition-transform duration-300">→</span></span>
+    </a>
+    <a href="index.html#prace">
+      <span class="label text-blue">Prehľad</span>
+      <span class="cs-next-name">Všetky práce</span>
+      <span class="label text-white/50 inline-flex items-center gap-2">Späť na web <span class="btn-arrow inline-block transition-transform duration-300">→</span></span>
+    </a>
+  </nav>
+</div>
+
+<!-- ================= CLOSING CTA ================= -->
+<section class="cs-close py-24 md:py-36">
+  <div class="cs-close-art" aria-hidden="true">
+    <img src="Horses.webp" alt="">
+  </div>
+  <div class="glow" style="width:520px;height:520px;background:var(--navy);top:14%;left:50%;transform:translateX(-50%);opacity:.42;z-index:1;" aria-hidden="true"></div>
+  <div class="cs-close-in max-w-[1180px] mx-auto px-5 md:px-8 text-center">
+    <h2 class="display text-[clamp(2.4rem,7vw,5rem)] mt-5 reveal" style="--d:.06s">Chcete<br>dominovať?</h2>
+    <p class="body-m mt-7 max-w-[46ch] mx-auto reveal" style="--d:.12s">Ak áno, kliknite na tlačidlo nižšie a uvidíme, či sa kvalifikujete…</p>
+    <a href="kontakt.html" class="btn btn-primary cta-glow mt-10 reveal" style="--d:.18s">Chcem to isté <span class="btn-arrow">→</span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-line">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <div>
+      <a href="index.html" class="inline-block"><img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+      <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
+        <a href="index.html#prace" class="link-hover">Práce</a>
+        <a href="index.html#preco" class="link-hover">Prečo</a>
+        <a href="index.html#metoda" class="link-hover">Metóda</a>
+        <a href="index.html#onas" class="link-hover">O nás</a>
+        <a href="index.html#faq" class="link-hover">FAQ</a>
+        <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
+      </nav>
+      <a href="https://www.instagram.com/benik_peter" target="_blank" rel="noopener noreferrer"
+         class="social-ico flex-none" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5.2" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+</footer>
+
+<script src="assets/benzo.js"></script>
+<script src="assets/benzo-cursor.js"></script>
+
+<!-- ================= BODY ATMOSPHERE ================= -->
+<!-- Page-local on purpose: assets/benzo.js is shared by every page and stays
+     generic, the way index.html keeps its shader and kontakt.html its form. -->
+<script>
+(function(){
+  'use strict';
+  var atmos = document.getElementById('csAtmos');
+  var fill  = document.getElementById('csSpineFill');
+  var rail  = document.getElementById('csRail');
+  if (!atmos) return;
+
+  /* ---- spine fill ----
+     --clip is the share of the key still unread, so it counts 100% -> 0%.
+     Progress is measured across the wrapper's own scroll range rather than the
+     document's: the hero and the closing CTA sit outside it and would
+     otherwise leave the key part-drawn at both ends. */
+  var ticking = false;
+  function paint(){
+    ticking = false;
+    if (!fill) return;
+    var r = atmos.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var span = r.height - vh;
+    var p = span > 0 ? (-r.top) / span : (r.top <= 0 ? 1 : 0);
+    p = p < 0 ? 0 : (p > 1 ? 1 : p);
+    fill.style.setProperty('--clip', ((1 - p) * 100).toFixed(2) + '%');
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  paint();
+
+  if (!rail || !('IntersectionObserver' in window)) return;
+  var links = Array.prototype.slice.call(rail.querySelectorAll('a'));
+
+  /* ---- rail visibility: only while the body region is on screen ---- */
+  new IntersectionObserver(function(entries){
+    rail.classList.toggle('on', entries[0].isIntersecting);
+  }, {rootMargin:'-20% 0px -20% 0px'}).observe(atmos);
+
+  /* ---- active chapter ----
+     Chapters differ a lot in height, so "most visible wins" would flicker on
+     the short ones. Instead the last chapter whose top has passed the marker
+     line owns the rail — the same way a reader's place works. */
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function mark(){
+    var line = (window.innerHeight || 0) * 0.4;
+    var active = 0;
+    targets.forEach(function(t, i){
+      if (t.getBoundingClientRect().top <= line) active = i;
+    });
+    links.forEach(function(a, i){
+      if (i === active) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  var marking = false;
+  window.addEventListener('scroll', function(){
+    if (!marking){ marking = true; requestAnimationFrame(function(){ marking = false; mark(); }); }
+  }, {passive:true});
+  mark();
+})();
+</script>
+</body>
+</html>

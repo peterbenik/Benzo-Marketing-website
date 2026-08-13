@@ -1,0 +1,55 @@
+# benzomarketing.com
+
+# Everything is open. kontakt.html is deliberately NOT disallowed here — it carries a
+# noindex meta tag, and a page blocked from crawling is never read, so the noindex
+# would never be seen and the bare URL could still surface in results.
+User-agent: *
+Allow: /
+
+# AI answer engines, named explicitly. The wildcard above already permits them, but
+# these crawlers read their own named group first, and several of them treat the
+# absence of one as a reason to be conservative. Stating it also makes the policy
+# legible to whoever edits this file next: Benzo WANTS to be quoted by AI answers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://benzomarketing.com/sitemap.xml

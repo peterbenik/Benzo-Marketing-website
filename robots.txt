@@ -52,4 +52,4 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://benzomarketing.com/sitemap.xml
+Sitemap: https://www.benzomarketing.com/sitemap.xml

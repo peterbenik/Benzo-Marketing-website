@@ -264,3 +264,17 @@
   .cursor-ring.is-hover{ width:56px; height:56px; border-color:rgba(4,167,231,.9); background:rgba(4,167,231,.09); }
   .cursor-ring.is-down{ width:24px; height:24px; border-color:rgba(4,167,231,.95); }
   @media (hover:none), (pointer:coarse){ .cursor-dot, .cursor-ring{ display:none !important; } }
+
+  /* ===== Mobile scroll smoothness (site-wide half) =====
+     The nav capsule is position:fixed, so its backdrop-filter is recomposited
+     on every scroll frame — the browser has to re-blur whatever slid underneath
+     it, 60 times a second, for the whole length of the page. 16px is a heavy
+     radius to pay that on for a phone GPU. Halved here rather than dropped: at
+     390px the capsule is ~350px of glass over mostly-dark ink and 8px is not
+     tellable apart from 16px, but it roughly halves the per-frame cost.
+     Each page freezes its own big animated glows in its own sheet — those class
+     names are declared after this file and would win the cascade tie. */
+  @media (hover:none) and (pointer:coarse){
+    .crown-body, .crown-panel{
+      -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+  }

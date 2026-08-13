@@ -974,6 +974,38 @@
   .work-photo-ad::after{
     background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.6) 30%,
                                rgba(0,0,0,.22) 58%, rgba(0,0,0,.52)); }
+
+  /* ===== Mobile scroll smoothness =====
+     Three separate causes, all of them only bite on a phone.
+
+     1. The hero was min-h-screen (100vh). On mobile 100vh is the height with
+        the URL bar HIDDEN, so the moment the bar retracts mid-scroll the hero
+        grows ~100px and shoves every section below it down — the page appears
+        to stutter and fight the finger. svh is the small viewport height, which
+        is fixed and never rewrites layout while scrolling. Written as its own
+        class rather than a Tailwind arbitrary value because Tailwind's CDN
+        build injects after this sheet and min-h-screen would win the tie. */
+  .hero-vh{ min-height:100vh; }
+  @supports (min-height:100svh){ .hero-vh{ min-height:100svh; } }
+
+  /*  2. The ambient glows animate scale() on boxes carrying filter:blur(150px)
+        and blur(120px). Transform animations are normally free, but a scaled
+        blur cannot be reused between frames — the compositor re-rasterises a
+        150px gaussian every frame for as long as the section is on screen. A
+        phone GPU cannot hold 60fps through that while also scrolling. Freezing
+        them at their mid-point keeps the glow exactly as designed and costs one
+        rasterisation instead of sixty a second. Desktop keeps the drift.
+     3. Same for the two painting layers, which slow-zoom large images. */
+  @media (hover:none) and (pointer:coarse){
+    .mission-glow-1{ animation:none; opacity:.24; filter:blur(90px); }
+    .mission-glow-2{ animation:none; opacity:.18; filter:blur(80px); }
+    /* transform deliberately untouched: both painting variants restate their own
+       scale for exactly this case (see .art-bg-war img), so killing the animation
+       alone leaves each one's framing intact. */
+    .art-bg img{ animation:none; }
+  }
+  /* The fixed nav's backdrop blur is the third cause, and it is the same on every
+     page — it lives in assets/benzo.css rather than being restated here. */
 </style>
 
 <!-- Structured data. This is how a search engine — and, more to the point, an AI answer
@@ -1149,7 +1181,7 @@
      used to run 52/64 against a pt of 44 and rode ~40px high so the nebula kept the
      lower half of the frame. Mobile keeps its own smaller pb: the stack there is
      taller, and the same absolute change would push it off a 667px phone. -->
-<section class="relative min-h-screen flex flex-col justify-center pt-36 md:pt-44 pb-28 md:pb-44 overflow-hidden" style="background:radial-gradient(130% 100% at 72% 24%, rgba(4,167,231,.14), rgba(0,0,128,.10) 40%, #000 78%);">
+<section class="relative hero-vh flex flex-col justify-center pt-36 md:pt-44 pb-28 md:pb-44 overflow-hidden" style="background:radial-gradient(130% 100% at 72% 24%, rgba(4,167,231,.14), rgba(0,0,128,.10) 40%, #000 78%);">
   <!-- Animated WebGL shader background — Benzo electric-blue / navy nebula (falls back to the CSS gradient above if WebGL2 is unavailable) -->
   <canvas id="heroCanvas" class="absolute inset-0 w-full h-full block" aria-hidden="true"></canvas>
 
@@ -1163,7 +1195,7 @@
 
   <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 w-full text-center">
     <!-- One 70-char sentence now, not three short lines: at the old 7rem/15ch it
-         ran ~5 lines and overflowed min-h-screen. Split on clause boundaries so
+         ran ~5 lines and overflowed the hero's height. Split on clause boundaries so
          the three reveal delays still land on whole thoughts.
          Overrides .display's line-height:.94 / letter-spacing:-.035em, which are
          set for one or two short words (Práce, Metóda) and read as a solid slab
@@ -1231,7 +1263,13 @@
     <div class="mission-glow mission-glow-2" style="width:460px;height:320px;background:var(--blue);top:46%;left:50%;"></div>
   </div>
   <div class="relative z-10 max-w-[1050px] mx-auto px-5 md:px-8 text-center">
-    <h2 class="display text-[clamp(1.8rem,4.2vw,3.9rem)] reveal" style="--d:.05s">
+    <!-- Same override as the hero h1, and for the same reason: .display's .94
+         leading and -.035em tracking are tuned for one or two short words
+         (Práce, Metóda). Across a full sentence that wraps to three lines the
+         words ran into each other and the block read as a slab. The extra
+         word-spacing is what separates the words themselves — tracking alone
+         only opens the letters. The class stays tight everywhere else. -->
+    <h2 class="display text-[clamp(1.8rem,4.2vw,3.9rem)] leading-[1.18] tracking-[-.015em] [word-spacing:.10em] reveal" style="--d:.05s">
       Toto je pre tých, ktorí už <span class="text-blue">NECHCÚ</span> stáť na tom istom mieste rok čo rok…
     </h2>
     <!-- text-white overrides .body-m's muted grey: this is the one body block sitting
@@ -1259,10 +1297,10 @@
     </div>
 
     <!-- Three across only from lg. At md the columns are ~221px wide, which is
-         narrower than the service line, the eyebrow and the result line all
-         need: every one of them wrapped three ways and the tile number ended
-         up floating in the middle of the wrapped text. One column carries the
-         768–1023 band instead. -->
+         narrower than the result line needs — it wrapped three ways and the
+         tile number ended up floating in the middle of the wrapped text. One
+         column carries the 768–1023 band instead. (The eyebrow and the service
+         line that used to share this constraint have been removed.) -->
     <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-5">
       <!-- Case study 01 -->
       <a href="praca-01.html" class="work-card work-photo work-photo-ad duo duo-hover group relative block rounded-[14px] overflow-hidden aspect-[16/11] lg:aspect-[4/5] reveal" style="--d:.04s">
@@ -1273,10 +1311,8 @@
         <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
           <div class="flex items-start justify-between gap-3 label text-white/80">
             <span class="text-blue">01</span>
-            <span class="text-right">Prieskum · Copywriting · Kampaň</span>
           </div>
           <div>
-            <p class="label text-blue mb-2.5">Kampaň postavená na prieskume</p>
             <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">NaturBio</h3>
             <p class="work-result mt-3"><b>15&nbsp;280&nbsp;€</b> z jednej kampane, priemerný ROAS <b>5,18x</b>.</p>
             <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
@@ -1296,10 +1332,8 @@
         <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
           <div class="flex items-start justify-between gap-3 label text-white/80">
             <span class="text-blue">02</span>
-            <span class="text-right">Brand · Reklamy · Web · GMB Opt.</span>
           </div>
           <div>
-            <p class="label text-blue mb-2.5">Dominancia odvetvia</p>
             <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">Renovia Strechy</h3>
             <p class="work-result mt-3"><b>80&nbsp;000&nbsp;€</b> z dvoch kampaní a <b>~22,86x</b> ROAS!</p>
             <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
@@ -1319,10 +1353,8 @@
         <div class="duo-body absolute inset-0 p-6 md:p-7 flex flex-col justify-between">
           <div class="flex items-start justify-between gap-3 label text-white/80">
             <span class="text-blue">03</span>
-            <span class="text-right">Reklamy · Web · Registrácia</span>
           </div>
           <div>
-            <p class="label text-blue mb-2.5">Akvizičný systém od nuly</p>
             <h3 class="h-sec text-[clamp(1.6rem,2.2vw,2.1rem)] leading-none">Pokojné plávanie</h3>
             <p class="work-result mt-3"><b>100&nbsp;%</b> vypredanie kurzov, <b>2&nbsp;mesiace</b> od spustenia.</p>
             <span class="mt-5 inline-flex items-center gap-2 label text-white opacity-70 md:opacity-0 md:-translate-x-1 transition duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
@@ -1802,7 +1834,7 @@
             </svg>
           </div>
           <h3 class="h-sec text-2xl md:text-3xl mt-6">Necháte to tak.</h3>
-          <p class="body-m text-sm mt-4 max-w-[38ch]">Kliknete na tlačidlo v tomto boxe a váš život ostane ako doteraz. Žiadna stratégia ani plán, len prázdné povzbudenie od AI, ktoré ste už počuli milión krát.</p>
+          <p class="body-m text-sm mt-4 max-w-[38ch]">Kliknete na tlačidlo v tomto boxe a váš život ostane ako doteraz. Žiadna stratégia ani plán, len prázdne povzbudenie od AI, ktoré ste už počuli miliónkrát.</p>
           <div class="mt-auto pt-8">
             <!-- the walk-away button never glows, and it genuinely walks away -->
             <a href="https://chatgpt.com" rel="noopener" class="btn btn-ghost w-full justify-center">Odísť.</a>
@@ -1824,7 +1856,7 @@
             </svg>
           </div>
           <h3 class="h-sec text-2xl md:text-3xl mt-6">Pustíme sa do toho.</h3>
-          <p class="body-m text-sm mt-4 text-white/72 max-w-[46ch]">Kliknete na tlačidlo v tomto boxe, vyplňíte formulár a spoznáte team, ktorý vám dá možnosť vyberať si, s kým chcete pracovať a s kým nie. Team, na ktorý sa viete spoľahnúť, že vám odpovie aj v sobotu o 20:00. Team, ktorý chce dominovať v každom odvetví, ktorého sa dotkne. Vidíte sa v tom aj vy?</p>
+          <p class="body-m text-sm mt-4 text-white/72 max-w-[46ch]">Kliknete na tlačidlo v tomto boxe, vyplníte formulár a spoznáte tím, ktorý vám dá možnosť vyberať si, s kým chcete pracovať a s kým nie. Tím, na ktorý sa môžete spoľahnúť, že vám odpovie aj v sobotu o 20:00. Tím, ktorý chce dominovať v každom odvetví, ktorého sa dotkne. Vidíte sa v tom aj vy?</p>
           <div class="mt-auto pt-8">
             <a href="kontakt.html" class="btn btn-primary cta-glow w-full justify-center">Áno, chcem dominovať! <span class="btn-arrow">→</span></a>
           </div>

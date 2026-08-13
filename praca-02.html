@@ -358,6 +358,19 @@
     50%    { transform:translate(-48%,-46%) scale(1.12); opacity:.36; }
   }
 
+  /* ===== Mobile scroll smoothness =====
+     Both glows animate scale() on a box carrying a 120px / 88px blur. A
+     transform animation is normally free, but a SCALED blur cannot be reused
+     between frames — the compositor re-rasterises the whole gaussian every
+     frame for as long as the section is on screen, which is what makes
+     scrolling stutter on a phone. Frozen near their mid-point: the glow looks
+     the same, at one rasterisation instead of sixty a second. Desktop keeps
+     the drift. (The fixed nav's backdrop blur is handled in assets/benzo.css.) */
+  @media (hover:none) and (pointer:coarse){
+    .cs-glow-1{ animation:none; opacity:.26; filter:blur(80px); }
+    .cs-glow-2{ animation:none; opacity:.30; filter:blur(64px); }
+  }
+
   /* 1280, not 1024: below that `left` bottoms out at its .5rem floor and the key
      ends up pinned against the browser edge with no margin to sit in. */
   .cs-spine{ display:none; }

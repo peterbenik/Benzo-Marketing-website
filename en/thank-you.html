@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
        3. crawlers are exempt, so Googlebot (en-US) still indexes the Slovak page
           as Slovak. The hreflang tags below are what tell it about the twin. -->
 <script>(function(){
-  var PAGE='sk', ALT='en/thank-you.html';
+  var PAGE='en', ALT='../dakujeme.html';
   try{
     var q=location.search.match(/[?&]lang=(sk|en)/);
     if(q){ localStorage.setItem('benzo-lang', q[1]);
@@ -31,36 +31,37 @@
     if(want!==PAGE) location.replace(ALT+location.hash);
   }catch(e){}
 })();</script>
-<title>Ďakujeme — Benzo Marketing</title>
-<meta name="description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<title>Thank you — Benzo Marketing</title>
+<meta name="description" content="Your qualification has arrived. We will look at your situation and get back to you.">
 <!-- noindex is not optional on a thank-you page: if it ranks, strangers land on it
      directly and every one of them counts as a conversion. Like kontakt.html it is
      deliberately NOT disallowed in robots.txt — a blocked page is never crawled, so
      this line would never be read. It is also kept out of sitemap.xml. -->
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#0D0D0D">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <!-- Google picks the SERP favicon from these, and its guidance is a square that is a
      MULTIPLE OF 48px — the old lone 32x32 was under that floor. /favicon.ico at the
      site root (16/32/48) is shipped too: it needs no link tag, but it is the location
      Google and every legacy client probe by default, and it used to 404. -->
-<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
-<link rel="icon" href="assets/favicon-96.png" sizes="96x96" type="image/png">
-<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="../assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="../assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="../assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Benzo Marketing">
-<meta property="og:locale" content="sk_SK">
-<meta property="og:url" content="https://www.benzomarketing.com/dakujeme.html">
-<meta property="og:title" content="Ďakujeme — Benzo Marketing">
-<meta property="og:description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="sk_SK">
+<meta property="og:url" content="https://www.benzomarketing.com/en/thank-you.html">
+<meta property="og:title" content="Thank you — Benzo Marketing">
+<meta property="og:description" content="Your qualification has arrived. We will look at your situation and get back to you.">
 <meta property="og:image" content="https://www.benzomarketing.com/assets/og-benzo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ďakujeme — Benzo Marketing">
-<meta name="twitter:description" content="Vaša kvalifikácia dorazila. Pozrieme sa na vašu situáciu a ozveme sa.">
+<meta name="twitter:title" content="Thank you — Benzo Marketing">
+<meta name="twitter:description" content="Your qualification has arrived. We will look at your situation and get back to you.">
 <meta name="twitter:image" content="https://www.benzomarketing.com/assets/og-benzo.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +80,7 @@
   }
 </script>
 
-<link rel="stylesheet" href="assets/benzo.css">
+<link rel="stylesheet" href="../assets/benzo.css">
 
 <!-- page-specific: the confirmation card only -->
 <style>
@@ -201,20 +202,20 @@
 
           <div class="crown-row">
             <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
-              <a href="index.html#prace" class="link-hover">Práce</a>
-              <a href="index.html#preco" class="link-hover">Prečo</a>
-              <a href="index.html#metoda" class="link-hover">Metóda</a>
+              <a href="index.html#prace" class="link-hover">Work</a>
+              <a href="index.html#preco" class="link-hover">Why</a>
+              <a href="index.html#metoda" class="link-hover">Method</a>
             </nav>
 
             <span class="crown-seat" aria-hidden="true"></span>
 
             <div class="crown-actions flex items-center gap-6 xl:gap-8">
               <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
-                <a href="index.html#onas" class="link-hover">O nás</a>
+                <a href="index.html#onas" class="link-hover">About</a>
                 <a href="index.html#faq" class="link-hover">FAQ</a>
               </nav>
-              <a href="en/thank-you.html?lang=en" class="lang-pill hidden lg:inline-flex" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
-              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Späť na web</a>
+              <a href="../dakujeme.html?lang=sk" class="lang-pill hidden lg:inline-flex" hreflang="sk" lang="sk" aria-label="Prepnúť na slovenčinu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>SK</a>
+              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Back to the site</a>
               <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
                 <span class="block w-5 h-[1.5px] bg-white"></span>
                 <span class="block w-5 h-[1.5px] bg-white"></span>
@@ -224,20 +225,20 @@
         </div>
       </div>
 
-      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — domov">
-        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — home">
+        <img src="../brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
       </a>
     </div>
 
     <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
       <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
-        <a href="index.html#prace" class="mobile-link">Práce</a>
-        <a href="index.html#preco" class="mobile-link">Prečo</a>
-        <a href="index.html#metoda" class="mobile-link">Metóda</a>
-        <a href="index.html#onas" class="mobile-link">O nás</a>
+        <a href="index.html#prace" class="mobile-link">Work</a>
+        <a href="index.html#preco" class="mobile-link">Why</a>
+        <a href="index.html#metoda" class="mobile-link">Method</a>
+        <a href="index.html#onas" class="mobile-link">About</a>
         <a href="index.html#faq" class="mobile-link">FAQ</a>
-        <a href="en/thank-you.html?lang=en" class="lang-pill lang-pill-mobile mobile-link" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
-        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Späť na web</a>
+        <a href="../dakujeme.html?lang=sk" class="lang-pill lang-pill-mobile mobile-link" hreflang="sk" lang="sk" aria-label="Prepnúť na slovenčinu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>SK</a>
+        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Back to the site</a>
       </div>
     </div>
   </div>
@@ -246,7 +247,7 @@
 <main>
 <section class="ty-wrap">
   <div class="ty-art" aria-hidden="true">
-    <img src="brand_assets/Fall of Rome.webp" alt="" fetchpriority="high">
+    <img src="../brand_assets/Fall of Rome.webp" alt="" fetchpriority="high">
   </div>
   <div class="ty-mark-bg" aria-hidden="true">
     <span class="ty-glow"></span>
@@ -259,18 +260,18 @@
         <svg viewBox="0 0 24 24" fill="none"><path d="m4.5 12.5 5 5 10-11" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
 
-      <h1 class="display ty-h ty-anim" style="--d:.18s" tabindex="-1">Ďakujeme!</h1>
+      <h1 class="display ty-h ty-anim" style="--d:.18s" tabindex="-1">Thank you!</h1>
       <span class="ty-rule ty-anim" style="--d:.28s" aria-hidden="true"></span>
 
       <p class="body-m ty-p ty-anim" style="--d:.36s">
-        Pozrieme sa na vašu situáciu a dáme vám vedieť, či ste postúpili na spoznávací hovor.
+        We will look at your situation and let you know whether you have moved through to an introductory call.
       </p>
       <p class="ty-note ty-anim" style="--d:.44s">
-        Medzitým nám môžete napísať na
+        In the meantime you can write to us at
         <a href="mailto:peterbenik@benzomarketing.com">peterbenik@benzomarketing.com</a>
       </p>
 
-      <a href="index.html" class="btn btn-outline ty-cta ty-anim" style="--d:.52s">Späť na web</a>
+      <a href="index.html" class="btn btn-outline ty-cta ty-anim" style="--d:.52s">Back to the site</a>
 
     </div>
   </div>
@@ -281,14 +282,14 @@
 <footer class="border-t border-line">
   <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
     <div>
-      <a href="index.html" class="inline-block"><img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
+      <a href="index.html" class="inline-block"><img src="../brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
     </div>
     <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
       <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
-        <a href="index.html#prace" class="link-hover">Práce</a>
-        <a href="index.html#preco" class="link-hover">Prečo</a>
-        <a href="index.html#metoda" class="link-hover">Metóda</a>
-        <a href="index.html#onas" class="link-hover">O nás</a>
+        <a href="index.html#prace" class="link-hover">Work</a>
+        <a href="index.html#preco" class="link-hover">Why</a>
+        <a href="index.html#metoda" class="link-hover">Method</a>
+        <a href="index.html#onas" class="link-hover">About</a>
         <a href="index.html#faq" class="link-hover">FAQ</a>
         <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
       </nav>
@@ -302,10 +303,10 @@
       </a>
     </div>
   </div>
-  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — All rights reserved</div>
 </footer>
 
-<script src="assets/benzo.js"></script>
+<script src="../assets/benzo.js"></script>
 
 <script>
   /* Anyone who reached this page has submitted, so the homepage exit-intent

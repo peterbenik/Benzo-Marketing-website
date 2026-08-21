@@ -3,9 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Language routing. Runs before anything paints, so an English visitor never
+     sees a frame of Slovak. Three deliberate properties:
+       1. the automatic hop is one-directional (SK -> EN) unless a stored choice
+          says otherwise, so a redirect loop is impossible and an English link
+          shared with a Slovak colleague still opens in English;
+       2. auto-detection is never persisted — only a click on the language pill
+          (which navigates with ?lang=) writes localStorage, so the visitor's own
+          choice always outranks their browser's;
+       3. crawlers are exempt, so Googlebot (en-US) still indexes the Slovak page
+          as Slovak. The hreflang tags below are what tell it about the twin. -->
+<script>(function(){
+  var PAGE='sk', ALT='en/work-01.html';
+  try{
+    var q=location.search.match(/[?&]lang=(sk|en)/);
+    if(q){ localStorage.setItem('benzo-lang', q[1]);
+           history.replaceState(null,'',location.pathname+location.hash); }
+    var want=localStorage.getItem('benzo-lang');
+    if(!want){
+      if(PAGE!=='sk') return;
+      if(/bot|crawl|spider|slurp|GPTBot|ClaudeBot|PerplexityBot|Bytespider/i
+         .test(navigator.userAgent)) return;
+      var n=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();
+      if(/^(sk|cs)/.test(n)) return;
+      want='en';
+    }
+    if(want!==PAGE) location.replace(ALT+location.hash);
+  }catch(e){}
+})();</script>
 <title>NaturBio — case study | Benzo Marketing</title>
 <meta name="description" content="15 280,93 € obratu z jednej kampane pri ROAS 5,18. Ako dva týždne prieskumu cieľovej skupiny zmenili výsledky e-shopu NaturBio.">
 <link rel="canonical" href="https://www.benzomarketing.com/praca-01.html">
+<!-- hreflang. Reciprocal on both sides, and on the www host to match the canonical
+     tags already in these files. x-default points at Slovak: it is the primary market. -->
+<link rel="alternate" hreflang="sk" href="https://www.benzomarketing.com/praca-01.html">
+<link rel="alternate" hreflang="en" href="https://www.benzomarketing.com/en/work-01.html">
+<link rel="alternate" hreflang="x-default" href="https://www.benzomarketing.com/praca-01.html">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="theme-color" content="#0D0D0D">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,6 +54,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Benzo Marketing">
 <meta property="og:locale" content="sk_SK">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://www.benzomarketing.com/praca-01.html">
 <meta property="og:title" content="NaturBio — case study | Benzo Marketing">
 <meta property="og:description" content="15 280,93 € obratu z jednej kampane pri ROAS 5,18. Ako dva týždne prieskumu cieľovej skupiny zmenili výsledky e-shopu NaturBio.">
@@ -457,6 +491,7 @@
                 <a href="index.html#onas" class="link-hover">O nás</a>
                 <a href="index.html#faq" class="link-hover">FAQ</a>
               </nav>
+              <a href="en/work-01.html?lang=en" class="lang-pill hidden lg:inline-flex" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
               <a href="kontakt.html" class="btn btn-primary cta-glow hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Porozprávajme sa</a>
               <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
                 <span class="block w-5 h-[1.5px] bg-white"></span>
@@ -479,6 +514,7 @@
         <a href="index.html#metoda" class="mobile-link">Metóda</a>
         <a href="index.html#onas" class="mobile-link">O nás</a>
         <a href="index.html#faq" class="mobile-link">FAQ</a>
+        <a href="en/work-01.html?lang=en" class="lang-pill lang-pill-mobile mobile-link" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
         <a href="kontakt.html" class="btn btn-primary cta-glow mt-1 mobile-link justify-center">Porozprávajme sa</a>
       </div>
     </div>

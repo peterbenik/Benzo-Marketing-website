@@ -54,6 +54,30 @@
   /* deliberately muted "walk-away" button — never rewards the bad choice with brand colour */
   .btn-ghost{ background:transparent; color:var(--muted); border:1px solid var(--line); }
   .btn-ghost:hover{ border-color:rgba(255,255,255,.28); color:rgba(255,255,255,.72); transform:translateY(-2px); }
+  /* ===== Language pill =====
+     The switch between the Slovak site and its English twin under /en/. It always
+     shows the language you would be going TO, never the one you are already on,
+     and it navigates with ?lang= so the routing snippet in each <head> can record
+     the choice before the next page paints — from then on the visitor's own pick
+     outranks their browser language. Sized one step under .label so it can sit on
+     the crown row without pushing the CTA into the medallion. */
+  .lang-pill{
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-weight:600; font-size:.68rem; text-transform:uppercase; letter-spacing:.18em;
+    padding:.42rem .8rem .42rem .68rem; border-radius:9999px;
+    color:rgba(255,255,255,.62); border:1px solid var(--line); background:transparent;
+    transition:transform .4s var(--ease), color .35s var(--ease),
+               border-color .35s var(--ease), background-color .35s var(--ease);
+  }
+  .lang-pill svg{ width:13px; height:13px; flex:none; opacity:.72; transition:opacity .35s var(--ease); }
+  .lang-pill:hover{ color:var(--blue); border-color:rgba(4,167,231,.55);
+                    background:rgba(4,167,231,.07); transform:translateY(-2px); }
+  .lang-pill:hover svg{ opacity:1; }
+  .lang-pill:active{ transform:translateY(1px); }
+  .lang-pill:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+  /* in the mobile drawer it is its own row, so it must not stretch to the full width */
+  .lang-pill-mobile{ align-self:flex-start; }
+
   .btn-arrow{ transition:transform .35s var(--ease); }
   .btn:hover .btn-arrow{ transform:translateX(4px); }
 

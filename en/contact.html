@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
        3. crawlers are exempt, so Googlebot (en-US) still indexes the Slovak page
           as Slovak. The hreflang tags below are what tell it about the twin. -->
 <script>(function(){
-  var PAGE='sk', ALT='en/contact.html';
+  var PAGE='en', ALT='../kontakt.html';
   try{
     var q=location.search.match(/[?&]lang=(sk|en)/);
     if(q){ localStorage.setItem('benzo-lang', q[1]);
@@ -31,37 +31,38 @@
     if(want!==PAGE) location.replace(ALT+location.hash);
   }catch(e){}
 })();</script>
-<title>Kvalifikácia — Benzo Marketing</title>
-<meta name="description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<title>Qualification — Benzo Marketing</title>
+<meta name="description" content="Eight questions, 60 seconds. We find out whether we understand each other — and whether we can help you dominate your industry.">
 <!-- noindex stays: this is a form, not a landing page. Note it is deliberately NOT
      disallowed in robots.txt — a page blocked from crawling is never read, so the
      noindex below would never be seen and the URL could still surface bare. -->
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#0D0D0D">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <!-- Google picks the SERP favicon from these, and its guidance is a square that is a
      MULTIPLE OF 48px — the old lone 32x32 was under that floor. /favicon.ico at the
      site root (16/32/48) is shipped too: it needs no link tag, but it is the location
      Google and every legacy client probe by default, and it used to 404. -->
-<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
-<link rel="icon" href="assets/favicon-96.png" sizes="96x96" type="image/png">
-<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="../assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="../assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="../assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
 <!-- OG tags on a noindex page are not a contradiction: people paste this link into
      WhatsApp and Slack, and those unfurlers read OG regardless of indexing. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Benzo Marketing">
-<meta property="og:locale" content="sk_SK">
-<meta property="og:url" content="https://www.benzomarketing.com/kontakt.html">
-<meta property="og:title" content="Kvalifikácia — Benzo Marketing">
-<meta property="og:description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="sk_SK">
+<meta property="og:url" content="https://www.benzomarketing.com/en/contact.html">
+<meta property="og:title" content="Qualification — Benzo Marketing">
+<meta property="og:description" content="Eight questions, 60 seconds. We find out whether we understand each other — and whether we can help you dominate your industry.">
 <meta property="og:image" content="https://www.benzomarketing.com/assets/og-benzo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kvalifikácia — Benzo Marketing">
-<meta name="twitter:description" content="Osem otázok, 60 sekúnd. Zistíme, či si rozumieme — a či vám vieme pomôcť dominovať vo vašom odvetví.">
+<meta name="twitter:title" content="Qualification — Benzo Marketing">
+<meta name="twitter:description" content="Eight questions, 60 seconds. We find out whether we understand each other — and whether we can help you dominate your industry.">
 <meta name="twitter:image" content="https://www.benzomarketing.com/assets/og-benzo.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,7 +81,7 @@
   }
 </script>
 
-<link rel="stylesheet" href="assets/benzo.css">
+<link rel="stylesheet" href="../assets/benzo.css">
 
 <!-- page-specific: the multi-step form only -->
 <style>
@@ -288,20 +289,20 @@
 
           <div class="crown-row">
             <nav class="crown-nav hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
-              <a href="index.html#prace" class="link-hover">Práce</a>
-              <a href="index.html#preco" class="link-hover">Prečo</a>
-              <a href="index.html#metoda" class="link-hover">Metóda</a>
+              <a href="index.html#prace" class="link-hover">Work</a>
+              <a href="index.html#preco" class="link-hover">Why</a>
+              <a href="index.html#metoda" class="link-hover">Method</a>
             </nav>
 
             <span class="crown-seat" aria-hidden="true"></span>
 
             <div class="crown-actions flex items-center gap-6 xl:gap-8">
               <nav class="hidden lg:flex items-center gap-6 xl:gap-8 label text-white/70">
-                <a href="index.html#onas" class="link-hover">O nás</a>
+                <a href="index.html#onas" class="link-hover">About</a>
                 <a href="index.html#faq" class="link-hover">FAQ</a>
               </nav>
-              <a href="en/contact.html?lang=en" class="lang-pill hidden lg:inline-flex" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
-              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Späť na web</a>
+              <a href="../kontakt.html?lang=sk" class="lang-pill hidden lg:inline-flex" hreflang="sk" lang="sk" aria-label="Prepnúť na slovenčinu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>SK</a>
+              <a href="index.html" class="btn btn-outline hidden lg:inline-flex !py-[.6rem] !px-[1.15rem]">Back to the site</a>
               <button id="menuBtn" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu" aria-expanded="false">
                 <span class="block w-5 h-[1.5px] bg-white"></span>
                 <span class="block w-5 h-[1.5px] bg-white"></span>
@@ -311,20 +312,20 @@
         </div>
       </div>
 
-      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — domov">
-        <img src="brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
+      <a href="index.html" class="crown-medal" aria-label="Benzo Marketing — home">
+        <img src="../brand_assets/benzo-omega-mark.png" alt="" aria-hidden="true" class="crown-medal-mark">
       </a>
     </div>
 
     <div id="mobileMenu" class="lg:hidden hidden crown-panel mt-2">
       <div class="crown-panel-in px-7 py-7 flex flex-col gap-5 label text-white/80">
-        <a href="index.html#prace" class="mobile-link">Práce</a>
-        <a href="index.html#preco" class="mobile-link">Prečo</a>
-        <a href="index.html#metoda" class="mobile-link">Metóda</a>
-        <a href="index.html#onas" class="mobile-link">O nás</a>
+        <a href="index.html#prace" class="mobile-link">Work</a>
+        <a href="index.html#preco" class="mobile-link">Why</a>
+        <a href="index.html#metoda" class="mobile-link">Method</a>
+        <a href="index.html#onas" class="mobile-link">About</a>
         <a href="index.html#faq" class="mobile-link">FAQ</a>
-        <a href="en/contact.html?lang=en" class="lang-pill lang-pill-mobile mobile-link" hreflang="en" lang="en" aria-label="Switch to English"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>EN</a>
-        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Späť na web</a>
+        <a href="../kontakt.html?lang=sk" class="lang-pill lang-pill-mobile mobile-link" hreflang="sk" lang="sk" aria-label="Prepnúť na slovenčinu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" stroke="currentColor" stroke-width="1.7"/></svg>SK</a>
+        <a href="index.html" class="btn btn-outline mt-1 mobile-link justify-center">Back to the site</a>
       </div>
     </div>
   </div>
@@ -333,7 +334,7 @@
 <main>
 <section class="qf-wrap">
   <div class="qf-art" aria-hidden="true">
-    <img src="brand_assets/Fall of Rome.webp" alt="">
+    <img src="../brand_assets/Fall of Rome.webp" alt="">
   </div>
   <div class="qf-mark" aria-hidden="true">
     <span class="qf-mark-glow"></span>
@@ -343,41 +344,45 @@
 
     <!-- ---------- intro ---------- -->
     <div id="qfIntro" class="qf-card text-center">
-      <h1 class="display text-[clamp(1.7rem,4vw,2.6rem)]">Týmito pár otázkami zistíme, či spolu máme potenciál dobyť váš trh!</h1>
+      <h1 class="display text-[clamp(1.7rem,4vw,2.6rem)]">A few questions will tell us whether together we can take your market!</h1>
       <div class="mt-10 flex flex-col items-center gap-4">
-        <button type="button" id="qfStart" class="btn btn-primary cta-glow">Chcem dominovať! <span class="btn-arrow">→</span></button>
-        <a href="index.html" class="label text-white/35 link-hover">Späť na web</a>
+        <button type="button" id="qfStart" class="btn btn-primary cta-glow">I want to dominate! <span class="btn-arrow">→</span></button>
+        <a href="index.html" class="label text-white/35 link-hover">Back to the site</a>
       </div>
     </div>
 
     <!-- ---------- form ---------- -->
     <form id="qfForm" class="qf-card hidden" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="hidden" name="access_key" value="3dc18006-ada6-492b-9cd5-075f7ec840d4">
-      <input type="hidden" name="subject" value="Nová kvalifikácia z webu — Benzo Marketing">
-      <input type="hidden" name="from_name" value="Benzo Marketing — formulár">
+      <input type="hidden" name="subject" value="New qualification from the website — Benzo Marketing (EN)">
+      <input type="hidden" name="from_name" value="Benzo Marketing — form">
       <!-- The no-JS path only. With JS the submit handler navigates by itself and
            Web3Forms ignores this; without it the browser does a plain POST and
            Web3Forms would land the visitor on its own generic success page, so
            this sends them to ours instead. Absolute by requirement — it shares
            the domain assumption already baked into canonical and og:url. -->
-      <input type="hidden" name="redirect" value="https://www.benzomarketing.com/dakujeme.html">
+      <input type="hidden" name="redirect" value="https://www.benzomarketing.com/en/thank-you.html">
+      <!-- Marks the language of the enquiry. Every other field NAME is left exactly
+           as the Slovak form has it, so both languages land in the inbox with the
+           same shape; only the labels and the answer values are English. -->
+      <input type="hidden" name="Jazyk" value="EN">
       <!-- honeypot: real people never see or fill this -->
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
 
       <div class="qf-prog">
         <div class="qf-prog-track"><div class="qf-prog-fill" id="qfFill"></div></div>
-        <span class="qf-prog-num" id="qfNum">1 z 8</span>
+        <span class="qf-prog-num" id="qfNum">1 of 8</span>
       </div>
 
       <div id="qfLive" class="sr-only" aria-live="polite"></div>
 
       <!-- 1 -->
       <fieldset class="qf-step" data-step="1">
-        <legend class="qf-legend">Ako sa voláte?</legend>
+        <legend class="qf-legend">What is your name?</legend>
         <div class="qf-fields">
           <div>
-            <label class="qf-label" for="f-meno">Meno a priezvisko</label>
-            <input class="qf-input" id="f-meno" name="Meno" type="text" autocomplete="name" placeholder="Peter Novák" data-required>
+            <label class="qf-label" for="f-meno">Full name</label>
+            <input class="qf-input" id="f-meno" name="Meno" type="text" autocomplete="name" placeholder="John Smith" data-required>
           </div>
         </div>
         <p class="qf-err" data-err></p>
@@ -385,15 +390,15 @@
 
       <!-- 2 -->
       <fieldset class="qf-step" data-step="2">
-        <legend class="qf-legend">Kontaktné údaje</legend>
+        <legend class="qf-legend">Contact details</legend>
         <div class="qf-fields">
           <div>
             <label class="qf-label" for="f-email">Email</label>
-            <input class="qf-input" id="f-email" name="E-mail" type="email" autocomplete="email" placeholder="peter@vasafirma.sk" data-required data-type="email">
+            <input class="qf-input" id="f-email" name="E-mail" type="email" autocomplete="email" placeholder="john@yourcompany.com" data-required data-type="email">
           </div>
           <div class="qf-row">
             <div>
-              <label class="qf-label" for="f-predvolba">Predvoľba</label>
+              <label class="qf-label" for="f-predvolba">Dial code</label>
               <!-- the flag is display only — value stays the bare dial code so
                    what lands in the inbox is still just "+421" -->
               <select class="qf-select" id="f-predvolba" name="Predvoľba" autocomplete="tel-country-code">
@@ -408,7 +413,7 @@
               </select>
             </div>
             <div>
-              <label class="qf-label" for="f-tel">Telefónne číslo</label>
+              <label class="qf-label" for="f-tel">Phone number</label>
               <input class="qf-input" id="f-tel" name="Telefónne číslo" type="tel" autocomplete="tel-national" placeholder="900 000 000" data-required>
             </div>
           </div>
@@ -418,12 +423,12 @@
 
       <!-- 3 -->
       <fieldset class="qf-step" data-step="3">
-        <legend class="qf-legend">Aktuálny web alebo sociálne siete</legend>
-        <p class="qf-sub">Čokoľvek, kde vidíme, ako dnes komunikujete.</p>
+        <legend class="qf-legend">Your current website or social media</legend>
+        <p class="qf-sub">Anywhere we can see how you communicate today.</p>
         <div class="qf-fields">
           <div>
-            <label class="qf-label" for="f-link">Web alebo sociálne siete</label>
-            <input class="qf-input" id="f-link" name="Web alebo SM" type="text" inputmode="url" placeholder="www.stránka.com" data-required>
+            <label class="qf-label" for="f-link">Website or social media</label>
+            <input class="qf-input" id="f-link" name="Web alebo SM" type="text" inputmode="url" placeholder="www.yoursite.com" data-required>
           </div>
         </div>
         <p class="qf-err" data-err></p>
@@ -431,11 +436,11 @@
 
       <!-- 4 -->
       <fieldset class="qf-step" data-step="4">
-        <legend class="qf-legend">Pozícia vo firme</legend>
+        <legend class="qf-legend">Your position in the company</legend>
         <div class="qf-fields">
           <div>
-            <label class="qf-label" for="f-pozicia">Pozícia</label>
-            <input class="qf-input" id="f-pozicia" name="Pozícia" type="text" autocomplete="organization-title" placeholder="Majiteľ / konateľ" data-required>
+            <label class="qf-label" for="f-pozicia">Position</label>
+            <input class="qf-input" id="f-pozicia" name="Pozícia" type="text" autocomplete="organization-title" placeholder="Owner / managing director" data-required>
           </div>
         </div>
         <p class="qf-err" data-err></p>
@@ -443,19 +448,19 @@
 
       <!-- 5 -->
       <fieldset class="qf-step" data-step="5" data-auto>
-        <legend class="qf-legend">Akým spôsobom funguje váš marketing?</legend>
+        <legend class="qf-legend">How does your marketing work today?</legend>
         <div class="qf-choices">
           <label class="qf-choice">
-            <input type="radio" name="Marketing" value="Mám agentúru" required>
-            <span>Mám agentúru</span>
+            <input type="radio" name="Marketing" value="I have an agency" required>
+            <span>I have an agency</span>
           </label>
           <label class="qf-choice">
-            <input type="radio" name="Marketing" value="Robím si ho sám s AI" required>
-            <span>Robím si ho sám s AI</span>
+            <input type="radio" name="Marketing" value="I do it myself with AI" required>
+            <span>I do it myself with AI</span>
           </label>
           <label class="qf-choice">
-            <input type="radio" name="Marketing" value="Marketingové oddelenie" required>
-            <span>Marketingové oddelenie</span>
+            <input type="radio" name="Marketing" value="An in-house marketing department" required>
+            <span>An in-house marketing department</span>
           </label>
         </div>
         <p class="qf-err" data-err></p>
@@ -463,17 +468,17 @@
 
       <!-- 6 -->
       <fieldset class="qf-step" data-step="6">
-        <legend class="qf-legend">Aký je váš priemerný mesačný obrat?</legend>
-        <p class="qf-sub">Stačí približne — pomáha nám to odhadnúť, čo má zmysel stavať.</p>
-        <output class="qf-slider-out" id="qfRevOut" for="f-obrat">0 €</output>
+        <legend class="qf-legend">What is your average monthly revenue?</legend>
+        <p class="qf-sub">A rough figure is enough — it helps us judge what is worth building.</p>
+        <output class="qf-slider-out" id="qfRevOut" for="f-obrat">€0</output>
         <input class="qf-range" id="f-obrat" type="range" min="0" max="1000" step="1" value="180"
-               aria-label="Priemerný mesačný obrat v eurách">
-        <div class="qf-scale"><span>0 €</span><span>1 000 000 €</span></div>
+               aria-label="Average monthly revenue in euros">
+        <div class="qf-scale"><span>€0</span><span>€1,000,000</span></div>
         <div class="qf-eur">
-          <label class="qf-label" for="f-obrat-text">Alebo napíšte presnú sumu</label>
+          <label class="qf-label" for="f-obrat-text">Or type the exact amount</label>
           <div class="qf-eur-field">
             <input class="qf-input qf-eur-input" id="f-obrat-text" type="text"
-                   inputmode="numeric" autocomplete="off" placeholder="napr. 12 000">
+                   inputmode="numeric" autocomplete="off" placeholder="e.g. 12,000">
             <span class="qf-eur-cur" aria-hidden="true">€</span>
           </div>
         </div>
@@ -483,36 +488,36 @@
 
       <!-- 7 -->
       <fieldset class="qf-step" data-step="7">
-        <legend class="qf-legend">Popíšte váš cieľ na najbližších 9 mesiacov.</legend>
-        <p class="qf-sub">A prečo si myslíte, že ste ho doteraz nedosiahli?</p>
+        <legend class="qf-legend">Describe your goal for the next 9 months.</legend>
+        <p class="qf-sub">And why do you think you have not reached it yet?</p>
         <div class="qf-fields">
           <textarea class="qf-textarea" id="f-ciel" name="Cieľ na 9 mesiacov"
-            placeholder="Kam sa chcete dostať a čo vás zatiaľ zastavilo…" data-required data-min="20"></textarea>
+            placeholder="Where you want to get to, and what has stopped you so far…" data-required data-min="20"></textarea>
         </div>
-        <p class="qf-hint">Čím konkrétnejšie, tým lepšie sa vieme pripraviť.</p>
+        <p class="qf-hint">The more specific you are, the better we can prepare.</p>
         <p class="qf-err" data-err></p>
       </fieldset>
 
       <!-- 8 -->
       <fieldset class="qf-step" data-step="8" data-auto>
-        <legend class="qf-legend">Máte ambíciu rásť?</legend>
+        <legend class="qf-legend">Do you have the ambition to grow?</legend>
         <div class="qf-choices">
           <label class="qf-choice">
-            <input type="radio" name="Ambícia rásť" value="Áno" required>
-            <span>Áno</span>
+            <input type="radio" name="Ambícia rásť" value="Yes" required>
+            <span>Yes</span>
           </label>
           <label class="qf-choice">
-            <input type="radio" name="Ambícia rásť" value="Nie" required>
-            <span>Nie</span>
+            <input type="radio" name="Ambícia rásť" value="No" required>
+            <span>No</span>
           </label>
         </div>
         <p class="qf-err" data-err></p>
       </fieldset>
 
       <div class="qf-actions">
-        <button type="button" class="qf-back" id="qfBack" hidden>← Späť</button>
+        <button type="button" class="qf-back" id="qfBack" hidden>← Back</button>
         <button type="submit" class="btn btn-primary cta-glow" id="qfNext">
-          <span id="qfNextLabel">Ďalej</span> <span class="btn-arrow">→</span>
+          <span id="qfNextLabel">Next</span> <span class="btn-arrow">→</span>
         </button>
       </div>
       <p class="qf-err text-center" id="qfFormErr"></p>
@@ -528,14 +533,14 @@
 <footer class="border-t border-line">
   <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
     <div>
-      <a href="index.html" class="inline-block"><img src="brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
+      <a href="index.html" class="inline-block"><img src="../brand_assets/benzo-logo-wordmark.png" alt="Benzo Marketing" class="logo-img h-11 md:h-12 w-auto"></a>
     </div>
     <div class="flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
       <nav class="flex flex-wrap gap-x-8 gap-y-3 label text-white/60">
-        <a href="index.html#prace" class="link-hover">Práce</a>
-        <a href="index.html#preco" class="link-hover">Prečo</a>
-        <a href="index.html#metoda" class="link-hover">Metóda</a>
-        <a href="index.html#onas" class="link-hover">O nás</a>
+        <a href="index.html#prace" class="link-hover">Work</a>
+        <a href="index.html#preco" class="link-hover">Why</a>
+        <a href="index.html#metoda" class="link-hover">Method</a>
+        <a href="index.html#onas" class="link-hover">About</a>
         <a href="index.html#faq" class="link-hover">FAQ</a>
         <a href="mailto:peterbenik@benzomarketing.com" class="link-hover">peterbenik@benzomarketing.com</a>
       </nav>
@@ -549,10 +554,10 @@
       </a>
     </div>
   </div>
-  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — Všetky práva vyhradené</div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pb-10 label text-white/25">© 2026 Benzo Marketing — All rights reserved</div>
 </footer>
 
-<script src="assets/benzo.js"></script>
+<script src="../assets/benzo.js"></script>
 
 <!-- Reaching this page means the visitor has seen the offer, so the homepage's
      exit-intent dialog should not nag them if they go back. Read by the dialog
@@ -587,7 +592,7 @@
   var revEur = document.getElementById('f-obrat-eur');
   var revText = document.getElementById('f-obrat-text');
   var MAXEUR = 1000000, fmt;
-  try { fmt = new Intl.NumberFormat('sk-SK'); } catch(e){ fmt = { format:function(n){ return String(n); } }; }
+  try { fmt = new Intl.NumberFormat('en-GB'); } catch(e){ fmt = { format:function(n){ return String(n); } }; }
 
   function posToEur(pos){
     var t = pos / 1000;
@@ -605,7 +610,7 @@
      is driving; it is left alone so we never rewrite the box mid-keystroke. */
   function paintRev(eur, src){
     revEur.value = eur;
-    revOut.textContent = fmt.format(eur) + ' €' + (eur >= MAXEUR ? '+' : '');
+    revOut.textContent = '€' + fmt.format(eur) + (eur >= MAXEUR ? '+' : '');
     if (range && src !== range){
       range.value = eurToPos(eur);
     }
@@ -676,7 +681,7 @@
     var radios = step.querySelectorAll('input[type=radio]');
     if (radios.length){
       var picked = Array.prototype.some.call(radios, function(r){ return r.checked; });
-      if (!picked){ setErr(step, 'Vyberte jednu z možností.'); return false; }
+      if (!picked){ setErr(step, 'Please pick one of the options.'); return false; }
       setErr(step, ''); return true;
     }
     var ok = true;
@@ -684,14 +689,14 @@
       if (!ok) return;
       var v = (el.value || '').trim();
       if (el.hasAttribute('data-required') && !v){
-        setErr(step, 'Toto pole je povinné.', el); ok = false; return;
+        setErr(step, 'This field is required.', el); ok = false; return;
       }
       if (el.getAttribute('data-type') === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
-        setErr(step, 'Skontrolujte formát e-mailu.', el); ok = false; return;
+        setErr(step, 'Please check the email format.', el); ok = false; return;
       }
       var min = +el.getAttribute('data-min') || 0;
       if (min && v.length < min){
-        setErr(step, 'Napíšte prosím aspoň pár viet — pomôže nám to.', el); ok = false; return;
+        setErr(step, 'Please write at least a few sentences — it helps us.', el); ok = false; return;
       }
     });
     if (ok) setErr(step, '');
@@ -704,10 +709,10 @@
     steps.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
     var pct = ((i + 1) / steps.length) * 100;
     fill.style.width = pct + '%';
-    num.textContent = (i + 1) + ' z ' + steps.length;
-    live.textContent = 'Krok ' + (i + 1) + ' z ' + steps.length;
+    num.textContent = (i + 1) + ' of ' + steps.length;
+    live.textContent = 'Step ' + (i + 1) + ' of ' + steps.length;
     back.hidden = (i === 0);
-    nextLabel.textContent = (i === steps.length - 1) ? 'Odoslať' : 'Ďalej';
+    nextLabel.textContent = (i === steps.length - 1) ? 'Send' : 'Next';
     if (focus !== false){
       var first = steps[i].querySelector('input:not([type=hidden]),textarea');
       if (first) { try { first.focus({ preventScroll:true }); } catch(e){ first.focus(); } }
@@ -759,7 +764,7 @@
 
     formErr.textContent = '';
     next.disabled = true;
-    nextLabel.textContent = 'Odosielam…';
+    nextLabel.textContent = 'Sending…';
 
     // JSON rather than FormData: Web3Forms decodes multipart field *names* as
     // Latin-1, which turned "Predvoľba" into "PredvoÄ¾ba" in the notification
@@ -783,13 +788,13 @@
         // platform can fire on. replace() rather than assign(): Back from the
         // thank-you page should return to the site, not to a spent form sitting
         // on its last step inviting a second submit.
-        nextLabel.textContent = 'Ďakujeme…';
-        window.location.replace('dakujeme.html');
+        nextLabel.textContent = 'Thank you…';
+        window.location.replace('thank-you.html');
       })
       .catch(function(){
         next.disabled = false;
-        nextLabel.textContent = 'Odoslať';
-        formErr.innerHTML = 'Odoslanie zlyhalo. Skúste to znova, alebo nám napíšte na ' +
+        nextLabel.textContent = 'Send';
+        formErr.innerHTML = 'Sending failed. Please try again, or write to us at ' +
           '<a class="text-blue underline" href="mailto:peterbenik@benzomarketing.com">peterbenik@benzomarketing.com</a>.';
       });
   });
